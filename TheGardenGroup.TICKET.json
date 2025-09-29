@@ -1,0 +1,2300 @@
+[{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c12e"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed704"
+  },
+  "creation_time": {
+    "$date": "2025-09-20T13:02:29.355Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 1",
+  "description": "Description for ticket 1",
+  "reported_by": {
+    "employee_number": 4541,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6a7",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c12f"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed705"
+  },
+  "creation_time": {
+    "$date": "2025-03-10T14:02:29.355Z"
+  },
+  "ticket_status": "RESOLVED",
+  "ticket_name": "Ticket 2",
+  "description": "Description for ticket 2",
+  "reported_by": {
+    "employee_number": 6343,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6d9",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c130"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed706"
+  },
+  "creation_time": {
+    "$date": "2025-08-25T13:02:29.355Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 3",
+  "description": "Description for ticket 3",
+  "reported_by": {
+    "employee_number": 2360,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6ca",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c131"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed707"
+  },
+  "creation_time": {
+    "$date": "2025-09-11T13:02:29.355Z"
+  },
+  "ticket_status": "CLOSED",
+  "ticket_name": "Ticket 4",
+  "description": "Description for ticket 4",
+  "reported_by": {
+    "employee_number": 8615,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6eb",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c132"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed708"
+  },
+  "creation_time": {
+    "$date": "2025-04-24T13:02:29.355Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 5",
+  "description": "Description for ticket 5",
+  "reported_by": {
+    "employee_number": 7609,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6f7",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c133"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed709"
+  },
+  "creation_time": {
+    "$date": "2025-03-23T14:02:29.355Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 6",
+  "description": "Description for ticket 6",
+  "reported_by": {
+    "employee_number": 4800,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6f9",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c134"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed70a"
+  },
+  "creation_time": {
+    "$date": "2025-09-22T13:02:29.355Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 7",
+  "description": "Description for ticket 7",
+  "reported_by": {
+    "employee_number": 2056,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6bd",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c135"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed70b"
+  },
+  "creation_time": {
+    "$date": "2025-05-23T13:02:29.355Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 8",
+  "description": "Description for ticket 8",
+  "reported_by": {
+    "employee_number": 6183,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6d6",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c136"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed70c"
+  },
+  "creation_time": {
+    "$date": "2025-09-25T13:02:29.355Z"
+  },
+  "ticket_status": "CLOSED",
+  "ticket_name": "Ticket 9",
+  "description": "Description for ticket 9",
+  "reported_by": {
+    "employee_number": 9846,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6cc",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c137"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed70d"
+  },
+  "creation_time": {
+    "$date": "2025-09-06T13:02:29.355Z"
+  },
+  "ticket_status": "CLOSED",
+  "ticket_name": "Ticket 10",
+  "description": "Description for ticket 10",
+  "reported_by": {
+    "employee_number": 9625,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6ec",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c138"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed70e"
+  },
+  "creation_time": {
+    "$date": "2025-01-20T14:02:29.355Z"
+  },
+  "ticket_status": "CLOSED",
+  "ticket_name": "Ticket 11",
+  "description": "Description for ticket 11",
+  "reported_by": {
+    "employee_number": 4714,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6ed",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c139"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed70f"
+  },
+  "creation_time": {
+    "$date": "2025-01-17T14:02:29.355Z"
+  },
+  "ticket_status": "CLOSED",
+  "ticket_name": "Ticket 12",
+  "description": "Description for ticket 12",
+  "reported_by": {
+    "employee_number": 5150,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6e5",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c13a"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed710"
+  },
+  "creation_time": {
+    "$date": "2025-09-15T13:02:29.355Z"
+  },
+  "ticket_status": "RESOLVED",
+  "ticket_name": "Ticket 13",
+  "description": "Description for ticket 13",
+  "reported_by": {
+    "employee_number": 6937,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6ef",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c13b"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed711"
+  },
+  "creation_time": {
+    "$date": "2025-09-21T13:02:29.355Z"
+  },
+  "ticket_status": "CLOSED",
+  "ticket_name": "Ticket 14",
+  "description": "Description for ticket 14",
+  "reported_by": {
+    "employee_number": 6857,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6e1",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c13c"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed712"
+  },
+  "creation_time": {
+    "$date": "2025-08-03T13:02:29.355Z"
+  },
+  "ticket_status": "CLOSED",
+  "ticket_name": "Ticket 15",
+  "description": "Description for ticket 15",
+  "reported_by": {
+    "employee_number": 5601,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6cc",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c13d"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed713"
+  },
+  "creation_time": {
+    "$date": "2025-08-17T13:02:29.355Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 16",
+  "description": "Description for ticket 16",
+  "reported_by": {
+    "employee_number": 5338,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6e1",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c13e"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed714"
+  },
+  "creation_time": {
+    "$date": "2025-01-20T14:02:29.355Z"
+  },
+  "ticket_status": "RESOLVED",
+  "ticket_name": "Ticket 17",
+  "description": "Description for ticket 17",
+  "reported_by": {
+    "employee_number": 5478,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6b6",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c13f"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed715"
+  },
+  "creation_time": {
+    "$date": "2025-05-13T13:02:29.355Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 18",
+  "description": "Description for ticket 18",
+  "reported_by": {
+    "employee_number": 8753,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6a2",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c140"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed716"
+  },
+  "creation_time": {
+    "$date": "2025-08-31T13:02:29.355Z"
+  },
+  "ticket_status": "CLOSED",
+  "ticket_name": "Ticket 19",
+  "description": "Description for ticket 19",
+  "reported_by": {
+    "employee_number": 9992,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6dc",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c141"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed717"
+  },
+  "creation_time": {
+    "$date": "2025-04-10T13:02:29.355Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 20",
+  "description": "Description for ticket 20",
+  "reported_by": {
+    "employee_number": 4100,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed703",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c142"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed718"
+  },
+  "creation_time": {
+    "$date": "2025-09-21T13:02:29.355Z"
+  },
+  "ticket_status": "CLOSED",
+  "ticket_name": "Ticket 21",
+  "description": "Description for ticket 21",
+  "reported_by": {
+    "employee_number": 1308,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6e7",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c143"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed719"
+  },
+  "creation_time": {
+    "$date": "2025-06-26T13:02:29.355Z"
+  },
+  "ticket_status": "RESOLVED",
+  "ticket_name": "Ticket 22",
+  "description": "Description for ticket 22",
+  "reported_by": {
+    "employee_number": 4136,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6e8",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c144"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed71a"
+  },
+  "creation_time": {
+    "$date": "2024-09-26T13:02:29.355Z"
+  },
+  "ticket_status": "RESOLVED",
+  "ticket_name": "Ticket 23",
+  "description": "Description for ticket 23",
+  "reported_by": {
+    "employee_number": 9196,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6fa",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c145"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed71b"
+  },
+  "creation_time": {
+    "$date": "2025-03-21T14:02:29.355Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 24",
+  "description": "Description for ticket 24",
+  "reported_by": {
+    "employee_number": 9328,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6d8",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c146"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed71c"
+  },
+  "creation_time": {
+    "$date": "2025-09-06T13:02:29.355Z"
+  },
+  "ticket_status": "CLOSED",
+  "ticket_name": "Ticket 25",
+  "description": "Description for ticket 25",
+  "reported_by": {
+    "employee_number": 2961,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6fe",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c147"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed71d"
+  },
+  "creation_time": {
+    "$date": "2024-12-06T14:02:29.355Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 26",
+  "description": "Description for ticket 26",
+  "reported_by": {
+    "employee_number": 2391,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6a3",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c148"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed71e"
+  },
+  "creation_time": {
+    "$date": "2025-08-29T13:02:29.355Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 27",
+  "description": "Description for ticket 27",
+  "reported_by": {
+    "employee_number": 5789,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6f6",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c149"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed71f"
+  },
+  "creation_time": {
+    "$date": "2024-10-13T13:02:29.355Z"
+  },
+  "ticket_status": "CLOSED",
+  "ticket_name": "Ticket 28",
+  "description": "Description for ticket 28",
+  "reported_by": {
+    "employee_number": 8664,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6d0",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c14a"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed720"
+  },
+  "creation_time": {
+    "$date": "2025-09-15T13:02:29.355Z"
+  },
+  "ticket_status": "RESOLVED",
+  "ticket_name": "Ticket 29",
+  "description": "Description for ticket 29",
+  "reported_by": {
+    "employee_number": 6256,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6e5",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c14b"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed721"
+  },
+  "creation_time": {
+    "$date": "2024-10-20T13:02:29.355Z"
+  },
+  "ticket_status": "CLOSED",
+  "ticket_name": "Ticket 30",
+  "description": "Description for ticket 30",
+  "reported_by": {
+    "employee_number": 4641,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6af",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c14c"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed722"
+  },
+  "creation_time": {
+    "$date": "2025-03-03T14:02:29.355Z"
+  },
+  "ticket_status": "RESOLVED",
+  "ticket_name": "Ticket 31",
+  "description": "Description for ticket 31",
+  "reported_by": {
+    "employee_number": 1973,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6a6",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c14d"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed723"
+  },
+  "creation_time": {
+    "$date": "2024-11-03T14:02:29.355Z"
+  },
+  "ticket_status": "RESOLVED",
+  "ticket_name": "Ticket 32",
+  "description": "Description for ticket 32",
+  "reported_by": {
+    "employee_number": 4935,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6ba",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c14e"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed724"
+  },
+  "creation_time": {
+    "$date": "2025-05-03T13:02:29.356Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 33",
+  "description": "Description for ticket 33",
+  "reported_by": {
+    "employee_number": 6543,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6ce",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c14f"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed725"
+  },
+  "creation_time": {
+    "$date": "2024-11-08T14:02:29.356Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 34",
+  "description": "Description for ticket 34",
+  "reported_by": {
+    "employee_number": 3864,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6a4",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c150"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed726"
+  },
+  "creation_time": {
+    "$date": "2025-06-04T13:02:29.356Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 35",
+  "description": "Description for ticket 35",
+  "reported_by": {
+    "employee_number": 7327,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6ad",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c151"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed727"
+  },
+  "creation_time": {
+    "$date": "2025-01-11T14:02:29.356Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 36",
+  "description": "Description for ticket 36",
+  "reported_by": {
+    "employee_number": 2960,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6f6",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c152"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed728"
+  },
+  "creation_time": {
+    "$date": "2025-02-13T14:02:29.356Z"
+  },
+  "ticket_status": "CLOSED",
+  "ticket_name": "Ticket 37",
+  "description": "Description for ticket 37",
+  "reported_by": {
+    "employee_number": 4227,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6cb",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c153"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed729"
+  },
+  "creation_time": {
+    "$date": "2024-10-06T13:02:29.356Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 38",
+  "description": "Description for ticket 38",
+  "reported_by": {
+    "employee_number": 8625,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6da",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c154"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed72a"
+  },
+  "creation_time": {
+    "$date": "2025-02-05T14:02:29.356Z"
+  },
+  "ticket_status": "RESOLVED",
+  "ticket_name": "Ticket 39",
+  "description": "Description for ticket 39",
+  "reported_by": {
+    "employee_number": 4834,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6f4",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c155"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed72b"
+  },
+  "creation_time": {
+    "$date": "2025-09-04T13:02:29.356Z"
+  },
+  "ticket_status": "RESOLVED",
+  "ticket_name": "Ticket 40",
+  "description": "Description for ticket 40",
+  "reported_by": {
+    "employee_number": 3387,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6f6",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c156"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed72c"
+  },
+  "creation_time": {
+    "$date": "2025-01-25T14:02:29.356Z"
+  },
+  "ticket_status": "CLOSED",
+  "ticket_name": "Ticket 41",
+  "description": "Description for ticket 41",
+  "reported_by": {
+    "employee_number": 5833,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6cc",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c157"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed72d"
+  },
+  "creation_time": {
+    "$date": "2025-06-15T13:02:29.356Z"
+  },
+  "ticket_status": "CLOSED",
+  "ticket_name": "Ticket 42",
+  "description": "Description for ticket 42",
+  "reported_by": {
+    "employee_number": 5553,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6a5",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c158"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed72e"
+  },
+  "creation_time": {
+    "$date": "2025-07-21T13:02:29.356Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 43",
+  "description": "Description for ticket 43",
+  "reported_by": {
+    "employee_number": 5191,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6f0",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c159"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed72f"
+  },
+  "creation_time": {
+    "$date": "2025-08-21T13:02:29.356Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 44",
+  "description": "Description for ticket 44",
+  "reported_by": {
+    "employee_number": 5100,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6b6",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c15a"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed730"
+  },
+  "creation_time": {
+    "$date": "2024-10-14T13:02:29.356Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 45",
+  "description": "Description for ticket 45",
+  "reported_by": {
+    "employee_number": 7626,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6fe",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c15b"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed731"
+  },
+  "creation_time": {
+    "$date": "2024-10-29T14:02:29.356Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 46",
+  "description": "Description for ticket 46",
+  "reported_by": {
+    "employee_number": 3644,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6b8",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c15c"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed732"
+  },
+  "creation_time": {
+    "$date": "2025-05-18T13:02:29.356Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 47",
+  "description": "Description for ticket 47",
+  "reported_by": {
+    "employee_number": 1911,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6a2",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c15d"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed733"
+  },
+  "creation_time": {
+    "$date": "2025-06-17T13:02:29.356Z"
+  },
+  "ticket_status": "CLOSED",
+  "ticket_name": "Ticket 48",
+  "description": "Description for ticket 48",
+  "reported_by": {
+    "employee_number": 3583,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed703",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c15e"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed734"
+  },
+  "creation_time": {
+    "$date": "2025-01-09T14:02:29.356Z"
+  },
+  "ticket_status": "CLOSED",
+  "ticket_name": "Ticket 49",
+  "description": "Description for ticket 49",
+  "reported_by": {
+    "employee_number": 3730,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6ba",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c15f"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed735"
+  },
+  "creation_time": {
+    "$date": "2025-02-19T14:02:29.356Z"
+  },
+  "ticket_status": "CLOSED",
+  "ticket_name": "Ticket 50",
+  "description": "Description for ticket 50",
+  "reported_by": {
+    "employee_number": 2255,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6cb",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c160"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed736"
+  },
+  "creation_time": {
+    "$date": "2025-09-22T13:02:29.356Z"
+  },
+  "ticket_status": "RESOLVED",
+  "ticket_name": "Ticket 51",
+  "description": "Description for ticket 51",
+  "reported_by": {
+    "employee_number": 9041,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6c2",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c161"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed737"
+  },
+  "creation_time": {
+    "$date": "2025-05-15T13:02:29.356Z"
+  },
+  "ticket_status": "CLOSED",
+  "ticket_name": "Ticket 52",
+  "description": "Description for ticket 52",
+  "reported_by": {
+    "employee_number": 1034,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6e1",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c162"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed738"
+  },
+  "creation_time": {
+    "$date": "2025-06-16T13:02:29.356Z"
+  },
+  "ticket_status": "RESOLVED",
+  "ticket_name": "Ticket 53",
+  "description": "Description for ticket 53",
+  "reported_by": {
+    "employee_number": 3240,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6f7",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c163"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed739"
+  },
+  "creation_time": {
+    "$date": "2024-10-19T13:02:29.356Z"
+  },
+  "ticket_status": "RESOLVED",
+  "ticket_name": "Ticket 54",
+  "description": "Description for ticket 54",
+  "reported_by": {
+    "employee_number": 6480,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6fd",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c164"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed73a"
+  },
+  "creation_time": {
+    "$date": "2024-10-22T13:02:29.356Z"
+  },
+  "ticket_status": "RESOLVED",
+  "ticket_name": "Ticket 55",
+  "description": "Description for ticket 55",
+  "reported_by": {
+    "employee_number": 6657,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6f6",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c165"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed73b"
+  },
+  "creation_time": {
+    "$date": "2024-10-21T13:02:29.356Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 56",
+  "description": "Description for ticket 56",
+  "reported_by": {
+    "employee_number": 5458,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6ae",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c166"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed73c"
+  },
+  "creation_time": {
+    "$date": "2025-06-15T13:02:29.356Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 57",
+  "description": "Description for ticket 57",
+  "reported_by": {
+    "employee_number": 7742,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6e6",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c167"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed73d"
+  },
+  "creation_time": {
+    "$date": "2025-05-08T13:02:29.356Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 58",
+  "description": "Description for ticket 58",
+  "reported_by": {
+    "employee_number": 4198,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6de",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c168"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed73e"
+  },
+  "creation_time": {
+    "$date": "2025-01-22T14:02:29.356Z"
+  },
+  "ticket_status": "RESOLVED",
+  "ticket_name": "Ticket 59",
+  "description": "Description for ticket 59",
+  "reported_by": {
+    "employee_number": 8131,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6ef",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c169"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed73f"
+  },
+  "creation_time": {
+    "$date": "2025-08-10T13:02:29.356Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 60",
+  "description": "Description for ticket 60",
+  "reported_by": {
+    "employee_number": 2734,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6f1",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c16a"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed740"
+  },
+  "creation_time": {
+    "$date": "2024-12-09T14:02:29.356Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 61",
+  "description": "Description for ticket 61",
+  "reported_by": {
+    "employee_number": 4163,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6cd",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c16b"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed741"
+  },
+  "creation_time": {
+    "$date": "2024-11-16T14:02:29.356Z"
+  },
+  "ticket_status": "RESOLVED",
+  "ticket_name": "Ticket 62",
+  "description": "Description for ticket 62",
+  "reported_by": {
+    "employee_number": 9853,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6da",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c16c"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed742"
+  },
+  "creation_time": {
+    "$date": "2025-06-13T13:02:29.356Z"
+  },
+  "ticket_status": "CLOSED",
+  "ticket_name": "Ticket 63",
+  "description": "Description for ticket 63",
+  "reported_by": {
+    "employee_number": 5760,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6d1",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c16d"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed743"
+  },
+  "creation_time": {
+    "$date": "2025-05-29T13:02:29.356Z"
+  },
+  "ticket_status": "RESOLVED",
+  "ticket_name": "Ticket 64",
+  "description": "Description for ticket 64",
+  "reported_by": {
+    "employee_number": 3420,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6a9",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c16e"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed744"
+  },
+  "creation_time": {
+    "$date": "2025-07-06T13:02:29.356Z"
+  },
+  "ticket_status": "RESOLVED",
+  "ticket_name": "Ticket 65",
+  "description": "Description for ticket 65",
+  "reported_by": {
+    "employee_number": 2078,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6f1",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c16f"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed745"
+  },
+  "creation_time": {
+    "$date": "2025-06-23T13:02:29.356Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 66",
+  "description": "Description for ticket 66",
+  "reported_by": {
+    "employee_number": 7521,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6b4",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c170"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed746"
+  },
+  "creation_time": {
+    "$date": "2025-04-22T13:02:29.356Z"
+  },
+  "ticket_status": "CLOSED",
+  "ticket_name": "Ticket 67",
+  "description": "Description for ticket 67",
+  "reported_by": {
+    "employee_number": 4424,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6b4",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c171"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed747"
+  },
+  "creation_time": {
+    "$date": "2025-01-07T14:02:29.356Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 68",
+  "description": "Description for ticket 68",
+  "reported_by": {
+    "employee_number": 4085,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6b6",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c172"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed748"
+  },
+  "creation_time": {
+    "$date": "2024-09-26T13:02:29.356Z"
+  },
+  "ticket_status": "RESOLVED",
+  "ticket_name": "Ticket 69",
+  "description": "Description for ticket 69",
+  "reported_by": {
+    "employee_number": 9712,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6b4",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c173"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed749"
+  },
+  "creation_time": {
+    "$date": "2025-07-11T13:02:29.356Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 70",
+  "description": "Description for ticket 70",
+  "reported_by": {
+    "employee_number": 8983,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6b4",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c174"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed74a"
+  },
+  "creation_time": {
+    "$date": "2025-07-24T13:02:29.356Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 71",
+  "description": "Description for ticket 71",
+  "reported_by": {
+    "employee_number": 4205,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6bf",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c175"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed74b"
+  },
+  "creation_time": {
+    "$date": "2025-04-14T13:02:29.356Z"
+  },
+  "ticket_status": "RESOLVED",
+  "ticket_name": "Ticket 72",
+  "description": "Description for ticket 72",
+  "reported_by": {
+    "employee_number": 3983,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6ab",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c176"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed74c"
+  },
+  "creation_time": {
+    "$date": "2025-02-18T14:02:29.356Z"
+  },
+  "ticket_status": "RESOLVED",
+  "ticket_name": "Ticket 73",
+  "description": "Description for ticket 73",
+  "reported_by": {
+    "employee_number": 6183,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6a4",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c177"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed74d"
+  },
+  "creation_time": {
+    "$date": "2024-10-18T13:02:29.356Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 74",
+  "description": "Description for ticket 74",
+  "reported_by": {
+    "employee_number": 4976,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed700",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c178"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed74e"
+  },
+  "creation_time": {
+    "$date": "2024-09-29T13:02:29.356Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 75",
+  "description": "Description for ticket 75",
+  "reported_by": {
+    "employee_number": 4554,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6d7",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c179"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed74f"
+  },
+  "creation_time": {
+    "$date": "2025-07-07T13:02:29.356Z"
+  },
+  "ticket_status": "RESOLVED",
+  "ticket_name": "Ticket 76",
+  "description": "Description for ticket 76",
+  "reported_by": {
+    "employee_number": 4352,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6a5",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c17a"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed750"
+  },
+  "creation_time": {
+    "$date": "2025-08-25T13:02:29.356Z"
+  },
+  "ticket_status": "CLOSED",
+  "ticket_name": "Ticket 77",
+  "description": "Description for ticket 77",
+  "reported_by": {
+    "employee_number": 7975,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6ae",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c17b"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed751"
+  },
+  "creation_time": {
+    "$date": "2025-03-02T14:02:29.356Z"
+  },
+  "ticket_status": "CLOSED",
+  "ticket_name": "Ticket 78",
+  "description": "Description for ticket 78",
+  "reported_by": {
+    "employee_number": 9969,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6c3",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c17c"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed752"
+  },
+  "creation_time": {
+    "$date": "2025-01-28T14:02:29.356Z"
+  },
+  "ticket_status": "CLOSED",
+  "ticket_name": "Ticket 79",
+  "description": "Description for ticket 79",
+  "reported_by": {
+    "employee_number": 2164,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6d3",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c17d"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed753"
+  },
+  "creation_time": {
+    "$date": "2025-05-07T13:02:29.356Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 80",
+  "description": "Description for ticket 80",
+  "reported_by": {
+    "employee_number": 6423,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6da",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c17e"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed754"
+  },
+  "creation_time": {
+    "$date": "2024-09-27T13:02:29.356Z"
+  },
+  "ticket_status": "RESOLVED",
+  "ticket_name": "Ticket 81",
+  "description": "Description for ticket 81",
+  "reported_by": {
+    "employee_number": 4573,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6d1",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c17f"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed755"
+  },
+  "creation_time": {
+    "$date": "2024-11-03T14:02:29.356Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 82",
+  "description": "Description for ticket 82",
+  "reported_by": {
+    "employee_number": 6550,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6be",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c180"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed756"
+  },
+  "creation_time": {
+    "$date": "2024-10-01T13:02:29.356Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 83",
+  "description": "Description for ticket 83",
+  "reported_by": {
+    "employee_number": 8969,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed703",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c181"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed757"
+  },
+  "creation_time": {
+    "$date": "2024-11-22T14:02:29.356Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 84",
+  "description": "Description for ticket 84",
+  "reported_by": {
+    "employee_number": 8642,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6be",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c182"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed758"
+  },
+  "creation_time": {
+    "$date": "2024-12-30T14:02:29.356Z"
+  },
+  "ticket_status": "RESOLVED",
+  "ticket_name": "Ticket 85",
+  "description": "Description for ticket 85",
+  "reported_by": {
+    "employee_number": 1344,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed701",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c183"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed759"
+  },
+  "creation_time": {
+    "$date": "2024-12-11T14:02:29.356Z"
+  },
+  "ticket_status": "RESOLVED",
+  "ticket_name": "Ticket 86",
+  "description": "Description for ticket 86",
+  "reported_by": {
+    "employee_number": 9730,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6ae",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c184"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed75a"
+  },
+  "creation_time": {
+    "$date": "2025-06-19T13:02:29.356Z"
+  },
+  "ticket_status": "RESOLVED",
+  "ticket_name": "Ticket 87",
+  "description": "Description for ticket 87",
+  "reported_by": {
+    "employee_number": 8133,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6a2",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c185"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed75b"
+  },
+  "creation_time": {
+    "$date": "2025-01-04T14:02:29.356Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 88",
+  "description": "Description for ticket 88",
+  "reported_by": {
+    "employee_number": 7855,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6c5",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c186"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed75c"
+  },
+  "creation_time": {
+    "$date": "2024-11-23T14:02:29.356Z"
+  },
+  "ticket_status": "RESOLVED",
+  "ticket_name": "Ticket 89",
+  "description": "Description for ticket 89",
+  "reported_by": {
+    "employee_number": 3167,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6d2",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c187"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed75d"
+  },
+  "creation_time": {
+    "$date": "2025-03-07T14:02:29.356Z"
+  },
+  "ticket_status": "RESOLVED",
+  "ticket_name": "Ticket 90",
+  "description": "Description for ticket 90",
+  "reported_by": {
+    "employee_number": 7087,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6e9",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c188"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed75e"
+  },
+  "creation_time": {
+    "$date": "2025-01-06T14:02:29.356Z"
+  },
+  "ticket_status": "CLOSED",
+  "ticket_name": "Ticket 91",
+  "description": "Description for ticket 91",
+  "reported_by": {
+    "employee_number": 4394,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6b2",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c189"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed75f"
+  },
+  "creation_time": {
+    "$date": "2024-12-06T14:02:29.356Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 92",
+  "description": "Description for ticket 92",
+  "reported_by": {
+    "employee_number": 2425,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6cb",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c18a"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed760"
+  },
+  "creation_time": {
+    "$date": "2025-07-26T13:02:29.356Z"
+  },
+  "ticket_status": "CLOSED",
+  "ticket_name": "Ticket 93",
+  "description": "Description for ticket 93",
+  "reported_by": {
+    "employee_number": 4667,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6d2",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c18b"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed761"
+  },
+  "creation_time": {
+    "$date": "2025-04-24T13:02:29.356Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 94",
+  "description": "Description for ticket 94",
+  "reported_by": {
+    "employee_number": 5101,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6d8",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c18c"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed762"
+  },
+  "creation_time": {
+    "$date": "2025-08-21T13:02:29.356Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 95",
+  "description": "Description for ticket 95",
+  "reported_by": {
+    "employee_number": 2861,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6a2",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c18d"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed763"
+  },
+  "creation_time": {
+    "$date": "2025-01-19T14:02:29.356Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 96",
+  "description": "Description for ticket 96",
+  "reported_by": {
+    "employee_number": 5686,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6c9",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": true
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c18e"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed764"
+  },
+  "creation_time": {
+    "$date": "2024-11-02T14:02:29.356Z"
+  },
+  "ticket_status": "RESOLVED",
+  "ticket_name": "Ticket 97",
+  "description": "Description for ticket 97",
+  "reported_by": {
+    "employee_number": 7290,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6a2",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c18f"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed765"
+  },
+  "creation_time": {
+    "$date": "2025-06-06T13:02:29.356Z"
+  },
+  "ticket_status": "CLOSED",
+  "ticket_name": "Ticket 98",
+  "description": "Description for ticket 98",
+  "reported_by": {
+    "employee_number": 4732,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6f6",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c190"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed766"
+  },
+  "creation_time": {
+    "$date": "2025-08-04T13:02:29.356Z"
+  },
+  "ticket_status": "OPEN",
+  "ticket_name": "Ticket 99",
+  "description": "Description for ticket 99",
+  "reported_by": {
+    "employee_number": 1672,
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6f8",
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "is_solved": false
+},
+{
+  "_id": {
+    "$oid": "68d6b0744ec21e5f7352c191"
+  },
+  "ticket_id": {
+    "$oid": "68d6ab05d0853b2d8bbed767"
+  },
+  "creation_time": {
+    "$date": "2025-07-15T13:02:29.356Z"
+  },
+  "ticket_status": "CLOSED",
+  "ticket_name": "Ticket 100",
+  "description": "Description for ticket 100",
+  "reported_by": {
+    "employee_number": 5980,
+    "employee_role": "REGULAR_EMPLOYEE"
+  },
+  "solving_employee": {
+    "employee_number": "68d6ab05d0853b2d8bbed6de",
+    "employee_role": "SERVICE_DESK_EMPLOYEE"
+  },
+  "is_solved": true
+}]

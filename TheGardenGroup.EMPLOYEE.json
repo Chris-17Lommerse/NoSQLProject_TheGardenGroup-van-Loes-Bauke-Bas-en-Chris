@@ -1,0 +1,1200 @@
+[{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352bfff"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4d6"
+  },
+  "password": "o690Mhol#G",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Todd",
+  "surname": "Molina"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c000"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4d7"
+  },
+  "password": "(@VOpFdz^9",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Victoria",
+  "surname": "Cortez"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c001"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4d8"
+  },
+  "password": "37vrqyCp(M",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Charles",
+  "surname": "Robbins"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c002"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4d9"
+  },
+  "password": "1HUK4dE*#X",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Sarah",
+  "surname": "Ingram"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c003"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4da"
+  },
+  "password": "!r4ZOIwL(2",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Kendra",
+  "surname": "Blackwell"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c004"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4db"
+  },
+  "password": "!33vTnzwyg",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Matthew",
+  "surname": "Small"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c005"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4dc"
+  },
+  "password": "uF9tk!umI%",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Aaron",
+  "surname": "Chapman"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c006"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4dd"
+  },
+  "password": "u(0VxPxxQq",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Thomas",
+  "surname": "Ross"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c007"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4de"
+  },
+  "password": "!fUegw@sK1",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Lori",
+  "surname": "Cooper"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c008"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4df"
+  },
+  "password": "S^(bl2ByRn",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Theresa",
+  "surname": "Watts"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c009"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4e0"
+  },
+  "password": "(1TLDmTcjn",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Christopher",
+  "surname": "White"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c00a"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4e1"
+  },
+  "password": "cq2SlVpX9_",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Megan",
+  "surname": "Smith"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c00b"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4e2"
+  },
+  "password": "lQm$4Zbc5l",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Antonio",
+  "surname": "Johnston"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c00c"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4e3"
+  },
+  "password": "2_GWSlZa%0",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Theresa",
+  "surname": "Lopez"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c00d"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4e4"
+  },
+  "password": "OfOdBwMf^8",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Cheryl",
+  "surname": "Lamb"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c00e"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4e5"
+  },
+  "password": "30Mh&KIx%j",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Michael",
+  "surname": "Lamb"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c00f"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4e6"
+  },
+  "password": "6&3USXDbf_",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Julie",
+  "surname": "Flores"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c010"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4e7"
+  },
+  "password": "b+7AsS+j&M",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Dean",
+  "surname": "Hobbs"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c011"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4e8"
+  },
+  "password": "srXncp&#%8",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "John",
+  "surname": "Esparza"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c012"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4e9"
+  },
+  "password": "&3eJ4FKn0&",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Jimmy",
+  "surname": "Lara"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c013"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4ea"
+  },
+  "password": "xmdwNUHb(3",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Kaitlin",
+  "surname": "Scott"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c014"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4eb"
+  },
+  "password": "XuVd79K7&7",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Martha",
+  "surname": "Fuentes"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c015"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4ec"
+  },
+  "password": "c)l1Iq%D^0",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "William",
+  "surname": "Parker"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c016"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4ed"
+  },
+  "password": "eo8_GgEm)@",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Karen",
+  "surname": "Mcintyre"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c017"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4ee"
+  },
+  "password": "z(0StkgBs_",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Renee",
+  "surname": "Rojas"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c018"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4ef"
+  },
+  "password": "%bHLZ84tI5",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Linda",
+  "surname": "Turner"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c019"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4f0"
+  },
+  "password": "1aZkdJP_)2",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Gina",
+  "surname": "Kaiser"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c01a"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4f1"
+  },
+  "password": "Y1^JBCiF)t",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Brian",
+  "surname": "Barajas"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c01b"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4f2"
+  },
+  "password": "%Cm$Yacl10",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Donna",
+  "surname": "Wells"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c01c"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4f3"
+  },
+  "password": "+#25LbWwZm",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Teresa",
+  "surname": "Lee"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c01d"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4f4"
+  },
+  "password": "_Tf@XjNo0f",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Nicholas",
+  "surname": "Bush"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c01e"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4f5"
+  },
+  "password": "%6GC)5z(aa",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Melissa",
+  "surname": "Lopez"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c01f"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4f6"
+  },
+  "password": "_o2CMKq&7!",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Kathleen",
+  "surname": "Richmond"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c020"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4f7"
+  },
+  "password": "#3CDAAQq_i",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Steven",
+  "surname": "Bryant"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c021"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4f8"
+  },
+  "password": "+9FhNuPc_r",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Jennifer",
+  "surname": "James"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c022"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4f9"
+  },
+  "password": "#OoiHY$o02",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Jonathon",
+  "surname": "Ramirez"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c023"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4fa"
+  },
+  "password": "MaS0_8Bgpi",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Kenneth",
+  "surname": "Flores"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c024"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4fb"
+  },
+  "password": "*E&9t4GjT(",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Joseph",
+  "surname": "Tucker"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c025"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4fc"
+  },
+  "password": "!q@FalG#5V",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Courtney",
+  "surname": "Wiggins"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c026"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4fd"
+  },
+  "password": "t+99ZTYgLK",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Matthew",
+  "surname": "Huff"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c027"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4fe"
+  },
+  "password": "_2*fCZeMR1",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Thomas",
+  "surname": "Reynolds"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c028"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b4ff"
+  },
+  "password": "+$u&0KHsjK",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Vanessa",
+  "surname": "Green"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c029"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b500"
+  },
+  "password": "Qf7n74Lxd_",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Brenda",
+  "surname": "Allen"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c02a"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b501"
+  },
+  "password": "b810dLva@w",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Jamie",
+  "surname": "Thomas"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c02b"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b502"
+  },
+  "password": "!EncIgCh!4",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Michael",
+  "surname": "Smith"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c02c"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b503"
+  },
+  "password": "210eDarM(I",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Monica",
+  "surname": "Ortiz"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c02d"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b504"
+  },
+  "password": "n(37iBtp@+",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Sarah",
+  "surname": "Johnson"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c02e"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b505"
+  },
+  "password": "@6ab9RUt+M",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Stephen",
+  "surname": "Huynh"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c02f"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b506"
+  },
+  "password": "&t9N*waa&l",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Ryan",
+  "surname": "Thompson"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c030"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b507"
+  },
+  "password": "fr9YpbIj$4",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Melissa",
+  "surname": "Rivera"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c031"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b508"
+  },
+  "password": "^%28v#EguR",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Cheyenne",
+  "surname": "Trujillo"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c032"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b509"
+  },
+  "password": "n5XSUayC^9",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Adrian",
+  "surname": "Doyle"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c033"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b50a"
+  },
+  "password": "1Z5GHwa%g%",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Elizabeth",
+  "surname": "Hunt"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c034"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b50b"
+  },
+  "password": "+l3msLHg$f",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Jeffrey",
+  "surname": "Herrera"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c035"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b50c"
+  },
+  "password": "fO6SzUYz%O",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Chelsea",
+  "surname": "Wilcox"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c036"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b50d"
+  },
+  "password": "!8KUszax23",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Chris",
+  "surname": "Martinez"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c037"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b50e"
+  },
+  "password": "%0ZmA^anOF",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Benjamin",
+  "surname": "Mcguire"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c038"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b50f"
+  },
+  "password": "6)ZAZ*t_!7",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "William",
+  "surname": "Garcia"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c039"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b510"
+  },
+  "password": "_3i2Mcce$0",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Christine",
+  "surname": "Pennington"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c03a"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b511"
+  },
+  "password": "mGI9CL$F*2",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Molly",
+  "surname": "Castro"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c03b"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b512"
+  },
+  "password": "SSf6L7Nw9%",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Leah",
+  "surname": "Decker"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c03c"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b513"
+  },
+  "password": "vy549Vkt+h",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Stephen",
+  "surname": "Macdonald"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c03d"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b514"
+  },
+  "password": "+Y%85Dt4NF",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "James",
+  "surname": "Stevens"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c03e"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b515"
+  },
+  "password": "g@*(1Xfd@J",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Kevin",
+  "surname": "Adkins"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c03f"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b516"
+  },
+  "password": "9!q1RFu6eK",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Amanda",
+  "surname": "Young"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c040"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b517"
+  },
+  "password": "SOX1Q3ri!Z",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Tyler",
+  "surname": "Cobb"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c041"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b518"
+  },
+  "password": ")^YQPKFf4+",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Juan",
+  "surname": "Ross"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c042"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b519"
+  },
+  "password": "4t4NS*dd_!",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Gregory",
+  "surname": "Mcpherson"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c043"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b51a"
+  },
+  "password": "$8hqhIelJM",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Michael",
+  "surname": "Robbins"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c044"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b51b"
+  },
+  "password": "V*0Un4HN($",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Timothy",
+  "surname": "Sherman"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c045"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b51c"
+  },
+  "password": "^&wh6VMxu1",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Micheal",
+  "surname": "Evans"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c046"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b51d"
+  },
+  "password": "#ASZ@xk(1k",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Glenda",
+  "surname": "Bridges"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c047"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b51e"
+  },
+  "password": "$(7XkXzf00",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Kevin",
+  "surname": "Barnes"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c048"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b51f"
+  },
+  "password": "$8Xdc4++X1",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Justin",
+  "surname": "Hale"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c049"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b520"
+  },
+  "password": "3*b9Okws4K",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Hayley",
+  "surname": "Martin"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c04a"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b521"
+  },
+  "password": "a^Asik%g$4",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Derrick",
+  "surname": "Chen"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c04b"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b522"
+  },
+  "password": "$4*MSq9yHn",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Mary",
+  "surname": "Flynn"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c04c"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b523"
+  },
+  "password": "0+m^2Qtew^",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Robert",
+  "surname": "Taylor"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c04d"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b524"
+  },
+  "password": "C496U#Yv!*",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Andrew",
+  "surname": "Arnold"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c04e"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b525"
+  },
+  "password": "Ah)W5MoE6I",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Jeffrey",
+  "surname": "Perry"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c04f"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b526"
+  },
+  "password": "*E)0HZ2y6q",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Tanya",
+  "surname": "Griffith"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c050"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b527"
+  },
+  "password": "a_9^E4Fhwq",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Brandon",
+  "surname": "Thompson"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c051"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b528"
+  },
+  "password": "IP(8BTEaK_",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Bradley",
+  "surname": "Lee"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c052"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b529"
+  },
+  "password": "w2KjYzz6(j",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Daniel",
+  "surname": "Hines"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c053"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b52a"
+  },
+  "password": "6+8UsEKcS4",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Theresa",
+  "surname": "Fernandez"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c054"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b52b"
+  },
+  "password": "&41Xzwqiv1",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Paul",
+  "surname": "Brown"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c055"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b52c"
+  },
+  "password": "_zJVHXxe(7",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Johnny",
+  "surname": "Johnson"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c056"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b52d"
+  },
+  "password": "(9Ojj!xe!S",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Kelly",
+  "surname": "Hughes"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c057"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b52e"
+  },
+  "password": "*8PwP2__h8",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Phillip",
+  "surname": "Miller"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c058"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b52f"
+  },
+  "password": "grSI48TI&4",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Daniel",
+  "surname": "Thompson"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c059"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b530"
+  },
+  "password": "*g1siAcy(R",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Deborah",
+  "surname": "Rodriguez"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c05a"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b531"
+  },
+  "password": "V+W0VOQgyS",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Matthew",
+  "surname": "James"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c05b"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b532"
+  },
+  "password": "#^3HDxg3ZG",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Elizabeth",
+  "surname": "Hicks"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c05c"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b533"
+  },
+  "password": ")+6SakXtmo",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Aaron",
+  "surname": "Garcia"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c05d"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b534"
+  },
+  "password": "eFapCASJ+9",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Tracey",
+  "surname": "Norman"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c05e"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b535"
+  },
+  "password": "h*5AzN%y!x",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Kelly",
+  "surname": "Wheeler"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c05f"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b536"
+  },
+  "password": "X#66R8mcCU",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Christopher",
+  "surname": "Harvey"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c060"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b537"
+  },
+  "password": "C#37EVWcyf",
+  "employee_role": "REGULAR_EMPLOYEE",
+  "name": "Ryan",
+  "surname": "Sawyer"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c061"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b538"
+  },
+  "password": "+AafdOhcW0",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Amber",
+  "surname": "Martin"
+},
+{
+  "_id": {
+    "$oid": "68d6ae674ec21e5f7352c062"
+  },
+  "employee_number": {
+    "$oid": "68d6ad39a0e54a4cb3f1b539"
+  },
+  "password": "uI^Iu1Gar!",
+  "employee_role": "SERVICE_DESK_EMPLOYEE",
+  "name": "Chelsea",
+  "surname": "Ortega"
+}]
