@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
+using Ticket_System_TheGardenGroup.Models.Enums;
 
 namespace Ticket_System_TheGardenGroup.Models
 {
