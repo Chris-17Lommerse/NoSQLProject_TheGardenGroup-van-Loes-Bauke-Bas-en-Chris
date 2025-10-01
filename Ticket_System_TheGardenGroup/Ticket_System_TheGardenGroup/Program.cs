@@ -2,6 +2,8 @@ using MongoDB.Driver;
 using DotNetEnv.Configuration;
 using Ticket_System_TheGardenGroup.Repositories.Interfaces;
 using Ticket_System_TheGardenGroup.Repositories;
+using Ticket_System_TheGardenGroup.Services.Interfaces;
+using Ticket_System_TheGardenGroup.Services;
 
 namespace Ticket_System_TheGardenGroup
 {
@@ -43,8 +45,14 @@ namespace Ticket_System_TheGardenGroup
 
                 return client.GetDatabase(dbName);
             });
-
+            // Repositories
             builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            builder.Services.AddScoped<ITicketRepository, TicketRepository>();
+
+            // services
+            builder.Services.AddScoped<ITicketService, TicketService>();
+            builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 

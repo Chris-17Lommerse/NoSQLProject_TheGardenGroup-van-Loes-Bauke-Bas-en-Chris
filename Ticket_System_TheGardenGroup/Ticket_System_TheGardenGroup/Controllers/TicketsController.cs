@@ -3,13 +3,13 @@ using Ticket_System_TheGardenGroup.Services.Interfaces;
 
 namespace Ticket_System_TheGardenGroup.Controllers
 {
-    public class EmployeeController : Controller
+    public class TicketsController : Controller
     {
-        private readonly IEmployeeService _employeeService;
+        private readonly ITicketService _ticketService;
 
-        public EmployeeController(IEmployeeService employeeService)
+        public TicketsController(ITicketService ticketService)
         {
-            _employeeService = employeeService;
+            _ticketService = ticketService;
         }
         public IActionResult Index()
         {
