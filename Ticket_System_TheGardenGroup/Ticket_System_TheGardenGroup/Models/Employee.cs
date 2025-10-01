@@ -1,0 +1,20 @@
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
+using Ticket_System_TheGardenGroup.Models.Enums;
+
+namespace Ticket_System_TheGardenGroup.Models
+{
+    public class Employee
+    {
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string? Id { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string EmployeeNumber { get; set; } = "";
+        public string Password { get; set; } = "";
+        public EmployeeRole EmployeeRole { get; set; } = EmployeeRole.RegularEmployee;
+        public string Name { get; set; } = "";
+        public string Surname { get; set; } = "";
+        public string EmailAddress { get; set; } = "";
+    }
+}

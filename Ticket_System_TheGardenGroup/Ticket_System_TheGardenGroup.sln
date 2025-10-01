@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36518.9 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ticket_System_TheGardenGroup", "Ticket_System_TheGardenGroup\Ticket_System_TheGardenGroup.csproj", "{B9BA2E4A-6035-4E54-A0A6-AF05CBF68CB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoSQL_Project_Tests", "NoSQL_Project_Tests\NoSQL_Project_Tests.csproj", "{19AB6EFD-4495-47CD-8EEF-A0DFA1E69759}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B9BA2E4A-6035-4E54-A0A6-AF05CBF68CB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9BA2E4A-6035-4E54-A0A6-AF05CBF68CB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9BA2E4A-6035-4E54-A0A6-AF05CBF68CB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9BA2E4A-6035-4E54-A0A6-AF05CBF68CB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19AB6EFD-4495-47CD-8EEF-A0DFA1E69759}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19AB6EFD-4495-47CD-8EEF-A0DFA1E69759}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19AB6EFD-4495-47CD-8EEF-A0DFA1E69759}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19AB6EFD-4495-47CD-8EEF-A0DFA1E69759}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C2577265-26F1-4D1C-8277-2E11BA2DF7FF}
+	EndGlobalSection
+EndGlobal
