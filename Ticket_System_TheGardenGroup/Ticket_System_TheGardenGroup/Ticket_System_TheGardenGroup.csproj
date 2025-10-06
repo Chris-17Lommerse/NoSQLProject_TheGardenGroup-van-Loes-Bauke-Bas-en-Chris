@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Extensions\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Views\Employees\" />
     <Folder Include="Views\Tickets\" />
