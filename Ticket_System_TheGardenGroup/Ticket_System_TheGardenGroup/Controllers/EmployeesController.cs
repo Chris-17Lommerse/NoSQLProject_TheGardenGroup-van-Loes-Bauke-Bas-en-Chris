@@ -1,19 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Ticket_System_TheGardenGroup.Models;
 using Ticket_System_TheGardenGroup.Services.Interfaces;
 
 namespace Ticket_System_TheGardenGroup.Controllers
 {
-    public class EmployeeController : Controller
+    public class EmployeesController : Controller
     {
         private readonly IEmployeeService _employeeService;
 
-        public EmployeeController(IEmployeeService employeeService)
+        public EmployeesController(IEmployeeService employeeService)
         {
             _employeeService = employeeService;
         }
         public IActionResult Index()
         {
-            return View();
+            Task<List<Employee>> employees = _employeeService.GetAllEmployees();
+            return View(employees);
         }
     }
 }
