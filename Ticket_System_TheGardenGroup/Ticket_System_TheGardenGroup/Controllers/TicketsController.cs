@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Ticket_System_TheGardenGroup.Models;
 using Ticket_System_TheGardenGroup.Services.Interfaces;
 
 namespace Ticket_System_TheGardenGroup.Controllers
@@ -13,7 +14,8 @@ namespace Ticket_System_TheGardenGroup.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            Task<List<Ticket>> tickets = _ticketService.GetAllTickets();
+            return View(tickets);
         }
     }
 }

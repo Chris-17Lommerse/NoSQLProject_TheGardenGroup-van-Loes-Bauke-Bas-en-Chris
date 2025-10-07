@@ -1,5 +1,4 @@
 using MongoDB.Driver;
-using DotNetEnv.Configuration;
 using Ticket_System_TheGardenGroup.Repositories.Interfaces;
 using Ticket_System_TheGardenGroup.Repositories;
 using Ticket_System_TheGardenGroup.Services.Interfaces;
@@ -11,66 +10,53 @@ namespace Ticket_System_TheGardenGroup
     {
         public static void Main(string[] args)
         {
-            // Load .env before building configuration so env vars are available
+            // Laad .env vóór configuratie
             DotNetEnv.Env.TraversePath().Load();
 
             var builder = WebApplication.CreateBuilder(args);
 
-            // 1) Register MongoClient as a SINGLETON (one shared instance for the whole app)
-            // WHY: MongoClient is thread-safe and internally manages a connection pool.
-            // Reusing one instance is fast and efficient. Creating many clients would waste resources.
+            // Lees connectiegegevens
+            var mongoConnectionString = Environment.GetEnvironmentVariable("Mongo__ConnectionString");
+            var databaseName = Environment.GetEnvironmentVariable("Mongo__Database") ?? "TheGardenGroup"; // fallback
+
+            if (string.IsNullOrWhiteSpace(mongoConnectionString))
+                throw new InvalidOperationException("Mongo__ConnectionString is niet ingesteld in .env");
+
+            // MongoClient als Singleton
             builder.Services.AddSingleton<IMongoClient>(sp =>
             {
-                // Read the connection string from configuration (env var via .env)
-                var conn = builder.Configuration["Mongo:ConnectionString"];
-                if (string.IsNullOrWhiteSpace(conn))
-                    throw new InvalidOperationException("Mongo:ConnectionString is not configured. Did you set it in .env?");
-
-                // Optional: tweak settings (timeouts, etc.)
-                var settings = MongoClientSettings.FromConnectionString(conn);
-                // settings.ServerSelectionTimeout = TimeSpan.FromSeconds(5);
-
-                return new MongoClient(settings);
+                return new MongoClient(mongoConnectionString);
             });
 
-            // 2) Register IMongoDatabase as SCOPED (new per HTTP request)
-            // WHY: Fits the ASP.NET request lifecycle and keeps each request cleanly separated.
+            // 2. Database als Scoped service
             builder.Services.AddScoped(sp =>
             {
                 var client = sp.GetRequiredService<IMongoClient>();
-
-                var dbName = builder.Configuration["Mongo:Database"]; // from appsettings.json
-                if (string.IsNullOrWhiteSpace(dbName))
-                    throw new InvalidOperationException("Mongo:Database is not configured in appsettings.json.");
-
-                return client.GetDatabase(dbName);
+                return client.GetDatabase(databaseName);
             });
-            // Repositories
+
+            // 3. Repositories
             builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             builder.Services.AddScoped<ITicketRepository, TicketRepository>();
 
-            // services
+            // 4. Services
             builder.Services.AddScoped<ITicketService, TicketService>();
             builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
-            // Add services to the container.
+            // 5. MVC controllers
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseAuthorization();
 
             app.MapControllerRoute(

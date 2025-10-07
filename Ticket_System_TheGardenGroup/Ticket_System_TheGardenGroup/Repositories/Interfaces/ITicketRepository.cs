@@ -4,6 +4,6 @@ namespace Ticket_System_TheGardenGroup.Repositories.Interfaces
 {
     public interface ITicketRepository
     {
-        List<Ticket> GetAllTickets();
+       Task<List<Ticket>> GetAllTickets();
     }
 }

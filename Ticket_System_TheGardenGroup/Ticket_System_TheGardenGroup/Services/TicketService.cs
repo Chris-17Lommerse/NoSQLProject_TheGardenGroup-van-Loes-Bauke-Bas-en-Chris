@@ -1,4 +1,5 @@
-﻿using Ticket_System_TheGardenGroup.Repositories.Interfaces;
+﻿using Ticket_System_TheGardenGroup.Models;
+using Ticket_System_TheGardenGroup.Repositories.Interfaces;
 using Ticket_System_TheGardenGroup.Services.Interfaces;
 
 namespace Ticket_System_TheGardenGroup.Services
@@ -10,6 +11,11 @@ namespace Ticket_System_TheGardenGroup.Services
         public TicketService(ITicketRepository ticketRepository)
         {
             _ticketRepository = ticketRepository;
+        }
+
+        public Task<List<Ticket>> GetAllTickets()
+        {
+            return _ticketRepository.GetAllTickets();
         }
     }
 }
