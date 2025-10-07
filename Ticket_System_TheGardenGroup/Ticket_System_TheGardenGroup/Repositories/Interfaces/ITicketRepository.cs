@@ -1,6 +1,9 @@
-﻿namespace Ticket_System_TheGardenGroup.Repositories.Interfaces
+﻿using Ticket_System_TheGardenGroup.Models;
+
+namespace Ticket_System_TheGardenGroup.Repositories.Interfaces
 {
     public interface ITicketRepository
     {
+        List<Ticket> GetAllTickets();
     }
 }

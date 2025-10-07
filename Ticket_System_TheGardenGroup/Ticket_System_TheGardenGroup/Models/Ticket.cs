@@ -17,5 +17,7 @@ namespace Ticket_System_TheGardenGroup.Models
         public string Description { get; set; } = "";
         public bool IsSolved { get; set; } = false;
         public string TicketEscalationDescription { get; set; } = "";
+        public EmbeddedEmployee ReportingEmployee { get; set; } = new EmbeddedEmployee();
+        public EmbeddedEmployee SolvingEmployee { get; set; } = new EmbeddedEmployee();
     }
 }

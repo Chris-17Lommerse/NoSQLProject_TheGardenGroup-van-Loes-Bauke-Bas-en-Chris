@@ -23,14 +23,36 @@ namespace Ticket_System_TheGardenGroup.Repositories
             throw new NotImplementedException();
         }
 
+        public List<Employee> GetAllEmployees()
+        {
+            List<Employee> employees = new List<Employee>();
+            // Query 
+            //db["EMPLOYEE"].find({ }, 
+            //        {
+            //_id: 1, employee_number: 1, password: 1, 
+            //        employee_role: 1, name: 1, surname: 1, emailaddress: 1}
+            return employees;
+        }
+
         public List<Employee> GetAllRegularEmployees()
         {
-            throw new NotImplementedException();
+            List<Employee> employees = new List<Employee>();
+            // Query
+            //db["EMPLOYEE"].find({ employee_role: "REGULAR_EMPLOYEE"}, 
+            //        {
+            //_id: 1, employee_number: 1, password: 1, 
+            //        employee_role: 1, name: 1, surname: 1, emailaddress: 1})
+            return employees;
         }
 
         public List<Employee> GetAllServiceDeskEmployees()
         {
-            throw new NotImplementedException();
+            List<Employee> employees = new List<Employee>();
+            //db["EMPLOYEE"].find({ employee_role: "SERVICE_DESK_EMPLOYEE"}, 
+            //        {
+            //_id: 1, employee_number: 1, password: 1, 
+            //        employee_role: 1, name: 1, surname: 1, emailaddress: 1})
+            return employees;
         }
 
         public void RemoveRegularEmployee(Employee employee)
