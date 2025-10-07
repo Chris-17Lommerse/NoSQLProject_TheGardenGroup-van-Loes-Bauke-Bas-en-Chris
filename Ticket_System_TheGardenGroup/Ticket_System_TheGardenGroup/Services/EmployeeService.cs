@@ -1,6 +1,7 @@
 ﻿using Ticket_System_TheGardenGroup.Models;
 using Ticket_System_TheGardenGroup.Repositories.Interfaces;
 using Ticket_System_TheGardenGroup.Services.Interfaces;
+using Ticket_System_TheGardenGroup.ViewModels;
 
 namespace Ticket_System_TheGardenGroup.Services
 {
@@ -13,9 +14,9 @@ namespace Ticket_System_TheGardenGroup.Services
             _employeeRepository = employeeRepository;
         }
 
-        public Task<List<Employee>> GetAllEmployeesWithAmountOfTickets()
+        public Task<List<EmployeeTicketsViewModel>> GetAllEmployeesWithAmountOfTicketsAsync()
         {
-            return _employeeRepository.GetAllEmployees();
+            return _employeeRepository.GetAllEmployeesWithAmountOfTicketsAsync();
         }
     }
 }

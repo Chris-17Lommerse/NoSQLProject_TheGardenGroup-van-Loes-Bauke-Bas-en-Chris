@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Ticket_System_TheGardenGroup.Models;
 using Ticket_System_TheGardenGroup.Services.Interfaces;
+using Ticket_System_TheGardenGroup.ViewModels;
 
 namespace Ticket_System_TheGardenGroup.Controllers
 {
@@ -14,7 +15,7 @@ namespace Ticket_System_TheGardenGroup.Controllers
         }
         public IActionResult Index()
         {
-            Task<List<Employee>> employees = _employeeService.GetAllEmployees();
+            Task<List<EmployeeTicketsViewModel>> employees = _employeeService.GetAllEmployeesWithAmountOfTicketsAsync();
             return View(employees);
         }
     }

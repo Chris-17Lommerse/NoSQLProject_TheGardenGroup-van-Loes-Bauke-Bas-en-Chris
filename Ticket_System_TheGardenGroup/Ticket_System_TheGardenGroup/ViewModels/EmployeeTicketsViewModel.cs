@@ -5,7 +5,7 @@ namespace Ticket_System_TheGardenGroup.ViewModels
 {
     public class EmployeeTicketsViewModel
     {
-        public ObjectId EmployeeNumber { get; set; }
+        public ObjectId Id { get; set; }
         public string EmailAddress { get; set; } = "";
         public string FirstName { get; set; } = "";
         public string LastName { get; set; } = "";

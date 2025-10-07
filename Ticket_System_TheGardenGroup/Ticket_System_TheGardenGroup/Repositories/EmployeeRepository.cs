@@ -1,6 +1,8 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using Ticket_System_TheGardenGroup.Models;
 using Ticket_System_TheGardenGroup.Repositories.Interfaces;
+using Ticket_System_TheGardenGroup.ViewModels;
 
 namespace Ticket_System_TheGardenGroup.Repositories
 {
@@ -23,9 +25,35 @@ namespace Ticket_System_TheGardenGroup.Repositories
             throw new NotImplementedException();
         }
 
-        public async Task<List<Employee>> GetAllEmployees()
+        public async Task<List<EmployeeTicketsViewModel>> GetAllEmployeesWithAmountOfTicketsAsync()
         {
-            return await _employeeCollection.Find(Builders<Employee>.Filter.Empty).ToListAsync(); 
+            var pipeline = new[]
+            {
+                // 1) lookup tickets
+                new BsonDocument("$lookup", new BsonDocument
+                {
+                    {"from", "TICKETS" },
+                    {"localField", "_id" },
+                    {"foreignField", "employee_id"  },
+                    {"as", "tickets" }
+                }),
+
+                // 2) project the user overview
+                new BsonDocument("$project", new BsonDocument
+                {
+                    {"name", 1 },
+                    {"surname", 1 },
+                    {"emailaddress", 1 },
+                    {"employee_number", 1 },
+                    {"employee_role", 1 },
+                    {"ticket_count",
+                    new BsonDocument("$size", $"tickets")}
+                })
+            };
+
+            return await _employeeCollection
+                         .Aggregate<EmployeeTicketsViewModel>(pipeline)
+                         .ToListAsync();
             // Query 
             //db["EMPLOYEE"].find({ }, 
             //        {
