@@ -13,7 +13,7 @@ namespace Ticket_System_TheGardenGroup.Services
             _employeeRepository = employeeRepository;
         }
 
-        public Task<List<Employee>> GetAllEmployees()
+        public Task<List<Employee>> GetAllEmployeesWithAmountOfTickets()
         {
             return _employeeRepository.GetAllEmployees();
         }

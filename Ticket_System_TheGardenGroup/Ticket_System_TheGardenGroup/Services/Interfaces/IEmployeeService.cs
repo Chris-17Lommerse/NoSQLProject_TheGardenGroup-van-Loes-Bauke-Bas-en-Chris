@@ -4,6 +4,6 @@ namespace Ticket_System_TheGardenGroup.Services.Interfaces
 {
     public interface IEmployeeService
     {
-        Task<List<Employee>> GetAllEmployees();
+        Task<List<Employee>> GetAllEmployeesWithAmountOfTickets();
     }
 }
