@@ -23,15 +23,14 @@ namespace Ticket_System_TheGardenGroup.Repositories
             throw new NotImplementedException();
         }
 
-        public List<Employee> GetAllEmployees()
+        public async Task<List<Employee>> GetAllEmployees()
         {
-            List<Employee> employees = new List<Employee>();
+            return await _employeeCollection.Find(Builders<Employee>.Filter.Empty).ToListAsync(); 
             // Query 
             //db["EMPLOYEE"].find({ }, 
             //        {
             //_id: 1, employee_number: 1, password: 1, 
             //        employee_role: 1, name: 1, surname: 1, emailaddress: 1}
-            return employees;
         }
 
         public List<Employee> GetAllRegularEmployees()
