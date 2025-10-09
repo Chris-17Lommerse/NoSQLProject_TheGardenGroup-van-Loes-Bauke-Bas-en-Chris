@@ -10,13 +10,12 @@ namespace Ticket_System_TheGardenGroup
     {
         public static void Main(string[] args)
         {
-
             DotNetEnv.Env.TraversePath().Load();
 
             var builder = WebApplication.CreateBuilder(args);
 
             var mongoConnectionString = Environment.GetEnvironmentVariable("Mongo__ConnectionString");
-            var databaseName = Environment.GetEnvironmentVariable("Mongo__Database") ?? "TheGardenGroup"; // fallback
+            var databaseName = Environment.GetEnvironmentVariable("Mongo__Database") ?? "TheGardenGroup"; 
 
             if (string.IsNullOrWhiteSpace(mongoConnectionString))
                 throw new InvalidOperationException("Mongo__ConnectionString is niet ingesteld in .env");
@@ -32,12 +31,11 @@ namespace Ticket_System_TheGardenGroup
                 return client.GetDatabase(databaseName);
             });
 
-            builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-            builder.Services.AddScoped<ITicketRepository, TicketRepository>();
+            builder.Services.AddScoped<IEmployeeRepository, DBEmployeeRepository>();
+            builder.Services.AddScoped<ITicketRepository, DBTicketRepository>();
 
             builder.Services.AddScoped<ITicketService, TicketService>();
             builder.Services.AddScoped<IEmployeeService, EmployeeService>();
-
 
             builder.Services.AddControllersWithViews();
 

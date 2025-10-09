@@ -5,11 +5,11 @@ using Ticket_System_TheGardenGroup.Repositories.Interfaces;
 
 namespace Ticket_System_TheGardenGroup.Repositories
 {
-    public class TicketRepository : ITicketRepository
+    public class DBTicketRepository : ITicketRepository
     {
         private readonly IMongoCollection<Ticket> _ticketCollection;
 
-        public TicketRepository(IMongoDatabase database)
+        public DBTicketRepository(IMongoDatabase database)
         {
             _ticketCollection = database.GetCollection<Ticket>("TICKET");
         }

@@ -4,9 +4,10 @@ namespace Ticket_System_TheGardenGroup.Repositories.Interfaces
 {
     public interface IEmployeeRepository
     {
-        Task<List<Employee>> GetAllEmployees();
+        Task<List<Employee>> GetAllEmployees(); //Weer Task<>?
         List<Employee> GetAllRegularEmployees();
         List<Employee> GetAllServiceDeskEmployees();
+
         void AddRegularEmployee(Employee employee);
         void AddServiceDeskEmployee(Employee employee);
         void RemoveRegularEmployee(Employee employee);

@@ -4,11 +4,11 @@ using Ticket_System_TheGardenGroup.Repositories.Interfaces;
 
 namespace Ticket_System_TheGardenGroup.Repositories
 {
-    public class EmployeeRepository : IEmployeeRepository
+    public class DBEmployeeRepository : IEmployeeRepository
     {
         private readonly IMongoCollection<Employee> _employeeCollection;
 
-        public EmployeeRepository(IMongoDatabase database)
+        public DBEmployeeRepository(IMongoDatabase database)
         {
             _employeeCollection = database.GetCollection<Employee>("EMPLOYEE");
         }
@@ -25,6 +25,7 @@ namespace Ticket_System_TheGardenGroup.Repositories
 
         public async Task<List<Employee>> GetAllEmployees()
         {
+            /*
             List<Employee> employeeList = new List<Employee>();
 
             foreach (Employee employee in employeeList)
@@ -32,8 +33,9 @@ namespace Ticket_System_TheGardenGroup.Repositories
                 employeeList.Add(employee);
             }
             return employeeList;
-            
-            //return await _employeeCollection.Find(Builders<Employee>.Filter.Empty).ToListAsync(); 
+            */
+
+            return await _employeeCollection.Find(Builders<Employee>.Filter.Empty).ToListAsync(); 
             // Query 
             //db["EMPLOYEE"].find({ }, 
             //        {
