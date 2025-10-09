@@ -25,7 +25,15 @@ namespace Ticket_System_TheGardenGroup.Repositories
 
         public async Task<List<Employee>> GetAllEmployees()
         {
-            return await _employeeCollection.Find(Builders<Employee>.Filter.Empty).ToListAsync(); 
+            List<Employee> employeeList = new List<Employee>();
+
+            foreach (Employee employee in employeeList)
+            {
+                employeeList.Add(employee);
+            }
+            return employeeList;
+            
+            //return await _employeeCollection.Find(Builders<Employee>.Filter.Empty).ToListAsync(); 
             // Query 
             //db["EMPLOYEE"].find({ }, 
             //        {

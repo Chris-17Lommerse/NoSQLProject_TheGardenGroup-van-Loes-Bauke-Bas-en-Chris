@@ -2,6 +2,6 @@
 {
     public enum EmployeeRole
     {
-        SERVICE_DESK_EMPLOYEE, REGULAR_EMPLOYEE
+        ServiceDesk_Employee, Regular_Employee
     }
 }
