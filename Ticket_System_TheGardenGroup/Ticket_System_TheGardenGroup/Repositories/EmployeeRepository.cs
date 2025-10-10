@@ -35,7 +35,7 @@ namespace Ticket_System_TheGardenGroup.Repositories
                     {"from", "TICKETS" },
                     {"localField", "_id" },
                     {"foreignField", "employee_id"  },
-                    {"as", "tickets" }
+                    {"as", "employee_tickets" }
                 }),
 
                 // 2) project the user overview
@@ -47,18 +47,13 @@ namespace Ticket_System_TheGardenGroup.Repositories
                     {"employee_number", 1 },
                     {"employee_role", 1 },
                     {"ticket_count",
-                    new BsonDocument("$size", $"tickets")}
+                    new BsonDocument("$size", "$employee_tickets")}
                 })
             };
 
             return await _employeeCollection
                          .Aggregate<EmployeeTicketsViewModel>(pipeline)
                          .ToListAsync();
-            // Query 
-            //db["EMPLOYEE"].find({ }, 
-            //        {
-            //_id: 1, employee_number: 1, password: 1, 
-            //        employee_role: 1, name: 1, surname: 1, emailaddress: 1}
         }
 
         public List<Employee> GetAllRegularEmployees()
