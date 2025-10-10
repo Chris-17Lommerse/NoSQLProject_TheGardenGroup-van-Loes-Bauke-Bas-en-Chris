@@ -1,4 +1,5 @@
-﻿@model Task<List<Employee>>
+﻿@using Ticket_System_TheGardenGroup.ViewModels;
+@model Task<List<EmployeeTicketsViewModel>>
 @{
     ViewData["Title"] = "Employees";
 }
@@ -9,14 +10,15 @@
     <table class="table table-info table-hover">
         <partial name="_EmployeesHeader" />
         <tbody>
-            @foreach(Employee employee in await Model)
+            @foreach(EmployeeTicketsViewModel employeeTicketsViewModel in await Model)
             {
                 <tr>
-                    <td>@employee.EmployeeNumber</td>
-                    <td>@employee.EmailAddress</td>
-                    <td>@employee.Name</td>
-                    <td>@employee.Surname</td>
-                    <td>@employee.EmployeeRole</td>
+                    <td>@employeeTicketsViewModel.EmployeeNumber</td>
+                    <td>@employeeTicketsViewModel.EmailAddress</td>
+                    <td>@employeeTicketsViewModel.Name</td>
+                    <td>@employeeTicketsViewModel.Surname</td>
+                    <td>@employeeTicketsViewModel.EmployeeRole</td>
+                    <td>@employeeTicketsViewModel.TotalTickets</td>
                 </tr>
             }
         </tbody>
