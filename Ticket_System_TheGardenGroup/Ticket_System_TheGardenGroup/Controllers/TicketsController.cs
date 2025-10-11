@@ -17,5 +17,10 @@ namespace Ticket_System_TheGardenGroup.Controllers
             Task<List<Ticket>> tickets = _ticketService.GetAllTickets();
             return View(tickets);
         }
+
+        public IActionResult AddTicket()
+        {
+            return View();
+        }
     }
 }
