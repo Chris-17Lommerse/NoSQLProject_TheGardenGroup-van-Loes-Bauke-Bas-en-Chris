@@ -11,9 +11,8 @@ namespace Ticket_System_TheGardenGroup.ViewModels
         [BsonRepresentation(BsonType.ObjectId)]
         [BsonElement("_id")]
         public ObjectId Id { get; set; }
-        [BsonRepresentation(BsonType.ObjectId)]
         [BsonElement("employee_number")]
-        public ObjectId EmployeeNumber { get; set; }
+        public EmployeeNumber EmployeeNumber { get; set; } = new EmployeeNumber();
         [BsonRepresentation(BsonType.String)]
         [BsonElement("emailaddress")]
         public string EmailAddress { get; set; } = "";

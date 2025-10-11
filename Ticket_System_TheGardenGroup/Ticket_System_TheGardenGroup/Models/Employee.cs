@@ -10,9 +10,8 @@ namespace Ticket_System_TheGardenGroup.Models
         [BsonRepresentation(BsonType.ObjectId)]
         [BsonElement("_id")]
         public string? Id { get; set; }
-        [BsonRepresentation(BsonType.ObjectId)]
         [BsonElement("employee_number")]
-        public string EmployeeNumber { get; set; } = "";
+        public EmployeeNumber EmployeeNumber { get; set; } = new EmployeeNumber();
         [BsonElement("password")]
         public string Password { get; set; } = "";
         [BsonElement("employee_role")]
@@ -23,5 +22,7 @@ namespace Ticket_System_TheGardenGroup.Models
         public string Surname { get; set; } = "";
         [BsonElement("emailaddress")]
         public string EmailAddress { get; set; } = "";
+        [BsonElement("is_active")]
+        public bool IsActive { get; set; } = false;
     }
 }
