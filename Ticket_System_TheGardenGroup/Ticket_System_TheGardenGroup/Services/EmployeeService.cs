@@ -18,5 +18,9 @@ namespace Ticket_System_TheGardenGroup.Services
         {
             return _employeeRepository.GetAllEmployeesWithAmountOfTicketsAsync();
         }
+        /*public Task<EmployeeTicketsViewModel> GetEmployeeAsync()
+        {
+            return _employeeRepository.GetEmployeeAsync();
+        }*/
     }
 }

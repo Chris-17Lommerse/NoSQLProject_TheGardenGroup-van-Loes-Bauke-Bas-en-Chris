@@ -17,5 +17,18 @@ namespace Ticket_System_TheGardenGroup.Controllers
             Task<List<Ticket>> tickets = _ticketService.GetAllTickets();
             return View(tickets);
         }
+        public IActionResult UpdateTicket()
+        {
+            try
+            {
+                throw new Exception();
+                return View();
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"The UpdateTicket could not be loaded: {ex.Message}";
+                return RedirectToAction("Index", "Home");
+            }
+        }
     }
 }

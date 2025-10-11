@@ -23,5 +23,7 @@ namespace Ticket_System_TheGardenGroup.Models
         public string Surname { get; set; } = "";
         [BsonElement("emailaddress")]
         public string EmailAddress { get; set; } = "";
+        [BsonElement("isActive")]
+        public bool isActive { get; set; } = false;
     }
 }

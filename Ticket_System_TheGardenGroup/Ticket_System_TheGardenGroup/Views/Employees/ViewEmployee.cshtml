@@ -1,0 +1,26 @@
+﻿@model Ticket_System_TheGardenGroup.ViewModels.EmployeeViewModel
+@{
+	ViewData["Title"] = "ViewEmployee";
+}
+<table class="table table-hover">
+	<thead class="table-dark">
+		<tr>
+			<th>Name</th>
+			<th>Surname</th>
+			<th>Employee number</th>
+			<th>Edit/Delete</th>
+		</tr>
+	</thead>
+	<tbody class="bg-opacity-10 bg-black">
+			<tr>
+				<td>@Model.Name</td>
+				<td>@Model.Surname</td>
+				<td>@Model.EmployeeNumber</td>
+				<td>
+					<a class="alert-warning" href="/Employees/UpdateEmployee/@Model.Id">Edit this employee</a>
+					<a class="alert-danger" href="/Employees/DeactivateEmployee/@Model.Id">Deactivate this employee</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

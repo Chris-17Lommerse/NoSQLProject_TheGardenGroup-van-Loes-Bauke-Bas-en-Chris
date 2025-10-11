@@ -1,13 +1,11 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using Ticket_System_TheGardenGroup.Models;
 using Ticket_System_TheGardenGroup.Models.Enums;
 
 namespace Ticket_System_TheGardenGroup.ViewModels
 {
-    public class EmployeeTicketsViewModel
+    public class EmployeeViewModel
     {
-        //
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         [BsonElement("_id")]
@@ -26,7 +24,5 @@ namespace Ticket_System_TheGardenGroup.ViewModels
         public string Surname { get; set; } = "";
         [BsonElement("employee_role")]
         public EmployeeRole EmployeeRole { get; set; } = EmployeeRole.REGULAR_EMPLOYEE;
-        [BsonElement("ticket_count")]
-        public int TotalTickets { get; set; } = 0;
     }
 }
