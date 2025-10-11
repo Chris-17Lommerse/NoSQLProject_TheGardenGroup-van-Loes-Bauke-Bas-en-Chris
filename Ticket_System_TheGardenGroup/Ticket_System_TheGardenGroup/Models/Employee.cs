@@ -11,7 +11,7 @@ namespace Ticket_System_TheGardenGroup.Models
         [BsonElement("_id")]
         public string? Id { get; set; }
         [BsonElement("employee_number")]
-        public EmployeeNumber EmployeeNumber { get; set; } = new EmployeeNumber();
+        public int EmployeeNumber { get; set; } = 0;
         [BsonElement("password")]
         public string Password { get; set; } = "";
         [BsonElement("employee_role")]

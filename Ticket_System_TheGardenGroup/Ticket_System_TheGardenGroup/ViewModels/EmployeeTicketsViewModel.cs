@@ -12,7 +12,7 @@ namespace Ticket_System_TheGardenGroup.ViewModels
         [BsonElement("_id")]
         public ObjectId Id { get; set; }
         [BsonElement("employee_number")]
-        public EmployeeNumber EmployeeNumber { get; set; } = new EmployeeNumber();
+        public int EmployeeNumber { get; set; } = 0;
         [BsonRepresentation(BsonType.String)]
         [BsonElement("emailaddress")]
         public string EmailAddress { get; set; } = "";
