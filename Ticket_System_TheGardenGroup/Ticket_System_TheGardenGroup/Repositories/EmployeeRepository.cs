@@ -38,7 +38,7 @@ namespace Ticket_System_TheGardenGroup.Repositories
                     {"as", "employee_tickets" }
                 }),
 
-                // 2) project the user overview
+                // 2) project the employee overview
                 new BsonDocument("$project", new BsonDocument
                 {
                     {"name", 1 },
@@ -47,6 +47,7 @@ namespace Ticket_System_TheGardenGroup.Repositories
                     {"employee_number", 1 },
                     {"employee_role", 1 },
                     {"ticket_count",
+                    // 3) fill the ticket_count array
                     new BsonDocument("$size", "$employee_tickets")}
                 })
             };
