@@ -20,7 +20,7 @@ namespace Ticket_System_TheGardenGroup.Repositories
             _employeeCollection.InsertOneAsync(employee);
         }
 
-        public async Task<List<EmployeeTicketsViewModel>> GetAllEmployeesWithAmountOfTicketsAsync()
+        public async Task<List<EmployeeTicketsVm>> GetAllEmployeesWithAmountOfTicketsAsync()
         {
             var pipeline = new[]
             {
@@ -48,7 +48,7 @@ namespace Ticket_System_TheGardenGroup.Repositories
             };
 
             return await _employeeCollection
-                         .Aggregate<EmployeeTicketsViewModel>(pipeline)
+                         .Aggregate<EmployeeTicketsVm>(pipeline)
                          .ToListAsync();
         }
 

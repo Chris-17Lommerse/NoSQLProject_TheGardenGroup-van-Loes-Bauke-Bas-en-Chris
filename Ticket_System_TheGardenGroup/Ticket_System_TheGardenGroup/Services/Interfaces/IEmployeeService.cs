@@ -5,6 +5,6 @@ namespace Ticket_System_TheGardenGroup.Services.Interfaces
 {
     public interface IEmployeeService
     {
-        Task<List<EmployeeTicketsViewModel>> GetAllEmployeesWithAmountOfTicketsAsync();
+        Task<List<EmployeeTicketsVm>> GetAllEmployeesWithAmountOfTicketsAsync();
     }
 }
