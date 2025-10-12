@@ -28,7 +28,7 @@ namespace Ticket_System_TheGardenGroup.ViewModels
         [BsonElement("employee_role")]
         public EmployeeRole EmployeeRole { get; set; } = EmployeeRole.REGULAR_EMPLOYEE;
 
-        [BsonElement("ticket_count")]
+        [BsonElement("TotalTickets")]
         public int TotalTickets { get; set; } = 0;
 
     }
