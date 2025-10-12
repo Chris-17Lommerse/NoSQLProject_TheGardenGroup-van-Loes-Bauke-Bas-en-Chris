@@ -1,4 +1,5 @@
-﻿using Ticket_System_TheGardenGroup.Models;
+﻿using MongoDB.Bson;
+using Ticket_System_TheGardenGroup.Models;
 using Ticket_System_TheGardenGroup.Repositories.Interfaces;
 using Ticket_System_TheGardenGroup.Services.Interfaces;
 using Ticket_System_TheGardenGroup.ViewModels;
@@ -18,9 +19,15 @@ namespace Ticket_System_TheGardenGroup.Services
         {
             return _employeeRepository.GetAllEmployeesWithAmountOfTicketsAsync();
         }
-        /*public Task<EmployeeTicketsViewModel> GetEmployeeAsync()
+        public Task<Employee> GetEmployeeAsync(ObjectId id)
         {
-            return _employeeRepository.GetEmployeeAsync();
-        }*/
+            return _employeeRepository.GetEmployeeAsync(id);
+        }
+        public EmployeeViewModel viewModelCasting(Task<Employee> employee)
+        {
+            EmployeeViewModel employeeViewModel = new EmployeeViewModel();
+            
+            return employeeViewModel;
+        }
     }
 }

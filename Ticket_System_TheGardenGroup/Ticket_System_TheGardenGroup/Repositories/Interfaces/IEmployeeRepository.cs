@@ -1,4 +1,5 @@
-﻿using Ticket_System_TheGardenGroup.Models;
+﻿using MongoDB.Bson;
+using Ticket_System_TheGardenGroup.Models;
 using Ticket_System_TheGardenGroup.ViewModels;
 
 namespace Ticket_System_TheGardenGroup.Repositories.Interfaces
@@ -9,6 +10,7 @@ namespace Ticket_System_TheGardenGroup.Repositories.Interfaces
         List<Employee> GetAllRegularEmployees();
         List<Employee> GetAllServiceDeskEmployees();
         void AddEmployee(Employee employee);
+        Task<Employee> GetEmployeeAsync(ObjectId ID);
         void RemoveRegularEmployee(Employee employee);
         void RemoveServiceDeskEmployee(Employee employee);
         void UpdateRegularEmployee(Employee employee);

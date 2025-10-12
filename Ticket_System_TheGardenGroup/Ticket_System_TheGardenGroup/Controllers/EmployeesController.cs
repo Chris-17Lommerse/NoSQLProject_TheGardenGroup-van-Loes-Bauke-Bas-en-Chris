@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using Ticket_System_TheGardenGroup.Models;
 using Ticket_System_TheGardenGroup.Services.Interfaces;
 using Ticket_System_TheGardenGroup.ViewModels;
@@ -18,11 +19,14 @@ namespace Ticket_System_TheGardenGroup.Controllers
             Task<List<EmployeeTicketsVm>> employees = _employeeService.GetAllEmployeesWithAmountOfTicketsAsync();
             return View(employees);
         }
-        public IActionResult ViewEmployee(string employeeID)
+        public IActionResult ViewEmployee(ObjectId employeeID)
         {
-            Employee employee = new Employee();
-            //Task<List<EmployeeViewModel>> employees = _employeeService.GetEmployeeAsync();
-            return View(employee);
+            return View(_employeeService.GetEmployeeAsync(employeeID));
         }
+        public IActionResult UpdateEmployee(EmployeeTicketsVm employeeTicketsVm)
+        {
+            return View(employeeTicketsVm);
+        }
+
     }
 }

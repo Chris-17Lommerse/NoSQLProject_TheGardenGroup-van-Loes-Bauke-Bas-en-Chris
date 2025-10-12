@@ -16,6 +16,12 @@ namespace Ticket_System_TheGardenGroup.Repositories
             _employeeCollection = database.GetCollection<Employee>("EMPLOYEE");
         }
 
+        public async Task<Employee> GetEmployeeAsync(ObjectId id)
+        {
+            var filter = Builders<Employee>.Filter.Eq("_id", id);
+            return await _employeeCollection.Find(filter).FirstOrDefaultAsync();
+        }
+
         public void AddEmployee(Employee employee)
         {
             _employeeCollection.InsertOneAsync(employee);
@@ -86,16 +92,16 @@ namespace Ticket_System_TheGardenGroup.Repositories
 
         public async Task UpdateEmployee(Employee employee)
         {
-            var filter = Builders<Employee>.Filter.Eq("_id", employee.Id);
-            var combinedUpdate = Builders<Employee>.Update.Combine(
-                Builders<Employee>.Update.Set("name", employee.Name),
-                Builders<Employee>.Update.Set("surname", employee.Surname),
-                Builders<Employee>.Update.Set("emailaddress", employee.EmailAddress),
-                Builders<Employee>.Update.Set("employee_role", employee.EmployeeRole),
-                Builders<Employee>.Update.Set("password", employee.Password),
-                Builders<Employee>.Update.Set("isActive", employee.isActive)
-            );
-            await _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
+                var filter = Builders<Employee>.Filter.Eq("_id", employee.Id);
+                var combinedUpdate = Builders<Employee>.Update.Combine(
+                    Builders<Employee>.Update.Set("name", employee.Name),
+                    Builders<Employee>.Update.Set("surname", employee.Surname),
+                    Builders<Employee>.Update.Set("emailaddress", employee.EmailAddress),
+                    Builders<Employee>.Update.Set("employee_role", employee.EmployeeRole),
+                    Builders<Employee>.Update.Set("password", employee.Password),
+                    Builders<Employee>.Update.Set("isActive", employee.IsActive)
+                );
+                await _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
         }
         public async Task UpdateRegularEmployee(Employee employee)
         {
@@ -105,7 +111,7 @@ namespace Ticket_System_TheGardenGroup.Repositories
                 Builders<Employee>.Update.Set("surname", employee.Surname),
                 Builders<Employee>.Update.Set("emailaddress", employee.EmailAddress),
                 Builders<Employee>.Update.Set("password", employee.Password),
-                Builders<Employee>.Update.Set("isActive", employee.isActive)
+                Builders<Employee>.Update.Set("isActive", employee.IsActive)
             );
             await _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
         }
@@ -118,37 +124,10 @@ namespace Ticket_System_TheGardenGroup.Repositories
                 Builders<Employee>.Update.Set("surname", employee.Surname),
                 Builders<Employee>.Update.Set("emailaddress", employee.EmailAddress),
                 Builders<Employee>.Update.Set("password", employee.Password),
-                Builders<Employee>.Update.Set("isActive", employee.isActive)
+                Builders<Employee>.Update.Set("isActive", employee.IsActive)
             );
             await _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
         }
-
-        /*public async Task<EmployeeViewModel> GetEmployeeAsync(Employee employee)
-        {
-            var pipeline = new[]
-            {
-                // 1) find the user
-                new BsonDocument("$match", new BsonDocument
-                {
-                    {"_id", employee.Id },
-                }),
-
-                // 2) project the user
-                new BsonDocument("$project", new BsonDocument
-                {
-                    {"name", 1 },
-                    {"surname", 1 },
-                    {"emailaddress", 1 },
-                    {"employee_number", 1 },
-                    {"employee_role", 1 },
-                    {"ticket_count",
-                    new BsonDocument("$size", "$employee_tickets")}
-                })
-            };
-
-            return await _employeeCollection
-                         .Aggregate<EmployeeViewModel>(pipeline)();
-        }*/
 
         void IEmployeeRepository.UpdateRegularEmployee(Employee employee)
         {

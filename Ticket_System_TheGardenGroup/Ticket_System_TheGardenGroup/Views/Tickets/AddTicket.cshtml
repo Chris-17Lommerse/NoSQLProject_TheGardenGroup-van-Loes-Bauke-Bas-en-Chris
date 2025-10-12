@@ -1,5 +1,6 @@
-﻿@{
-    ViewData["Title"] = "Creating a ticket";
+﻿@model Ticket
+@{
+    ViewData["Title"] = "Ticket toevoegen";
 }
 <h1 class="alert-danger">@TempData["ErrorMessage"]</h1>
 <h1 class="alert-warning">@TempData["WarningMessage"]</h1>
@@ -8,10 +9,6 @@
     <h1 class="display-4">Creating a ticket</h1>
     <p></p>
 </div>
-﻿@model Ticket
-@{
-    ViewData["Title"] = "Ticket toevoegen";
-}
 
 <h1>Maak een ticket aan</h1>
 

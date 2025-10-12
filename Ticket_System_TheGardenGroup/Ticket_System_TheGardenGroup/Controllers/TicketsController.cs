@@ -21,14 +21,15 @@ namespace Ticket_System_TheGardenGroup.Controllers
         {
             try
             {
-                throw new Exception();
+                throw new NotImplementedException();
                 return View();
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = $"The UpdateTicket could not be loaded: {ex.Message}";
+                TempData["ErrorMessage"] = "The UpdateTicket page could not be loaded.";
                 return RedirectToAction("Index", "Home");
             }
+        }
 
         public IActionResult AddTicket()
         {
