@@ -25,6 +25,7 @@ namespace Ticket_System_TheGardenGroup.Controllers
 
         }
         [HttpPost]
+        //Blah blah blah
         public ActionResult AddEmployee(Employee employee)
         {
             try
