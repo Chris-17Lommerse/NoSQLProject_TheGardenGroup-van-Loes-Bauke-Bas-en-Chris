@@ -23,5 +23,23 @@ namespace Ticket_System_TheGardenGroup.Repositories
         {   
             return await _ticketCollection.Find(Builders<Ticket>.Filter.Empty).ToListAsync();
         }
+        public async Task<Ticket> GetTicketAsync(ObjectId id)
+        {
+            var filter = Builders<Ticket>.Filter.Eq("_id", id);
+            return await _ticketCollection.Find(filter).FirstOrDefaultAsync();
+        }
+        //TODO reporting_employee and solving_employee can not be updated yet
+        public async Task UpdateTicket(Ticket ticket)
+        {
+            var filter = Builders<Ticket>.Filter.Eq("_id", ticket.TicketId);
+            var combinedUpdate = Builders<Ticket>.Update.Combine(
+                Builders<Ticket>.Update.Set("ticket_name", ticket.TicketName),
+                Builders<Ticket>.Update.Set("ticket_status", ticket.TicketStatus),
+                Builders<Ticket>.Update.Set("description", ticket.Description),
+                Builders<Ticket>.Update.Set("ticket_escalation_description", ticket.TicketEscalationDescription),
+                Builders<Ticket>.Update.Set("is_solved", ticket.IsSolved)
+            );
+            await _ticketCollection.UpdateOneAsync(filter, combinedUpdate);
+        }
     }
 }

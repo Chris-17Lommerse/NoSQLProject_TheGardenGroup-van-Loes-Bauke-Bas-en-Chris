@@ -19,7 +19,8 @@ namespace Ticket_System_TheGardenGroup.Controllers
             Task<List<EmployeeTicketsVm>> employees = _employeeService.GetAllEmployeesWithAmountOfTicketsAsync();
             return View(employees);
         }
-        public IActionResult ViewEmployee(ObjectId employeeID)
+        [HttpGet]
+        public ActionResult ViewEmployee(ObjectId employeeID)
         {
             return View(_employeeService.GetEmployeeAsync(employeeID));
         }
