@@ -1,6 +1,5 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
-using System.Xml.Linq;
 using Ticket_System_TheGardenGroup.Models;
 using Ticket_System_TheGardenGroup.Repositories.Interfaces;
 using Ticket_System_TheGardenGroup.ViewModels;
@@ -80,14 +79,30 @@ namespace Ticket_System_TheGardenGroup.Repositories
             return employees;
         }
 
-        public void RemoveRegularEmployee(Employee employee)
+        public async Task RemoveEmployee(Employee employee)
         {
-            throw new NotImplementedException();
+            var filter = Builders<Employee>.Filter.Eq("_id", employee.Id);
+            var combinedUpdate = Builders<Employee>.Update.Combine(
+                Builders<Employee>.Update.Set("isActive", employee.IsActive)
+            );
+            await _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
+        }
+        public async Task RemoveRegularEmployee(Employee employee)
+        {
+            var filter = Builders<Employee>.Filter.Eq("_id", employee.Id);
+            var combinedUpdate = Builders<Employee>.Update.Combine(
+                Builders<Employee>.Update.Set("isActive", employee.IsActive)
+            );
+            await _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
         }
 
-        public void RemoveServiceDeskEmployee(Employee employee)
+        public async Task RemoveServiceDeskEmployee(Employee employee)
         {
-            throw new NotImplementedException();
+            var filter = Builders<Employee>.Filter.Eq("_id", employee.Id);
+            var combinedUpdate = Builders<Employee>.Update.Combine(
+                Builders<Employee>.Update.Set("isActive", employee.IsActive)
+            );
+            await _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
         }
 
         public async Task UpdateEmployee(Employee employee)
@@ -127,16 +142,6 @@ namespace Ticket_System_TheGardenGroup.Repositories
                 Builders<Employee>.Update.Set("isActive", employee.IsActive)
             );
             await _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
-        }
-
-        void IEmployeeRepository.UpdateRegularEmployee(Employee employee)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IEmployeeRepository.UpdateServiceDeskEmployee(Employee employee)
-        {
-            throw new NotImplementedException();
         }
     }
 }

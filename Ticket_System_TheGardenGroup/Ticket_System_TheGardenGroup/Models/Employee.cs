@@ -9,7 +9,7 @@ namespace Ticket_System_TheGardenGroup.Models
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         [BsonElement("_id")]
-        public string? Id { get; set; }
+        public ObjectId Id { get; set; }
 
         [BsonElement("employee_number")]
         public int EmployeeNumber { get; set; } = 0;

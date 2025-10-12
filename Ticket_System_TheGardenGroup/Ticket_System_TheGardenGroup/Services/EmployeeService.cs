@@ -19,14 +19,10 @@ namespace Ticket_System_TheGardenGroup.Services
         {
             return _employeeRepository.GetAllEmployeesWithAmountOfTicketsAsync();
         }
-        public Task<Employee> GetEmployeeAsync(ObjectId id)
+        public async Task<EmployeeViewModel> GetEmployeeAsync(ObjectId id)
         {
-            return _employeeRepository.GetEmployeeAsync(id);
-        }
-        public EmployeeViewModel viewModelCasting(Task<Employee> employee)
-        {
-            EmployeeViewModel employeeViewModel = new EmployeeViewModel();
-            
+            Employee employee = await _employeeRepository.GetEmployeeAsync(id);
+            EmployeeViewModel employeeViewModel = new EmployeeViewModel(employee);
             return employeeViewModel;
         }
     }
