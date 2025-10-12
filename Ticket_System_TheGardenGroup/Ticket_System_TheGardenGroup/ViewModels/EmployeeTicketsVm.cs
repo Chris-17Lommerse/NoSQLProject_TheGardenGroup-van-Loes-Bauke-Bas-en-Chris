@@ -6,11 +6,7 @@ namespace Ticket_System_TheGardenGroup.ViewModels
 {
     public class EmployeeTicketsVm
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        [BsonElement("_id")]
-        public ObjectId Id { get; set; }
-
+        [BsonRepresentation(BsonType.Int32)]
         [BsonElement("employee_number")]
         public int EmployeeNumber { get; set; } = 0;
 
@@ -29,7 +25,7 @@ namespace Ticket_System_TheGardenGroup.ViewModels
         [BsonElement("employee_role")]
         public EmployeeRole EmployeeRole { get; set; } = EmployeeRole.REGULAR_EMPLOYEE;
 
-        [BsonElement("ticket_count")]
+        [BsonElement("TotalTickets")]
         public int TotalTickets { get; set; } = 0;
 
     }
