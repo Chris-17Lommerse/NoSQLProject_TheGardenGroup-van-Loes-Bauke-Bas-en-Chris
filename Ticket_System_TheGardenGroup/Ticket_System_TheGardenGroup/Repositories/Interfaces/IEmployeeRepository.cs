@@ -5,7 +5,7 @@ namespace Ticket_System_TheGardenGroup.Repositories.Interfaces
 {
     public interface IEmployeeRepository
     {
-        Task<List<EmployeeTicketsViewModel>> GetAllEmployeesWithAmountOfTicketsAsync();
+        Task<List<EmployeeTicketsVm>> GetAllEmployeesWithAmountOfTicketsAsync();
         List<Employee> GetAllRegularEmployees();
         List<Employee> GetAllServiceDeskEmployees();
         void AddEmployee(Employee employee);
