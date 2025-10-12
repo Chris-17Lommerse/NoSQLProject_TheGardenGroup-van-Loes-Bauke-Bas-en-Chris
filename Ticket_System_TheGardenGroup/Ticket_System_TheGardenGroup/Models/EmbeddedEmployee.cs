@@ -9,7 +9,8 @@ namespace Ticket_System_TheGardenGroup.Models
         [BsonElement("employee_number")]
         public int EmployeeNumber { get; set; } = 0;
         [BsonElement("employee_role")]
-        public EmployeeRole EmployeeRole { get; set; } = EmployeeRole.REGULAR_EMPLOYEE;
+        public EmployeeRole EmployeeRole { get; set; } = EmployeeRole.Regular_Employee;
+
         [BsonElement("emailaddress")]
         public string EmailAddress { get; set; } = "";
         [BsonElement("name")]

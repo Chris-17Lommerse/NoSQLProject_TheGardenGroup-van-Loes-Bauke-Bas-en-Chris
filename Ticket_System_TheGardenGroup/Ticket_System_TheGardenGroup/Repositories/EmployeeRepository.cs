@@ -14,10 +14,10 @@ namespace Ticket_System_TheGardenGroup.Repositories
         {
             _employeeCollection = database.GetCollection<Employee>("EMPLOYEE");
         }
-
-        public void AddRegularEmployee(Employee employee)
+        //Ben hier aan het experimenteren
+        public void AddEmployee(Employee employee)
         {
-            throw new NotImplementedException();
+             _employeeCollection.InsertOneAsync(employee);
         }
 
         public void AddServiceDeskEmployee(Employee employee)

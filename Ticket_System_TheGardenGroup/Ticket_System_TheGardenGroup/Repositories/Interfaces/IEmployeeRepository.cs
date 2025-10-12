@@ -8,8 +8,7 @@ namespace Ticket_System_TheGardenGroup.Repositories.Interfaces
         Task<List<EmployeeTicketsViewModel>> GetAllEmployeesWithAmountOfTicketsAsync();
         List<Employee> GetAllRegularEmployees();
         List<Employee> GetAllServiceDeskEmployees();
-        void AddRegularEmployee(Employee employee);
-        void AddServiceDeskEmployee(Employee employee);
+        void  AddEmployee(Employee employee);
         void RemoveRegularEmployee(Employee employee);
         void RemoveServiceDeskEmployee(Employee employee);
         void UpdateRegularEmployee(Employee employee);

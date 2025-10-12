@@ -18,5 +18,11 @@ namespace Ticket_System_TheGardenGroup.Services
         {
             return _employeeRepository.GetAllEmployeesWithAmountOfTicketsAsync();
         }
+        //Ben hier aan het experimenteren
+
+        public void AddEmployee(Employee employee)
+        {
+            _employeeRepository.AddEmployee(employee);
+        }
     }
 }
