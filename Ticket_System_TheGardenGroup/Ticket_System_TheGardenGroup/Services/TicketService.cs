@@ -1,6 +1,9 @@
-﻿using Ticket_System_TheGardenGroup.Models;
+﻿using MongoDB.Bson;
+using Ticket_System_TheGardenGroup.Models;
+using Ticket_System_TheGardenGroup.Repositories;
 using Ticket_System_TheGardenGroup.Repositories.Interfaces;
 using Ticket_System_TheGardenGroup.Services.Interfaces;
+using Ticket_System_TheGardenGroup.ViewModels;
 
 namespace Ticket_System_TheGardenGroup.Services
 {
@@ -16,6 +19,12 @@ namespace Ticket_System_TheGardenGroup.Services
         public Task<List<Ticket>> GetAllTickets()
         {
             return _ticketRepository.GetAllTickets();
+        }
+        public async Task<TicketViewModel> GetTicketAsync(ObjectId id)
+        {
+            Ticket ticket = await _ticketRepository.GetTicketAsync(id);
+            TicketViewModel ticketViewModel = new TicketViewModel(ticket);
+            return ticketViewModel;
         }
     }
 }

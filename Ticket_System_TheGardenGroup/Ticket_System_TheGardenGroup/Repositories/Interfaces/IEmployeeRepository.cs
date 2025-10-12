@@ -10,7 +10,7 @@ namespace Ticket_System_TheGardenGroup.Repositories.Interfaces
         List<Employee> GetAllRegularEmployees();
         List<Employee> GetAllServiceDeskEmployees();
         void AddEmployee(Employee employee);
-        Task<Employee> GetEmployeeAsync(ObjectId ID);
+        Task<Employee> GetEmployeeAsync(int employeeNumber);
         Task RemoveRegularEmployee(Employee employee);
         Task RemoveServiceDeskEmployee(Employee employee);
         Task UpdateRegularEmployee(Employee employee);

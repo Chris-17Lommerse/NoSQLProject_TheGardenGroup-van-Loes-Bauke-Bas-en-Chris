@@ -7,9 +7,6 @@ namespace Ticket_System_TheGardenGroup.ViewModels
 {
     public class EmployeeViewModel
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        [BsonElement("_id")]
         public ObjectId Id { get; set; }
         [BsonRepresentation(BsonType.ObjectId)]
         [BsonElement("employee_number")]
@@ -25,14 +22,31 @@ namespace Ticket_System_TheGardenGroup.ViewModels
         public string Surname { get; set; } = "";
         [BsonElement("employee_role")]
         public EmployeeRole EmployeeRole { get; set; } = EmployeeRole.REGULAR_EMPLOYEE;
+        [BsonElement("is_active")]
+        public bool IsActive { get; set; } = false;
         public EmployeeViewModel(Employee employee)
         {
-            Id = employee.Id;
             EmployeeNumber = employee.EmployeeNumber;
             EmailAddress = employee.EmailAddress;
             Name = employee.Name;
             Surname = employee.Surname;
             EmployeeRole = employee.EmployeeRole;
+            IsActive = employee.IsActive;
+        }
+
+        public EmployeeViewModel(int employeeNumber, string emailAddress, string name, string surname, EmployeeRole employeeRole, bool isActive)
+        {
+            EmployeeNumber = employeeNumber;
+            EmailAddress = emailAddress;
+            Name = name;
+            Surname = surname;
+            EmployeeRole = employeeRole;
+            IsActive = isActive;
+        }
+
+        public EmployeeViewModel()
+        {
+            
         }
     }
 }

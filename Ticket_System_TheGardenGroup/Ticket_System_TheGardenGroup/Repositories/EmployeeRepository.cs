@@ -15,9 +15,9 @@ namespace Ticket_System_TheGardenGroup.Repositories
             _employeeCollection = database.GetCollection<Employee>("EMPLOYEE");
         }
 
-        public async Task<Employee> GetEmployeeAsync(ObjectId id)
+        public async Task<Employee> GetEmployeeAsync(int employeeNumber)
         {
-            var filter = Builders<Employee>.Filter.Eq("_id", id);
+            var filter = Builders<Employee>.Filter.Eq("employee_number", employeeNumber);
             return await _employeeCollection.Find(filter).FirstOrDefaultAsync();
         }
 
@@ -28,35 +28,31 @@ namespace Ticket_System_TheGardenGroup.Repositories
 
         public async Task<List<EmployeeTicketsVm>> GetAllEmployeesWithAmountOfTicketsAsync()
         {
-            var pipeline = new[]
+            var pipeline = new List<BsonDocument>
             {
-                // 1) lookup tickets
-                new BsonDocument("$lookup", new BsonDocument
+                new BsonDocument("$group", new BsonDocument
                 {
-                    {"from", "TICKETS" },
-                    {"localField", "_id" },
-                    {"foreignField", "employee_id"  },
-                    {"as", "employee_tickets" }
+                    { "_id", "$employee_number" },
+                    { "TotalTickets", new BsonDocument("$sum", 1) },
+                    { "employeeDetails", new BsonDocument("$first", "$$ROOT") }
                 }),
 
-                // 2) project the employee overview
                 new BsonDocument("$project", new BsonDocument
                 {
-                    {"name", 1 },
-                    {"surname", 1 },
-                    {"emailaddress", 1 },
-                    {"employee_number", 1 },
-                    {"employee_role", 1 },
-                    {"ticket_count",
-                    // 3) fill the ticket_count array
-                    new BsonDocument("$size", "$employee_tickets")}
+                    { "_id", 0 },
+                    { "employee_number", "$_id" },
+                    { "TotalTickets", 1 },
+                    { "surname", "$employeeDetails.surname" },
+                    { "name", "$employeeDetails.name" },
+                    { "emailaddress", "$employeeDetails.emailaddress" },
+                    { "employee_role", "$employeeDetails.employee_role" }
                 })
             };
 
-            return await _employeeCollection
-                         .Aggregate<EmployeeTicketsVm>(pipeline)
-                         .ToListAsync();
-        }
+                    return await _employeeCollection
+                        .Aggregate<EmployeeTicketsVm>(pipeline)
+                        .ToListAsync();
+                }
 
         public List<Employee> GetAllRegularEmployees()
         {
@@ -83,7 +79,7 @@ namespace Ticket_System_TheGardenGroup.Repositories
         {
             var filter = Builders<Employee>.Filter.Eq("_id", employee.Id);
             var combinedUpdate = Builders<Employee>.Update.Combine(
-                Builders<Employee>.Update.Set("isActive", employee.IsActive)
+                Builders<Employee>.Update.Set("isActive", !employee.IsActive)
             );
             await _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
         }
@@ -91,7 +87,7 @@ namespace Ticket_System_TheGardenGroup.Repositories
         {
             var filter = Builders<Employee>.Filter.Eq("_id", employee.Id);
             var combinedUpdate = Builders<Employee>.Update.Combine(
-                Builders<Employee>.Update.Set("isActive", employee.IsActive)
+                Builders<Employee>.Update.Set("isActive",  !employee.IsActive)
             );
             await _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
         }
