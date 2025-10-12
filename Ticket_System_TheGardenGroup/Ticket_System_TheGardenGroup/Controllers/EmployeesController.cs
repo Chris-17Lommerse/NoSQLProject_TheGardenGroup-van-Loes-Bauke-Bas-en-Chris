@@ -20,14 +20,13 @@ namespace Ticket_System_TheGardenGroup.Controllers
             return View(employees);
         }
         [HttpGet]
-        public ActionResult ViewEmployee(ObjectId employeeID)
+        public ActionResult ViewEmployee(int employeeNumber)
         {
-            return View(_employeeService.GetEmployeeAsync(employeeID));
+            return View(_employeeService.GetEmployeeAsync(employeeNumber));
         }
         public IActionResult UpdateEmployee(EmployeeTicketsVm employeeTicketsVm)
         {
             return View(employeeTicketsVm);
         }
-
     }
 }

@@ -15,9 +15,9 @@ namespace Ticket_System_TheGardenGroup.Repositories
             _employeeCollection = database.GetCollection<Employee>("EMPLOYEE");
         }
 
-        public async Task<Employee> GetEmployeeAsync(ObjectId id)
+        public async Task<Employee> GetEmployeeAsync(int employeeNumber)
         {
-            var filter = Builders<Employee>.Filter.Eq("_id", id);
+            var filter = Builders<Employee>.Filter.Eq("employee_number", employeeNumber);
             return await _employeeCollection.Find(filter).FirstOrDefaultAsync();
         }
 
@@ -79,7 +79,7 @@ namespace Ticket_System_TheGardenGroup.Repositories
         {
             var filter = Builders<Employee>.Filter.Eq("_id", employee.Id);
             var combinedUpdate = Builders<Employee>.Update.Combine(
-                Builders<Employee>.Update.Set("isActive", employee.IsActive)
+                Builders<Employee>.Update.Set("isActive", !employee.IsActive)
             );
             await _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
         }
@@ -87,7 +87,7 @@ namespace Ticket_System_TheGardenGroup.Repositories
         {
             var filter = Builders<Employee>.Filter.Eq("_id", employee.Id);
             var combinedUpdate = Builders<Employee>.Update.Combine(
-                Builders<Employee>.Update.Set("isActive", employee.IsActive)
+                Builders<Employee>.Update.Set("isActive",  !employee.IsActive)
             );
             await _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
         }
