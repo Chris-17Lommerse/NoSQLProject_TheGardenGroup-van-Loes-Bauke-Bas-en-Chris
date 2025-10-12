@@ -16,17 +16,12 @@ namespace Ticket_System_TheGardenGroup.Repositories
             _employeeCollection = database.GetCollection<Employee>("EMPLOYEE");
         }
 
-        public void AddRegularEmployee(Employee employee)
+        public void AddEmployee(Employee employee)
         {
-            throw new NotImplementedException();
+            _employeeCollection.InsertOneAsync(employee);
         }
 
-        public void AddServiceDeskEmployee(Employee employee)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<List<EmployeeTicketsViewModel>> GetAllEmployeesWithAmountOfTicketsAsync()
+        public async Task<List<EmployeeTicketsVm>> GetAllEmployeesWithAmountOfTicketsAsync()
         {
             var pipeline = new[]
             {
@@ -39,7 +34,7 @@ namespace Ticket_System_TheGardenGroup.Repositories
                     {"as", "employee_tickets" }
                 }),
 
-                // 2) project the user overview
+                // 2) project the employee overview
                 new BsonDocument("$project", new BsonDocument
                 {
                     {"name", 1 },
@@ -48,12 +43,13 @@ namespace Ticket_System_TheGardenGroup.Repositories
                     {"employee_number", 1 },
                     {"employee_role", 1 },
                     {"ticket_count",
+                    // 3) fill the ticket_count array
                     new BsonDocument("$size", "$employee_tickets")}
                 })
             };
 
             return await _employeeCollection
-                         .Aggregate<EmployeeTicketsViewModel>(pipeline)
+                         .Aggregate<EmployeeTicketsVm>(pipeline)
                          .ToListAsync();
         }
 

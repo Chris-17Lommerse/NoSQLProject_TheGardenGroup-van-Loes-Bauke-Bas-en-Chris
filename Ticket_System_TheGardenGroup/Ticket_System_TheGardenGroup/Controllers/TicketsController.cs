@@ -29,6 +29,10 @@ namespace Ticket_System_TheGardenGroup.Controllers
                 TempData["ErrorMessage"] = $"The UpdateTicket could not be loaded: {ex.Message}";
                 return RedirectToAction("Index", "Home");
             }
+
+        public IActionResult AddTicket()
+        {
+            return View();
         }
     }
 }

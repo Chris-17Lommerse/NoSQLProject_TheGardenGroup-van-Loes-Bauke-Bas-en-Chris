@@ -8,3 +8,22 @@
     <h1 class="display-4">Creating a ticket</h1>
     <p></p>
 </div>
+﻿@model Ticket
+@{
+    ViewData["Title"] = "Ticket toevoegen";
+}
+
+<h1>Maak een ticket aan</h1>
+
+<form action="/Tickets/AddTicket" method="post">
+    <div>
+        <label for="CreationTime">Date/time reported</label>
+        <input type="datetime" id="CreationTime" name="CreationTime" class="form-control" required value="@Model?.CreationTime" />
+    </div>
+    <div>
+        <label for="TicketName">Subject of ticket</label>
+        <input type="text" id="TicketName" name="TicketName" class="form-control" required value="@Model?.TicketName"/>
+    </div>
+    <div>
+    </div>
+</form>

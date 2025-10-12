@@ -15,7 +15,7 @@ namespace Ticket_System_TheGardenGroup.Controllers
         }
         public IActionResult Index()
         {
-            Task<List<EmployeeTicketsViewModel>> employees = _employeeService.GetAllEmployeesWithAmountOfTicketsAsync();
+            Task<List<EmployeeTicketsVm>> employees = _employeeService.GetAllEmployeesWithAmountOfTicketsAsync();
             return View(employees);
         }
         public IActionResult ViewEmployee(string employeeID)

@@ -5,11 +5,10 @@ namespace Ticket_System_TheGardenGroup.Repositories.Interfaces
 {
     public interface IEmployeeRepository
     {
-        Task<List<EmployeeTicketsViewModel>> GetAllEmployeesWithAmountOfTicketsAsync();
+        Task<List<EmployeeTicketsVm>> GetAllEmployeesWithAmountOfTicketsAsync();
         List<Employee> GetAllRegularEmployees();
         List<Employee> GetAllServiceDeskEmployees();
-        void AddRegularEmployee(Employee employee);
-        void AddServiceDeskEmployee(Employee employee);
+        void AddEmployee(Employee employee);
         void RemoveRegularEmployee(Employee employee);
         void RemoveServiceDeskEmployee(Employee employee);
         void UpdateRegularEmployee(Employee employee);

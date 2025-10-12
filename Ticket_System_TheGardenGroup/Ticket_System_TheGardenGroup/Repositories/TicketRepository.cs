@@ -14,6 +14,11 @@ namespace Ticket_System_TheGardenGroup.Repositories
             _ticketCollection = database.GetCollection<Ticket>("TICKET");
         }
 
+        public void AddTicket(Ticket ticket)
+        {
+            _ticketCollection.InsertOneAsync(ticket);
+        }
+
         public async Task<List<Ticket>> GetAllTickets()
         {   
             return await _ticketCollection.Find(Builders<Ticket>.Filter.Empty).ToListAsync();
