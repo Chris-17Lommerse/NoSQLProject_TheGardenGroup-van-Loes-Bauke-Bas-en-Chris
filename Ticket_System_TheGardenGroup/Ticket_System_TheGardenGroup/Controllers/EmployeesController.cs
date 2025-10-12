@@ -19,9 +19,11 @@ namespace Ticket_System_TheGardenGroup.Controllers
             Task<List<EmployeeTicketsVm>> employees = _employeeService.GetAllEmployeesWithAmountOfTicketsAsync();
             return View(employees);
         }
-        public IActionResult ViewEmployee(ObjectId employeeID)
+        public IActionResult ViewEmployee(string employeeID)
         {
-            return View(_employeeService.GetEmployeeAsync(employeeID));
+            var id = ObjectId.Parse(employeeID);
+            var employee = _employeeService.GetEmployeeAsync(id);
+            return View(employee);
         }
         public IActionResult UpdateEmployee(EmployeeTicketsVm employeeTicketsVm)
         {
