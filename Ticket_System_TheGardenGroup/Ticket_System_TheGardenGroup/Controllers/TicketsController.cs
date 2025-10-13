@@ -16,9 +16,12 @@ namespace Ticket_System_TheGardenGroup.Controllers
             _ticketService = ticketService;
         }
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            Task<List<Ticket>> tickets = _ticketService.GetAllTickets();
+            //Task<List<Ticket>> tickets = _ticketService.GetAllTickets();
+
+            var tickets = await _ticketService.GetAllTickets();
+
             return View(tickets);
         }
         [HttpGet]
@@ -35,12 +38,13 @@ namespace Ticket_System_TheGardenGroup.Controllers
             }
         }
         [HttpGet]
-        public IActionResult UpdateTicket()
+        public async Task<IActionResult> UpdateTicket(ObjectId objId)
         {
             try
             {
-                //TODO ticketViewModel is provided by a ViewBag
-                return View();
+                Ticket ticket = await _ticketService.GetTicketByObjIdAsync(objId);
+                
+                return View(ticket);
             }
             catch (Exception ex)
             {

@@ -1,9 +1,8 @@
 ﻿using MongoDB.Bson;
+using System.Security.Cryptography;
 using Ticket_System_TheGardenGroup.Models;
-using Ticket_System_TheGardenGroup.Repositories;
 using Ticket_System_TheGardenGroup.Repositories.Interfaces;
 using Ticket_System_TheGardenGroup.Services.Interfaces;
-using Ticket_System_TheGardenGroup.ViewModels;
 
 namespace Ticket_System_TheGardenGroup.Services
 {
@@ -26,5 +25,10 @@ namespace Ticket_System_TheGardenGroup.Services
             TicketViewModel ticketViewModel = new TicketViewModel(ticket);
             return ticketViewModel;
         }
-    }
+
+        public async Task<Ticket> GetTicketByObjIdAsync(ObjectId objId)
+        {
+            return await _ticketRepository.GetTicketByObjIdAsync(objId);
+        }
+	}
 }

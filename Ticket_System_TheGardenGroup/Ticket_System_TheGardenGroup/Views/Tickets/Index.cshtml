@@ -1,4 +1,4 @@
-﻿@model Task<List<Ticket>>
+﻿@model List<Ticket>
 @{
     ViewData["Title"] = "Tickets";
 }
@@ -11,7 +11,7 @@
         <partial name="_TicketsHeader" />
         <tbody>
              
-            @foreach(Ticket ticket in await Model)
+            @foreach(Ticket ticket in Model)
             {
                 <tr>
                     <td>@ticket.TicketId</td>
@@ -23,7 +23,7 @@
                     <td>@ticket.SolvingEmployee.EmailAddress</td>
                     <td>@ticket.IsSolved</td>
                     <td>
-                        <a href="/Tickets/ViewEmployee/@ticket.TicketId">View</a>
+                        <a href="/Tickets/UpdateTicket/@ticket.TicketId">View</a>
                     </td>
                 </tr>
             }

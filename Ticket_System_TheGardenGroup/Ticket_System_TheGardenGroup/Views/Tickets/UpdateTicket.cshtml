@@ -1,5 +1,58 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Ticket
+
 @{
+	ViewData["Title"] = "Edit ticket";
 }
+
+<section>
+    <form action="/Tickets/UpdateTicket" method="post">
+        <section>
+            <label hidden for="ticketId">Ticket id</label>
+            <input hidden type="text" id="ticketId" name="ticketId" class="form-control" value="@Model?.TicketId" />
+        </section>
+
+        <section>
+            <label for="creationTime">Creation time</label>
+            <input type="datetime" id="creationTime" name="CreationTime" class="form-control" value="@Model?.CreationTime" />
+        </section>
+
+        <section>
+            <label readonly for="ticketStatus">Ticket Status</label>
+            <input readonly type="text" id="ticketStatus" name="ticketStatus" class="form-control" value="@Model?.TicketStatus" />
+        </section>
+
+        <section>
+            <label for="ticketName">Ticket name</label>
+            <input type="text" id="ticketName" name="ticketName" class="form-control" value="@Model?.TicketName" />
+        </section>
+
+        <section>
+            <label for="Description">Ticket Description</label>
+            <input type="text" id="Description" name="Description" class="form-control" value="@Model?.Description" />
+        </section>
+
+        <section>
+            <label for="escaDescription">Ticket Description</label>
+            <input type="text" id="escaDescription" name="escaDescription" class="form-control" value="@Model?.TicketEscalationDescription" />
+        </section>
+
+        <section>
+            <label readonly for="isSolved">Is ticket solved?</label>
+            <input readonly type="text" id="isSolved" name="isSolved" class="form-control" value="@Model?.IsSolved" />
+        </section>
+
+        <section>
+            <label readonly for="reportEmployee">Reporting employee</label>
+            <input readonly type="text" id="reportEmployee" name="reportEmployee" class="form-control" value="@Model?.ReportingEmployee.Name" />
+        </section>
+
+        <section>
+            <label readonly for="solvEmployee">Reporting employee</label>
+            <input readonly type="text" id="solvEmployee" name="solvEmployee" class="form-control" value="@Model?.SolvingEmployee.Name" />
+        </section>
+
+
+       
+        <button type="submit" class="btn btn-primary">Update ticket</button>
+    </form>
+</section>

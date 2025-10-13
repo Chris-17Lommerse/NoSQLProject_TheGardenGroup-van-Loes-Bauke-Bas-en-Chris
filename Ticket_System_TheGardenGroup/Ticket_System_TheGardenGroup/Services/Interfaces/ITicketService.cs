@@ -8,5 +8,8 @@ namespace Ticket_System_TheGardenGroup.Services.Interfaces
     {
         Task<List<Ticket>> GetAllTickets();
         Task<TicketViewModel> GetTicketAsync(ObjectId id);
-    }
+
+        Task<Ticket> GetTicketByObjIdAsync(ObjectId objId);
+
+	}
 }

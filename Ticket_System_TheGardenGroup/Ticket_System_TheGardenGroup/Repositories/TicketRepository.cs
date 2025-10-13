@@ -28,8 +28,19 @@ namespace Ticket_System_TheGardenGroup.Repositories
             var filter = Builders<Ticket>.Filter.Eq("_id", id);
             return await _ticketCollection.Find(filter).FirstOrDefaultAsync();
         }
-        //TODO reporting_employee and solving_employee can not be updated yet
-        public async Task UpdateTicket(Ticket ticket)
+
+		public async Task<Ticket> GetTicketByObjIdAsync(ObjectId objId)
+		{
+			var filter = Builders<Ticket>.Filter.Eq("_id", objId);
+
+			Ticket ticket = await _ticketCollection.Find(filter).FirstOrDefaultAsync();
+            
+            return ticket;
+
+		}
+
+		//TODO reporting_employee and solving_employee can not be updated yet
+		public async Task UpdateTicket(Ticket ticket)
         {
             var filter = Builders<Ticket>.Filter.Eq("_id", ticket.TicketId);
             var combinedUpdate = Builders<Ticket>.Update.Combine(
