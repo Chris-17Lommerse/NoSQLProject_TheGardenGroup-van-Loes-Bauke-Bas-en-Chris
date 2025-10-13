@@ -5,6 +5,9 @@
 <h1 class="alert-danger">@TempData["ErrorMessage"]</h1>
 <h1 class="alert-warning">@TempData["WarningMessage"]</h1>
 <h1 class="alert-success">@TempData["SuccesMessage"]</h1>
+<h1 class="alert-danger">@TempData["NoTicket"]</h1>
+<h1 class="alert-danger">@TempData["NoId"]</h1>
+
 <div class="text-center">
     <h1>Overview Tickets</h1>
     <a href="/Tickets/AddTicket" class="btn btn-primary">Create Ticket</a>
@@ -25,7 +28,7 @@
                     <td>@ticket.SolvingEmployee.EmailAddress</td>
                     <td>@ticket.IsSolved</td>
                     <td>
-                        <a href="/Tickets/UpdateTicket/@ticket.TicketId">View</a>
+                        <a href="/Tickets/UpdateTicket?ticketId=@ticket.TicketId">View</a>
                     </td>
                 </tr>
             }

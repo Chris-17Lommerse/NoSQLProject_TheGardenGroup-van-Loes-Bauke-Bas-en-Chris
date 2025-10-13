@@ -44,7 +44,7 @@ namespace Ticket_System_TheGardenGroup.Controllers
                 return RedirectToAction("Index");
             }
         }
-        [HttpGet]
+		/*[HttpGet]
         public async Task<IActionResult> UpdateTicket(ObjectId objId)
         {
             try
@@ -53,7 +53,7 @@ namespace Ticket_System_TheGardenGroup.Controllers
 
 				if (ticket == null)
 				{
-					TempData["ErrorMessage"] = "Ticket not found.";
+					TempData["NoTicket"] = "Ticket not found with id.";
 					return RedirectToAction("Index");
 				}
 
@@ -70,8 +70,29 @@ namespace Ticket_System_TheGardenGroup.Controllers
                 TempData["ErrorMessage"] = "The UpdateTicket page could not be loaded.";
                 return RedirectToAction("ViewTicket");
             }
-        }
-        [HttpPost]
+        }*/
+		[HttpGet]
+		public async Task<IActionResult> UpdateTicket(string ticketId)
+		{
+			if (string.IsNullOrEmpty(ticketId))
+			{
+				TempData["NoId"] = "Ticket ID missing.";
+				return RedirectToAction("Index");
+			}
+
+			var objectId = new ObjectId(ticketId);
+			var ticket = await _ticketService.GetTicketByObjIdAsync(objectId);
+
+			if (ticket == null)
+			{
+				TempData["NoTicket"] = "Ticket not found.";
+				return RedirectToAction("Index");
+			}
+
+			return View(ticket); 
+		}
+
+		[HttpPost]
         public IActionResult UpdateTicket(Ticket ticket)
         {
             try

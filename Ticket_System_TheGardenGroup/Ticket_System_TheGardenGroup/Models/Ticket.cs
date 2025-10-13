@@ -4,36 +4,34 @@ using Ticket_System_TheGardenGroup.Models.Enums;
 
 namespace Ticket_System_TheGardenGroup.Models
 {
-    public class Ticket
-    {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        [BsonElement("_id")]
-        public string TicketId { get; set; } = "";
+	public class Ticket
+	{
+		[BsonId]
+		[BsonRepresentation(BsonType.ObjectId)]
+		public ObjectId TicketId { get; set; }
 
-        [BsonElement("creation_time")]
-        public DateTime CreationTime { get; set; } = DateTime.Now;
+		[BsonElement("creation_time")]
+		public DateTime CreationTime { get; set; } = DateTime.Now;
 
-        [BsonElement("ticket_status")]
-        public TicketStatus TicketStatus { get; set; } = TicketStatus.Open;
+		[BsonElement("ticket_status")]
+		public TicketStatus TicketStatus { get; set; } = TicketStatus.Open;
 
-        [BsonElement("ticket_name")]
-        public string TicketName { get; set; } = "";
+		[BsonElement("ticket_name")]
+		public string TicketName { get; set; } = "";
 
-        [BsonElement("description")]
-        public string Description { get; set; } = "";
+		[BsonElement("description")]
+		public string Description { get; set; } = "";
 
-        [BsonElement("is_solved")]
-        public bool IsSolved { get; set; } = false;
+			[BsonElement("is_solved")]
+			public bool IsSolved { get; set; } = false;
 
-        [BsonElement("ticket_escalation_description")]
-        public string TicketEscalationDescription { get; set; } = "";
+		[BsonElement("ticket_escalation_description")]
+		public string TicketEscalationDescription { get; set; } = "";
 
-        [BsonElement("reporting_employee")]
-        public EmbeddedEmployee ReportingEmployee { get; set; } = new EmbeddedEmployee();
+		[BsonElement("reporting_employee")]
+		public EmbeddedEmployee ReportingEmployee { get; set; } = new EmbeddedEmployee();
 
-        [BsonElement("solving_employee")]
-        public EmbeddedEmployee SolvingEmployee { get; set; } = new EmbeddedEmployee();
-
-    }
+		[BsonElement("solving_employee")]
+		public EmbeddedEmployee SolvingEmployee { get; set; } = new EmbeddedEmployee();
+	}
 }

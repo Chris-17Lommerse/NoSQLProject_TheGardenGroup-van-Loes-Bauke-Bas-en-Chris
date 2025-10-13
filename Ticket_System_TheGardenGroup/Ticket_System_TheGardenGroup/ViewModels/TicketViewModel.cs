@@ -6,12 +6,11 @@ namespace Ticket_System_TheGardenGroup.Models
 {
     public class TicketViewModel
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        [BsonElement("_id")]
-        public string TicketId { get; set; } = "";
+		[BsonId]
+		[BsonRepresentation(BsonType.ObjectId)]
+		public ObjectId TicketId { get; set; }
 
-        [BsonElement("creation_time")]
+		[BsonElement("creation_time")]
         public DateTime CreationTime { get; set; } = DateTime.Now;
 
         [BsonElement("ticket_status")]

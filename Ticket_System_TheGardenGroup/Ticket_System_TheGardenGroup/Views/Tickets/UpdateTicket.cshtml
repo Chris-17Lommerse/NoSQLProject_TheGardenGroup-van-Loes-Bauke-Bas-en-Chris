@@ -14,8 +14,8 @@
         </section>
 
         <section>
-            <label for="creationTime">Creation time</label>
-            <input type="datetime" id="creationTime" name="CreationTime" class="form-control" value="@Model?.CreationTime" />
+            <label readonly for="creationTime">Creation time</label>
+            <input readonly type="datetime" id="creationTime" name="CreationTime" class="form-control" value="@Model?.CreationTime" />
         </section>
 
         <section>
@@ -40,7 +40,7 @@
 
         <section>
             <label readonly for="IsSolved">Is ticket solved?</label>
-            <input readonly type="text" id="IsSolved" name="IsSolved" class="form-control" value="@Model?.IsSolved" />
+            <input readonly type="text" id="IsSolved" name="IsSolved" class="form-control" value="@Model?.IsSolved.ToString()" />
         </section>
 
         <section>

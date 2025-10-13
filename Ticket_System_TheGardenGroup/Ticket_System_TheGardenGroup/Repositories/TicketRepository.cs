@@ -29,15 +29,18 @@ namespace Ticket_System_TheGardenGroup.Repositories
             return await _ticketCollection.Find(filter).FirstOrDefaultAsync();
         }
 
-		public async Task<Ticket> GetTicketByObjIdAsync(ObjectId objId)
+		public async Task<Ticket> GetTicketByObjIdAsync(ObjectId ticketId)
 		{
 			//var filter = Builders<Ticket>.Filter.Eq("_id", objId);
 			//var filter = Builders<Ticket>.Filter.Eq(t => t.TicketId, objId);
-			var filter = Builders<Ticket>.Filter.Eq("TicketId", objId);
 
-			Ticket ticket = await _ticketCollection.Find(filter).FirstOrDefaultAsync();
-            
-            return ticket;
+			/*var filter = Builders<Ticket>.Filter.Eq("TicketId", objId);
+			Ticket ticket = await _ticketCollection.Find(filter).FirstOrDefaultAsync();*/
+
+			var filter = Builders<Ticket>.Filter.Eq(t => t.TicketId, ticketId);
+			return await _ticketCollection.Find(filter).FirstOrDefaultAsync();
+
+			//return ticket;
 
 		}
 
