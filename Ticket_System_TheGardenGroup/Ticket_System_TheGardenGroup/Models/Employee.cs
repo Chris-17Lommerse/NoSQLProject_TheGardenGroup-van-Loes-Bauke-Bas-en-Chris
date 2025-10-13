@@ -30,7 +30,8 @@ namespace Ticket_System_TheGardenGroup.Models
         [BsonElement("emailaddress")]
         public string EmailAddress { get; set; } = "";
 
-        [BsonElement("is_active")]
+        [BsonRepresentation(BsonType.Boolean)]
+        [BsonElement("isActive")]
         public bool IsActive { get; set; } = false;
     }
 }

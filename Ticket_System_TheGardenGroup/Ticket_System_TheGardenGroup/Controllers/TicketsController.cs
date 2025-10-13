@@ -32,11 +32,11 @@ namespace Ticket_System_TheGardenGroup.Controllers
             
         }
         [HttpGet]
-        public ActionResult ViewTicket(ObjectId employeeID)
+        public ActionResult ViewTicket(ObjectId ticketID)
         {
             try
             {
-                return View(_ticketService.GetTicketAsync(employeeID));
+                return View(_ticketService.GetTicketAsync(ticketID));
             }
             catch (Exception ex)
             {

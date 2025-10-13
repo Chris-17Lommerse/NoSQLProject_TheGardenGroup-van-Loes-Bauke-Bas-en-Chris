@@ -1,8 +1,11 @@
 ﻿using MongoDB.Bson;
 using System.Net.Mail;
+using System.Net.Sockets;
+using System.Security.Cryptography;
 using System.Xml.Linq;
 using Ticket_System_TheGardenGroup.Models;
 using Ticket_System_TheGardenGroup.Models.Enums;
+using Ticket_System_TheGardenGroup.Repositories;
 using Ticket_System_TheGardenGroup.Repositories.Interfaces;
 using Ticket_System_TheGardenGroup.Services.Interfaces;
 using Ticket_System_TheGardenGroup.ViewModels;
@@ -22,19 +25,26 @@ namespace Ticket_System_TheGardenGroup.Services
         {
             return _employeeRepository.GetAllEmployeesWithAmountOfTicketsAsync();
         }
-        public async Task<EmployeeViewModel> GetEmployeeAsync(int employeeNumber)
+        public Task<List<Employee>> GetAllEmployees()
         {
-            Employee employee = await _employeeRepository.GetEmployeeAsync(employeeNumber);
-            if (employee == null) { return new EmployeeViewModel(employeeNumber, "emailAddress", "name", "surname", EmployeeRole.Regular_Employee, false); }
-            EmployeeViewModel employeeViewModel = new EmployeeViewModel(employee);
-            List<EmployeeViewModel> employeeViewModels = new List<EmployeeViewModel>();
-            return employeeViewModel;
+            return _employeeRepository.GetAllEmployees();
         }
-        //Ben hier aan het experimenteren
+
+
 
         public void AddEmployee(Employee employee)
         {
             _employeeRepository.AddEmployee(employee);
+        }
+
+        public Task<Employee> GetEmployeeByObjIdAsync(ObjectId id)
+        {
+            return  _employeeRepository.GetTicketByObjIdAsync(id);
+        }
+
+        public void UpdateEmployee(Employee employee)
+        {
+            _employeeRepository.UpdateEmployee(employee);
         }
     }
 }

@@ -7,8 +7,9 @@ namespace Ticket_System_TheGardenGroup.Services.Interfaces
     public interface IEmployeeService
     {
         Task<List<EmployeeTicketsVm>> GetAllEmployeesWithAmountOfTicketsAsync();
-        Task<EmployeeViewModel> GetEmployeeAsync(int employeeNumber);
+        Task<List<Employee>> GetAllEmployees();
+        Task<Employee> GetEmployeeByObjIdAsync(ObjectId id);
         void AddEmployee(Employee employee);
-
+        void UpdateEmployee(Employee employee);
     }
 }

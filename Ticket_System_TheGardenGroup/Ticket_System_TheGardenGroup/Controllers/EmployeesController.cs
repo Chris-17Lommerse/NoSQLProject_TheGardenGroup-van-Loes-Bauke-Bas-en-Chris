@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using Ticket_System_TheGardenGroup.Models;
+using Ticket_System_TheGardenGroup.Services;
 using Ticket_System_TheGardenGroup.Services.Interfaces;
 using Ticket_System_TheGardenGroup.ViewModels;
 
@@ -16,14 +17,22 @@ namespace Ticket_System_TheGardenGroup.Controllers
         }
         public IActionResult Index()
         {
-            Task<List<EmployeeTicketsVm>> employees = _employeeService.GetAllEmployeesWithAmountOfTicketsAsync();
+            Task<List<Employee>> employees = _employeeService.GetAllEmployees();
             return View(employees);
         }
 
         [HttpGet]
-        public ActionResult ViewEmployee(int employeeNumber)
+        public ActionResult ViewEmployee(ObjectId employeeID)
         {
-            return View(_employeeService.GetEmployeeAsync(employeeNumber));
+            try
+            {
+                return View(_employeeService.GetEmployeeByObjIdAsync(employeeID));
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "The ViewEmployee page could not be loaded.";
+                return RedirectToAction("Index");
+            }
 
         }
         public IActionResult UpdateEmployee(EmployeeTicketsVm employeeTicketsVm)
@@ -34,11 +43,9 @@ namespace Ticket_System_TheGardenGroup.Controllers
         public ActionResult AddEmployee()
         {
            return View();
-
         }
             
         [HttpPost]
-            //Blah blah blah
             public ActionResult AddEmployee(Employee employee)
             {
                 try

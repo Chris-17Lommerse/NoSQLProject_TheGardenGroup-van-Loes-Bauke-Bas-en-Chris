@@ -26,6 +26,10 @@ namespace Ticket_System_TheGardenGroup.Repositories
             _employeeCollection.InsertOneAsync(employee);
         }
 
+        public async Task<List<Employee>> GetAllEmployees()
+        {
+            return await _employeeCollection.Find(Builders<Employee>.Filter.Empty).ToListAsync();
+        }
         public async Task<List<EmployeeTicketsVm>> GetAllEmployeesWithAmountOfTicketsAsync()
         {
             var pipeline = new List<BsonDocument>
@@ -101,7 +105,7 @@ namespace Ticket_System_TheGardenGroup.Repositories
             await _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
         }
 
-        public async Task UpdateEmployee(Employee employee)
+        public void UpdateEmployee(Employee employee)
         {
                 var filter = Builders<Employee>.Filter.Eq("_id", employee.Id);
                 var combinedUpdate = Builders<Employee>.Update.Combine(
@@ -112,7 +116,7 @@ namespace Ticket_System_TheGardenGroup.Repositories
                     Builders<Employee>.Update.Set("password", employee.Password),
                     Builders<Employee>.Update.Set("isActive", employee.IsActive)
                 );
-                await _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
+                 _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
         }
         public async Task UpdateRegularEmployee(Employee employee)
         {
@@ -139,5 +143,17 @@ namespace Ticket_System_TheGardenGroup.Repositories
             );
             await _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
         }
+
+        public Task<Employee> GetEmployeeAsync(ObjectId objId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<Employee> GetTicketByObjIdAsync(ObjectId objId)
+        {
+            var filter = Builders<Employee>.Filter.Eq(t => t.Id, objId);
+            return await _employeeCollection.Find(filter).FirstOrDefaultAsync();
+        }
+
     }
 }

@@ -1,5 +1,4 @@
-﻿@using Ticket_System_TheGardenGroup.ViewModels;
-@model EmployeeViewModel
+﻿@model Employee
 @{
 	ViewData["Title"] = "ViewEmployee";
 }
@@ -14,18 +13,18 @@
 			<th>Employee number</th>
 			<th>Employee role</th>
 			<th>Emailaddress</th>
-			<th>Phonenumber</th>
-			<th>Edit/Delete</th>
+			<!--<th>Phonenumber</th>-->
 		</tr>
 	</thead>
 	<tbody class="bg-opacity-10 bg-black">
 			<tr>
 				<td>@Model.Name</td>
 				<td>@Model.Surname</td>
+				<td>@Model.EmployeeRole</td>
 				<td>@Model.EmployeeNumber</td>
-				<td>@Model.EmployeeNumber</td>
+				<td>@Model.EmailAddress</td>
 			</tr>
 	</tbody>
 </table>
 <a class="alert-warning btn btn-primary" href="/Employees/UpdateEmployee/">Edit this employee</a>
-<!--<a class="alert-danger" href="/Employees/DeactivateEmployee/@Model.Id">Deactivate this employee</a>-->
+<a class="alert-danger" href="/Employees/DeactivateEmployee/@Model.Id">Deactivate this employee</a>
