@@ -25,9 +25,10 @@ namespace Ticket_System_TheGardenGroup.Services
         public async Task<EmployeeViewModel> GetEmployeeAsync(int employeeNumber)
         {
             Employee employee = await _employeeRepository.GetEmployeeAsync(employeeNumber);
-            if (employee == null) { return new EmployeeViewModel(employeeNumber, "emailAddress", "name", "surname", EmployeeRole.REGULAR_EMPLOYEE, false); }
+            if (employee == null) { return new EmployeeViewModel(employeeNumber, "emailAddress", "name", "surname", EmployeeRole.Regular_Employee, false); }
             EmployeeViewModel employeeViewModel = new EmployeeViewModel(employee);
             return employeeViewModel;
+        }
         //Ben hier aan het experimenteren
 
         public void AddEmployee(Employee employee)

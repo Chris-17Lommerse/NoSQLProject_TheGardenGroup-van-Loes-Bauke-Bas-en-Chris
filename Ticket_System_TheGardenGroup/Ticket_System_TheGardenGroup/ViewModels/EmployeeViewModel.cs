@@ -21,7 +21,7 @@ namespace Ticket_System_TheGardenGroup.ViewModels
         [BsonElement("surname")]
         public string Surname { get; set; } = "";
         [BsonElement("employee_role")]
-        public EmployeeRole EmployeeRole { get; set; } = EmployeeRole.REGULAR_EMPLOYEE;
+        public EmployeeRole EmployeeRole { get; set; } = EmployeeRole.Regular_Employee;
         [BsonElement("is_active")]
         public bool IsActive { get; set; } = false;
         public EmployeeViewModel(Employee employee)
