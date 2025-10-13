@@ -53,11 +53,12 @@ namespace Ticket_System_TheGardenGroup.Controllers
             }
         }
         [HttpPost]
-        public IActionResult UpdateTicket(TicketViewModel ticketViewModel)
+        public IActionResult UpdateTicket(Ticket ticket)
         {
-            throw new NotImplementedException();
             try
             {
+                _ticketService.UpdateTicket(ticket);
+                TempData["SuccesMessage"] = "The ticket was succesfully updated.";
                 return View();
             }
             catch (Exception ex)

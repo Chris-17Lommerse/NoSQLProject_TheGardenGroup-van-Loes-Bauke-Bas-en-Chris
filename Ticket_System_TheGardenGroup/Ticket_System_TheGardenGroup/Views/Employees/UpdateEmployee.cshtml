@@ -1,9 +1,10 @@
 ﻿@model Ticket_System_TheGardenGroup.ViewModels.EmployeeViewModel
 @{
 	ViewData["Title"] = "Edit Lecturer";
-	string? errorMessage = (string?)ViewData["ErrorMessage"];
 }
-<h4>@errorMessage</h4>
+<h1 class="alert-danger">@TempData["ErrorMessage"]</h1>
+<h1 class="alert-warning">@TempData["WarningMessage"]</h1>
+<h1 class="alert-success">@TempData["SuccesMessage"]</h1>
 <h1>Edit Lecturer</h1>
 <form action="/Lecturers/Edit" method="post">
 	<input hidden type="text" name="ObjectID" value="@Model." />

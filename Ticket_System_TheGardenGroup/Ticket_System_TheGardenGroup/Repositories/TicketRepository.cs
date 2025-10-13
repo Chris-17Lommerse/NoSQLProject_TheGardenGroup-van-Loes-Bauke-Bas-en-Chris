@@ -40,7 +40,7 @@ namespace Ticket_System_TheGardenGroup.Repositories
 		}
 
 		//TODO reporting_employee and solving_employee can not be updated yet
-		public async Task UpdateTicket(Ticket ticket)
+		public void UpdateTicket(Ticket ticket)
         {
             var filter = Builders<Ticket>.Filter.Eq("_id", ticket.TicketId);
             var combinedUpdate = Builders<Ticket>.Update.Combine(
@@ -50,7 +50,7 @@ namespace Ticket_System_TheGardenGroup.Repositories
                 Builders<Ticket>.Update.Set("ticket_escalation_description", ticket.TicketEscalationDescription),
                 Builders<Ticket>.Update.Set("is_solved", ticket.IsSolved)
             );
-            await _ticketCollection.UpdateOneAsync(filter, combinedUpdate);
+            _ticketCollection.UpdateOneAsync(filter, combinedUpdate);
         }
     }
 }

@@ -11,5 +11,7 @@ namespace Ticket_System_TheGardenGroup.Services.Interfaces
 
         Task<Ticket> GetTicketByObjIdAsync(ObjectId objId);
 
+        void UpdateTicket(Ticket ticket);
+
 	}
 }

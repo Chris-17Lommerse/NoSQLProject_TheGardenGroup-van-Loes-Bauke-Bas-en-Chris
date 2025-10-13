@@ -30,5 +30,10 @@ namespace Ticket_System_TheGardenGroup.Services
         {
             return await _ticketRepository.GetTicketByObjIdAsync(objId);
         }
-	}
+
+        public void UpdateTicket(Ticket ticket)
+        {
+            _ticketRepository.UpdateTicket(ticket);
+        }
+    }
 }

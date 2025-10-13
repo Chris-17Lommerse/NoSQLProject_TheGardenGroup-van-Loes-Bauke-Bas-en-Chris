@@ -3,12 +3,14 @@
 @{
 	ViewData["Title"] = "Edit ticket";
 }
-
+<h1 class="alert-danger">@TempData["ErrorMessage"]</h1>
+<h1 class="alert-warning">@TempData["WarningMessage"]</h1>
+<h1 class="alert-success">@TempData["SuccesMessage"]</h1>
 <section>
     <form action="/Tickets/UpdateTicket" method="post">
         <section>
-            <label hidden for="ticketId">Ticket id</label>
-            <input hidden type="text" id="ticketId" name="ticketId" class="form-control" value="@Model?.TicketId" />
+            <label hidden for="TicketId">Ticket id</label>
+            <input hidden type="text" id="TicketId" name="TicketId" class="form-control" value="@Model?.TicketId" />
         </section>
 
         <section>
@@ -17,13 +19,13 @@
         </section>
 
         <section>
-            <label readonly for="ticketStatus">Ticket Status</label>
-            <input readonly type="text" id="ticketStatus" name="ticketStatus" class="form-control" value="@Model?.TicketStatus" />
+            <label readonly for="TicketStatus">Ticket Status</label>
+            <input readonly type="text" id="TicketStatus" name="TicketStatus" class="form-control" value="@Model?.TicketStatus" />
         </section>
 
         <section>
-            <label for="ticketName">Ticket name</label>
-            <input type="text" id="ticketName" name="ticketName" class="form-control" value="@Model?.TicketName" />
+            <label for="TicketName">Ticket name</label>
+            <input type="text" id="TicketName" name="TicketName" class="form-control" value="@Model?.TicketName" />
         </section>
 
         <section>
@@ -32,13 +34,13 @@
         </section>
 
         <section>
-            <label for="escaDescription">Ticket Description</label>
-            <input type="text" id="escaDescription" name="escaDescription" class="form-control" value="@Model?.TicketEscalationDescription" />
+            <label for="TicketEscalationDescription">Ticket Description</label>
+            <input type="text" id="TicketEscalationDescription" name="TicketEscalationDescription" class="form-control" value="@Model?.TicketEscalationDescription" />
         </section>
 
         <section>
-            <label readonly for="isSolved">Is ticket solved?</label>
-            <input readonly type="text" id="isSolved" name="isSolved" class="form-control" value="@Model?.IsSolved" />
+            <label readonly for="IsSolved">Is ticket solved?</label>
+            <input readonly type="text" id="IsSolved" name="IsSolved" class="form-control" value="@Model?.IsSolved" />
         </section>
 
         <section>

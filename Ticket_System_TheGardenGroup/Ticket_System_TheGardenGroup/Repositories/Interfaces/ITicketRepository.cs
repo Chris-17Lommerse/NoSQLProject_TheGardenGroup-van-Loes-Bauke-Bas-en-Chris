@@ -7,9 +7,8 @@ namespace Ticket_System_TheGardenGroup.Repositories.Interfaces
     {
         Task<List<Ticket>> GetAllTickets();
         void AddTicket(Ticket ticket);
-        Task UpdateTicket(Ticket ticket);
         Task<Ticket> GetTicketAsync(ObjectId id);
-
 		Task<Ticket> GetTicketByObjIdAsync(ObjectId objId);
-	}
+        void UpdateTicket(Ticket ticket);
+    }
 }
