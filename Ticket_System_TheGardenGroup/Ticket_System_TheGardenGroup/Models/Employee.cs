@@ -16,9 +16,10 @@ namespace Ticket_System_TheGardenGroup.Models
 
         [BsonElement("password")]
         public string Password { get; set; } = "";
-
+        //BEN HIER AAN HET EXPERIMENTEREN
         [BsonElement("employee_role")]
-        public EmployeeRole EmployeeRole { get; set; } = EmployeeRole.REGULAR_EMPLOYEE;
+        [BsonRepresentation(BsonType.String)]
+        public EmployeeRole EmployeeRole { get; set; } = EmployeeRole.Regular_Employee;
 
         [BsonElement("name")]
         public string Name { get; set; } = "";

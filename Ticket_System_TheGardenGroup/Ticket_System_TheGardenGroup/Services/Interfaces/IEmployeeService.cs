@@ -8,5 +8,7 @@ namespace Ticket_System_TheGardenGroup.Services.Interfaces
     {
         Task<List<EmployeeTicketsVm>> GetAllEmployeesWithAmountOfTicketsAsync();
         Task<EmployeeViewModel> GetEmployeeAsync(int employeeNumber);
+        void AddEmployee(Employee employee);
+
     }
 }

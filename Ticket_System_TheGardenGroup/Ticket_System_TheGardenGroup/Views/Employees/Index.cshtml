@@ -3,10 +3,16 @@
 @{
     ViewData["Title"] = "Employees";
 }
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
 
 <div class="text-center">
     <h1>User Management</h1>
-    <a href="/Employees/AddEmployee" class="btn btn-primary">Create Ticket</a>
+    <a href="/Employees/AddEmployee" class="btn btn-primary">Create New Employee</a>
 
     <table class="table table-info table-hover">
         <partial name="_EmployeesHeader" />

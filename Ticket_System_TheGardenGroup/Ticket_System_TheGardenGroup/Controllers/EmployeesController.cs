@@ -29,6 +29,27 @@ namespace Ticket_System_TheGardenGroup.Controllers
         public IActionResult UpdateEmployee(EmployeeTicketsVm employeeTicketsVm)
         {
             return View(employeeTicketsVm);
+        [HttpGet]
+        public ActionResult AddEmployee()
+        {
+            return View();
+
+        }
+        [HttpPost]
+        //Blah blah blah
+        public ActionResult AddEmployee(Employee employee)
+        {
+            try
+            {
+                 _employeeService.AddEmployee(employee);
+                TempData["SuccessMessage"] = " User created successfully! :) ";
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = " User could not be created :((((" 
+                return View("AddEmployee");
+            }
         }
     }
 }

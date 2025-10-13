@@ -15,5 +15,10 @@ namespace Ticket_System_TheGardenGroup.Repositories.Interfaces
         Task RemoveServiceDeskEmployee(Employee employee);
         Task UpdateRegularEmployee(Employee employee);
         Task UpdateServiceDeskEmployee(Employee employee);
+        void  AddEmployee(Employee employee);
+        void RemoveRegularEmployee(Employee employee);
+        void RemoveServiceDeskEmployee(Employee employee);
+        void UpdateRegularEmployee(Employee employee);
+        void UpdateServiceDeskEmployee(Employee employee);
     }
 }
