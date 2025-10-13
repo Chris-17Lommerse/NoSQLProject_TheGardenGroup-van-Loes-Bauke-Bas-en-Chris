@@ -18,11 +18,18 @@ namespace Ticket_System_TheGardenGroup.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            //Task<List<Ticket>> tickets = _ticketService.GetAllTickets();
+            try
+            {
+				var tickets = await _ticketService.GetAllTickets();
 
-            var tickets = await _ticketService.GetAllTickets();
+				return View(tickets);
+			}
+            catch (Exception)
+            {
 
-            return View(tickets);
+                throw new Exception("No tickets found");
+            }
+            
         }
         [HttpGet]
         public ActionResult ViewTicket(ObjectId employeeID)
@@ -43,8 +50,20 @@ namespace Ticket_System_TheGardenGroup.Controllers
             try
             {
                 Ticket ticket = await _ticketService.GetTicketByObjIdAsync(objId);
-                
-                return View(ticket);
+
+				if (ticket == null)
+				{
+					TempData["ErrorMessage"] = "Ticket not found.";
+					return RedirectToAction("Index");
+				}
+
+				//ticket.TicketId = ToString(objId);
+				//ticket.TicketStatus = Models.Enums.TicketStatus.Open;
+				//ticket.IsSolved = false;
+				//ticket.ReportingEmployee = ticket.ReportingEmployee;
+				//ticket.SolvingEmployee = ticket.SolvingEmployee;
+
+				return View(ticket);
             }
             catch (Exception ex)
             {

@@ -31,7 +31,9 @@ namespace Ticket_System_TheGardenGroup.Repositories
 
 		public async Task<Ticket> GetTicketByObjIdAsync(ObjectId objId)
 		{
-			var filter = Builders<Ticket>.Filter.Eq("_id", objId);
+			//var filter = Builders<Ticket>.Filter.Eq("_id", objId);
+			//var filter = Builders<Ticket>.Filter.Eq(t => t.TicketId, objId);
+			var filter = Builders<Ticket>.Filter.Eq("TicketId", objId);
 
 			Ticket ticket = await _ticketCollection.Find(filter).FirstOrDefaultAsync();
             
