@@ -17,9 +17,12 @@ namespace Ticket_System_TheGardenGroup.Repositories
 
         public async Task<Employee> GetEmployeeAsync(int employeeNumber)
         {
-            var filter = Builders<Employee>.Filter.Eq("employee_number", employeeNumber);
-            return await _employeeCollection.Find(filter).FirstOrDefaultAsync();
-        }
+			/*var filter = Builders<Employee>.Filter.Eq("employee_number", employeeNumber);
+            return await _employeeCollection.Find(filter).FirstOrDefaultAsync();*/
+
+			var filter = Builders<Employee>.Filter.Eq(e => e.EmployeeNumber, employeeNumber);
+			return await _employeeCollection.Find(filter).FirstOrDefaultAsync();
+		}
 
         public void AddEmployee(Employee employee)
         {
@@ -39,7 +42,8 @@ namespace Ticket_System_TheGardenGroup.Repositories
 
                 new BsonDocument("$project", new BsonDocument
                 {
-                    { "_id", 0 },
+					{ "_id", "$employeeDetails._id" },
+					//{ "_id", 0 },
                     { "employee_number", "$_id" },
                     { "TotalTickets", 1 },
                     { "surname", "$employeeDetails.surname" },

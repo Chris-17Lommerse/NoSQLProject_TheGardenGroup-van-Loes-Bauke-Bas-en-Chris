@@ -22,8 +22,8 @@ namespace Ticket_System_TheGardenGroup.Models
 		[BsonElement("description")]
 		public string Description { get; set; } = "";
 
-			[BsonElement("is_solved")]
-			public bool IsSolved { get; set; } = false;
+		[BsonElement("is_solved")]
+		public bool IsSolved { get; set; } = false;
 
 		[BsonElement("ticket_escalation_description")]
 		public string TicketEscalationDescription { get; set; } = "";

@@ -10,5 +10,7 @@ namespace Ticket_System_TheGardenGroup.Services.Interfaces
         Task<EmployeeViewModel> GetEmployeeAsync(int employeeNumber);
         void AddEmployee(Employee employee);
 
-    }
+		Task<Employee> GetEmployeeByNumberAsync(string employeeNumber);
+
+	}
 }

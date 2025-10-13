@@ -7,6 +7,9 @@
 <h1 class="alert-warning">@TempData["WarningMessage"]</h1>
 <h1 class="alert-success">@TempData["SuccesMessage"]</h1>
 <section>
+
+    <a href="/Tickets/index" class="btn btn-primary mb-3">Back to ticket list</a>
+
     <form action="/Tickets/UpdateTicket" method="post">
         <section>
             <label hidden for="TicketId">Ticket id</label>
@@ -40,7 +43,7 @@
 
         <section>
             <label readonly for="IsSolved">Is ticket solved?</label>
-            <input readonly type="text" id="IsSolved" name="IsSolved" class="form-control" value="@Model?.IsSolved.ToString()" />
+            <input type="text" id="IsSolved" name="IsSolved" class="form-control" value="@Model?.IsSolved.ToString()" />
         </section>
 
         <section>
@@ -49,9 +52,20 @@
         </section>
 
         <section>
-            <label readonly for="solvEmployee">Reporting employee</label>
-            <input readonly type="text" id="solvEmployee" name="solvEmployee" class="form-control" value="@Model?.SolvingEmployee.Name" />
+            <label for="solvEmployee">Solving Employee Number</label>
+            <input type="text" id="solvEmployee" name="SolvingEmployeeNumber" class="form-control" value="@Model?.SolvingEmployee.EmployeeNumber" />
+            <button type="submit" name="loadEmployee" value="true" class="btn btn-secondary mt-1">Load Employee</button>
+
+            <label readonly>Name</label>
+            <input readonly type="text" value="@Model?.SolvingEmployee?.Name" />
+
+            <label readonly>Email</label>
+            <input readonly type="text" value="@Model?.SolvingEmployee?.EmailAddress" />
+
+            <label readonly>Role</label>
+            <input readonly type="text" value="@Model?.SolvingEmployee?.EmployeeRole" />
         </section>
+
 
 
        

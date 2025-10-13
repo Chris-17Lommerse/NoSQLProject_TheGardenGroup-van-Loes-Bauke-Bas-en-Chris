@@ -36,5 +36,15 @@ namespace Ticket_System_TheGardenGroup.Services
         {
             _employeeRepository.AddEmployee(employee);
         }
-    }
+
+		public async Task<Employee> GetEmployeeByNumberAsync(string employeeNumber)
+		{
+			if (!int.TryParse(employeeNumber, out int empNum))
+				return null;
+
+			return await _employeeRepository.GetEmployeeAsync(empNum);
+		}
+
+
+	}
 }

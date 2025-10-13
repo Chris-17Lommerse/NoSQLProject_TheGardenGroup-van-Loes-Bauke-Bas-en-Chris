@@ -10,6 +10,7 @@ namespace Ticket_System_TheGardenGroup.Controllers
     public class TicketsController : Controller
     {
         private readonly ITicketService _ticketService;
+        private readonly IEmployeeService _employeeService;
 
         public TicketsController(ITicketService ticketService)
         {
@@ -44,33 +45,6 @@ namespace Ticket_System_TheGardenGroup.Controllers
                 return RedirectToAction("Index");
             }
         }
-		/*[HttpGet]
-        public async Task<IActionResult> UpdateTicket(ObjectId objId)
-        {
-            try
-            {
-                Ticket ticket = await _ticketService.GetTicketByObjIdAsync(objId);
-
-				if (ticket == null)
-				{
-					TempData["NoTicket"] = "Ticket not found with id.";
-					return RedirectToAction("Index");
-				}
-
-				//ticket.TicketId = ToString(objId);
-				//ticket.TicketStatus = Models.Enums.TicketStatus.Open;
-				//ticket.IsSolved = false;
-				//ticket.ReportingEmployee = ticket.ReportingEmployee;
-				//ticket.SolvingEmployee = ticket.SolvingEmployee;
-
-				return View(ticket);
-            }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = "The UpdateTicket page could not be loaded.";
-                return RedirectToAction("ViewTicket");
-            }
-        }*/
 		[HttpGet]
 		public async Task<IActionResult> UpdateTicket(string ticketId)
 		{
@@ -91,7 +65,6 @@ namespace Ticket_System_TheGardenGroup.Controllers
 
 			return View(ticket); 
 		}
-
 		[HttpPost]
         public IActionResult UpdateTicket(Ticket ticket)
         {
@@ -107,7 +80,8 @@ namespace Ticket_System_TheGardenGroup.Controllers
                 return RedirectToAction("ViewTicket");
             }
         }
-        [HttpGet]
+
+		[HttpGet]
         public IActionResult AddTicket()
         {
             throw new NotImplementedException();

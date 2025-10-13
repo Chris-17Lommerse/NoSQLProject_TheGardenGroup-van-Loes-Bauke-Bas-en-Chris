@@ -17,5 +17,10 @@ namespace Ticket_System_TheGardenGroup.Models
 
         [BsonElement("name")]
         public string Name { get; set; } = "";
-    }
+
+		public static implicit operator EmbeddedEmployee(Employee v)
+		{
+			throw new NotImplementedException();
+		}
+	}
 }
