@@ -6,6 +6,7 @@
 <h1 class="alert-danger">@TempData["ErrorMessage"]</h1>
 <h1 class="alert-warning">@TempData["WarningMessage"]</h1>
 <h1 class="alert-success">@TempData["SuccesMessage"]</h1>
+
 <section>
 
     <a href="/Tickets/index" class="btn btn-primary mb-3">Back to ticket list</a>
@@ -52,23 +53,24 @@
         </section>
 
         <section>
+            <h1 class="alert-danger">@TempData["EmbddEmpl"]</h1>
+
             <label for="solvEmployee">Solving Employee Number</label>
             <input type="text" id="solvEmployee" name="SolvingEmployeeNumber" class="form-control" value="@Model?.SolvingEmployee.EmployeeNumber" />
-            <button type="submit" name="loadEmployee" value="true" class="btn btn-secondary mt-1">Load Employee</button>
+           
+            <button type="submit" name="loadEmployee" class="btn btn-secondary mt-1">Load Employee</button>
 
             <label readonly>Name</label>
-            <input readonly type="text" value="@Model?.SolvingEmployee?.Name" />
+            <input readonly type="text" class="form-control" value="@Model?.SolvingEmployee.Name" />
 
             <label readonly>Email</label>
-            <input readonly type="text" value="@Model?.SolvingEmployee?.EmailAddress" />
+            <input readonly type="text" class="form-control" value="@Model?.SolvingEmployee.EmailAddress" />
 
             <label readonly>Role</label>
-            <input readonly type="text" value="@Model?.SolvingEmployee?.EmployeeRole" />
+            <input readonly type="text" class="form-control" value="@Model?.SolvingEmployee.EmployeeRole" />
         </section>
 
-
-
-       
         <button type="submit" class="btn btn-primary">Update ticket</button>
+
     </form>
 </section>

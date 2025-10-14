@@ -19,12 +19,12 @@ namespace Ticket_System_TheGardenGroup.Services
         {
             return _ticketRepository.GetAllTickets();
         }
-        public async Task<TicketViewModel> GetTicketAsync(ObjectId id)
+        /*public async Task<TicketViewModel> GetTicketAsync(ObjectId id)
         {
             Ticket ticket = await _ticketRepository.GetTicketAsync(id);
             TicketViewModel ticketViewModel = new TicketViewModel(ticket);
             return ticketViewModel;
-        }
+        }*/
 
         public async Task<Ticket> GetTicketByObjIdAsync(ObjectId objId)
         {
@@ -35,5 +35,8 @@ namespace Ticket_System_TheGardenGroup.Services
         {
             _ticketRepository.UpdateTicket(ticket);
         }
+
+        //Keep track of how many times the button is pressed. The first time it will update the solving employee, the seccond time it will send it. 
+
     }
 }

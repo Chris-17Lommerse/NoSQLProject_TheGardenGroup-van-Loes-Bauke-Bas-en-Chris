@@ -143,5 +143,28 @@ namespace Ticket_System_TheGardenGroup.Repositories
             );
             await _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
         }
+
+        public async Task<EmbeddedEmployee> GetEmbeddedSdEmployeeByIdAsync(int employeeNumber)
+        {
+            var pipeline = new[]
+            {
+                new BsonDocument("$match", new BsonDocument
+                {
+                    { "employee_number", "$employeeDetails.employee_number" },
+                    { "employee_role", "Service_Desk_Employee" },
+                    { "isActive", true }
+                }),
+
+                new BsonDocument("$project", new BsonDocument
+                {
+                    { "_id", 0 },
+                    { "surname", 0 },
+                    { "password", 0 },
+                    { "isActive", 0 }
+                })
+            };
+
+            return await _employeeCollection.Aggregate<EmbeddedEmployee>(pipeline).SingleAsync(); //Must return one document, else error ~ Bas
+        }
     }
 }
