@@ -47,22 +47,30 @@ namespace Ticket_System_TheGardenGroup.Controllers
 		[HttpGet]
 		public async Task<IActionResult> UpdateTicket(string ticketId)
 		{
-			if (string.IsNullOrEmpty(ticketId))
-			{
-				TempData["NoId"] = "Ticket ID missing.";
-				return RedirectToAction("Index");
-			}
+            try
+            {
+                if (string.IsNullOrEmpty(ticketId))
+                {
+                    TempData["NoId"] = "Ticket ID missing.";
+                    return RedirectToAction("Index");
+                }
 
-			var objectId = new ObjectId(ticketId);
-			var ticket = await _ticketService.GetTicketByObjIdAsync(objectId);
+                var objectId = new ObjectId(ticketId);
+                var ticket = await _ticketService.GetTicketByObjIdAsync(objectId);
 
-			if (ticket == null)
-			{
-				TempData["NoTicket"] = "Ticket not found.";
-				return RedirectToAction("Index");
-			}
-
-			return View(ticket); 
+                if (ticket == null)
+                {
+                    TempData["NoTicket"] = "Ticket not found.";
+                    return RedirectToAction("Index");
+                }
+                TempData["SuccesMessage"] = "The ticket was succesfully updated.";
+                return View(ticket);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "The ticket has failed to update.";
+                return RedirectToAction("UpdateTicket");
+            }
 		}
 		[HttpPost]
         public IActionResult UpdateTicket(Ticket ticket)
@@ -98,6 +106,7 @@ namespace Ticket_System_TheGardenGroup.Controllers
         {
             try
             {
+                TempData["SuccesMessage"] = "The ticket was succesfully created.";
                 return View();
             }
             catch (Exception ex)
