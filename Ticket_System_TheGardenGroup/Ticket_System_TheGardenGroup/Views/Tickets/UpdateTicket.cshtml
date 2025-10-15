@@ -6,10 +6,13 @@
 <h1 class="alert-danger">@TempData["ErrorMessage"]</h1>
 <h1 class="alert-warning">@TempData["WarningMessage"]</h1>
 <h1 class="alert-success">@TempData["SuccesMessage"]</h1>
+<h1 class="alert-danger">@TempData["EmbddEmpl"]</h1>
 
 <section>
 
     <a href="/Tickets/index" class="btn btn-primary mb-3">Back to ticket list</a>
+
+    <a href="/Tickets/DeleteTicket?TicketId=@Model?.TicketId" class="btn btn-danger mb-3">Delete ticket</a>
 
     <form action="/Tickets/UpdateTicket" method="post">
         <section>
@@ -58,9 +61,9 @@
             <label for="solvEmployee">Solving Employee Number</label>
             <input type="text" id="solvEmployee" name="SolvingEmployeeNumber" class="form-control" value="@Model?.SolvingEmployee.EmployeeNumber" />
            
-            <button type="submit" name="loadEmployee" class="btn btn-secondary mt-1">Load Employee</button>
+            <button type="submit" name="loadEmployee" value="loadEmployee" class="btn btn-secondary mt-1">Load Employee</button>
 
-            <label readonly>Name</label>
+            <label readonly class="form-control">Name</label>
             <input readonly type="text" class="form-control" value="@Model?.SolvingEmployee.Name" />
 
             <label readonly>Email</label>

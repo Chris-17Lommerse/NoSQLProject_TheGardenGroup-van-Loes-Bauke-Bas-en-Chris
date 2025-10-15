@@ -144,7 +144,7 @@ namespace Ticket_System_TheGardenGroup.Repositories
             await _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
         }
 
-        public async Task<EmbeddedEmployee> GetEmbeddedSdEmployeeByIdAsync(int employeeNumber)
+        public async Task<EmbeddedEmployee> GetActiveEmbeddedSdEmployeeByIdAsync(int employeeNumber)
         {
             var pipeline = new[]
             {

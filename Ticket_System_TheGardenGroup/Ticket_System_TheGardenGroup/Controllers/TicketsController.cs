@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
+using System.Linq.Expressions;
 using Ticket_System_TheGardenGroup.Models;
 using Ticket_System_TheGardenGroup.Services;
 using Ticket_System_TheGardenGroup.Services.Interfaces;
@@ -95,13 +96,14 @@ namespace Ticket_System_TheGardenGroup.Controllers
             //This needs to be reworked. Either I make a new view model or something with JavaScript. 
             try
             {
+                //This if statement is not working :0
                 if (!string.IsNullOrEmpty(loadEmployee))
                 {
                     // Load employee
-                    var embddEmpl = await _employeeService.GetEmbeddedSdEmployeeByIdAsync(employeeNumber);
+                    var embddEmpl = await _employeeService.GetActiveEmbeddedSdEmployeeByIdAsync(employeeNumber);
                     if (embddEmpl != null)
                     {
-                        ticket.SolvingEmployee = embddEmpl; // fill in the fields
+                        ticket.SolvingEmployee = embddEmpl;
                     }
                     else
                     {
@@ -110,16 +112,17 @@ namespace Ticket_System_TheGardenGroup.Controllers
 
                     return View(ticket); // reload the form with updated employee
                 }
-
-                //Sends the new info to the DB
-                _ticketService.UpdateTicket(ticket);
-                TempData["SuccesMessage"] = "The ticket was succesfully updated.";
-                return View();
+                else {
+					//Sends the new info to the DB
+					_ticketService.UpdateTicket(ticket);
+					TempData["SuccesMessage"] = "The ticket was succesfully updated.";
+					return View(ticket);
+				}
             }
             catch (Exception ex)
             {
                 TempData["ErrorMessage"] = "The UpdateTicket page could not be loaded.";
-                return RedirectToAction("ViewTicket");
+                return RedirectToAction("UpdateTicket", ticket);
             }
         }
 
@@ -151,5 +154,40 @@ namespace Ticket_System_TheGardenGroup.Controllers
                 return RedirectToAction("ViewTicket");
             }
         }
-    }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteTicket(ObjectId ticketId)
+        {
+            try
+            {
+				/*if (string.IsNullOrEmpty(ticketId))
+				{
+					TempData["NoId"] = "Ticket ID missing.";
+					return RedirectToAction("Index");
+				}*/
+
+				//var objectId = new ObjectId(ticketId);
+				var ticket = await _ticketService.GetTicketByObjIdAsync(ticketId);
+
+				if (ticket == null)
+				{
+					TempData["NoTicket"] = "Ticket not found.";
+					return RedirectToAction("Index");
+				}
+
+				return View(ticket);
+			}
+            catch (Exception)
+            {
+                throw new Exception("No ticket found to delete");
+            }
+        }
+
+		[HttpPost]
+		public async Task<IActionResult> DeleteTicket()
+		{
+            throw new NotImplementedException();
+		}
+
+	}
 }
