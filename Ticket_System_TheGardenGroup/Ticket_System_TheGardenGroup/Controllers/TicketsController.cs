@@ -21,14 +21,13 @@ namespace Ticket_System_TheGardenGroup.Controllers
         {
             try
             {
-				var tickets = await _ticketService.GetAllTickets();
-
+				var tickets = await _ticketService.GetAllTickets()
 				return View(tickets);
 			}
             catch (Exception)
             {
-
-                throw new Exception("No tickets found");
+                TempData["ErrorMessage"] = "No tickets found";
+                return RedirectToAction("Index", "Home");
             }
             
         }
@@ -84,7 +83,6 @@ namespace Ticket_System_TheGardenGroup.Controllers
 		[HttpGet]
         public IActionResult AddTicket()
         {
-            throw new NotImplementedException();
             try
             {
                 return View();
@@ -95,10 +93,9 @@ namespace Ticket_System_TheGardenGroup.Controllers
                 return RedirectToAction("ViewTicket");
             }
         }
-        [HttpGet]
+        [HttpPost]
         public IActionResult AddTicket(TicketViewModel ticketViewModel)
         {
-            throw new NotImplementedException();
             try
             {
                 return View();

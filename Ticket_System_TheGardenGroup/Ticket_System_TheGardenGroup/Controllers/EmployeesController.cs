@@ -16,40 +16,70 @@ namespace Ticket_System_TheGardenGroup.Controllers
         }
         public IActionResult Index()
         {
-            Task<List<EmployeeTicketsVm>> employees = _employeeService.GetAllEmployeesWithAmountOfTicketsAsync();
-            return View(employees);
+            try
+            {
+                Task<List<EmployeeTicketsVm>> employees = _employeeService.GetAllEmployeesWithAmountOfTicketsAsync();
+                return View(employees);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "The Index page of employeescould not be loaded.";
+                return RedirectToAction("ViewEmployee");
+            }
         }
 
         [HttpGet]
         public ActionResult ViewEmployee(int employeeNumber)
         {
-            return View(_employeeService.GetEmployeeAsync(employeeNumber));
-
+            try
+            {
+                return View(_employeeService.GetEmployeeAsync(employeeNumber));
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "The ViewEmployee page could not be loaded.";
+                return RedirectToAction("Index");
+            }
         }
+        [HttpGet]
         public IActionResult UpdateEmployee(EmployeeTicketsVm employeeTicketsVm)
         {
-            return View(employeeTicketsVm);
+            try
+            {
+                return View(employeeTicketsVm);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "The UpdateEmployee page could not be loaded.";
+                return RedirectToAction("ViewEmployee");
+            }
         }
         [HttpGet]
         public ActionResult AddEmployee()
         {
-           return View();
-
+            try
+            {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "The AddEmployee page could not be loaded.";
+                return RedirectToAction("ViewEmployee");
+            }
         }
             
         [HttpPost]
-            //Blah blah blah
             public ActionResult AddEmployee(Employee employee)
             {
                 try
                 {
                     _employeeService.AddEmployee(employee);
-                    TempData["SuccessMessage"] = " User created successfully! :) ";
+                    TempData["SuccessMessage"] = "User created successfully!";
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
                 {
-                    ViewBag.ErrorMessage = " User could not be created :((((";
+                TempData["ErrorMessage"] = "User could not be created.";
                     return View("AddEmployee");
                 }
             }
