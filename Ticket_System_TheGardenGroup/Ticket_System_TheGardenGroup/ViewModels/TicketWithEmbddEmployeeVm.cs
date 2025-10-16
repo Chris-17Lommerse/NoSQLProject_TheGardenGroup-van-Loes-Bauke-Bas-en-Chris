@@ -1,16 +1,17 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using Ticket_System_TheGardenGroup.Models;
 using Ticket_System_TheGardenGroup.Models.Enums;
 
-namespace Ticket_System_TheGardenGroup.Models
+namespace Ticket_System_TheGardenGroup.ViewModels
 {
-    public class TicketViewModel
+    public class TicketWithEmbddEmployeeVm
     {
-		[BsonId]
-		[BsonRepresentation(BsonType.ObjectId)]
-		public ObjectId TicketId { get; set; }
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public ObjectId TicketId { get; set; }
 
-		[BsonElement("creation_time")]
+        [BsonElement("creation_time")]
         public DateTime CreationTime { get; set; } = DateTime.Now;
 
         [BsonElement("ticket_status")]
@@ -33,22 +34,5 @@ namespace Ticket_System_TheGardenGroup.Models
 
         [BsonElement("solving_employee")]
         public EmbeddedEmployee SolvingEmployee { get; set; } = new EmbeddedEmployee();
-        public TicketViewModel()
-        {
-            
-        }
-
-        /*public TicketViewModel()
-        {
-            TicketId = ticket.TicketId;
-            CreationTime = ticket.CreationTime;
-            TicketStatus = ticket.TicketStatus;
-            TicketName = ticket.TicketName;
-            Description = ticket.Description;
-            IsSolved = ticket.IsSolved;
-            TicketEscalationDescription = ticket.TicketEscalationDescription;
-            ReportingEmployee = ticket.ReportingEmployee;
-            SolvingEmployee = ticket.SolvingEmployee;
-        }*/
     }
 }

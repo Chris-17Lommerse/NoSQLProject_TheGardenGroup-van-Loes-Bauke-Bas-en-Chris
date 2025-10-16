@@ -16,5 +16,8 @@ namespace Ticket_System_TheGardenGroup.Repositories.Interfaces
         Task UpdateRegularEmployee(Employee employee);
         Task UpdateServiceDeskEmployee(Employee employee);
 
+        //for finding a service desk employee to embed
+        Task<EmbeddedEmployee> GetActiveEmbeddedSdEmployeeByIdAsync(int employeeNumber);
+
 	}
 }

@@ -7,7 +7,7 @@ namespace Ticket_System_TheGardenGroup.Services.Interfaces
     public interface ITicketService
     {
         Task<List<Ticket>> GetAllTickets();
-        Task<TicketViewModel> GetTicketAsync(ObjectId id);
+        //Task<TicketViewModel> GetTicketAsync(ObjectId id);
 
         Task<Ticket> GetTicketByObjIdAsync(ObjectId objId);
 
