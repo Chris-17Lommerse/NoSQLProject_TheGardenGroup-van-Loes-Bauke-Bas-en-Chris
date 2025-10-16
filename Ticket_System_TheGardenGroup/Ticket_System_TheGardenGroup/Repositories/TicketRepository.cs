@@ -58,5 +58,14 @@ namespace Ticket_System_TheGardenGroup.Repositories
             );
             _ticketCollection.UpdateOneAsync(filter, combinedUpdate);
         }
+
+        public void DeleteTicket(Ticket ticket)
+        {
+            var filter = Builders<Ticket>.Filter.Eq(t => t.TicketId, ticket.TicketId);
+
+            _ticketCollection.DeleteOneAsync(filter);
+            
+        }
+
     }
 }
