@@ -5,7 +5,7 @@ using Ticket_System_TheGardenGroup_With_Identity_Framework.Models.Enums;
 
 namespace Ticket_System_TheGardenGroup_With_Identity_Framework.ViewModels
 {
-    public class TicketViewModel
+    public class TicketWithEmbddEmployeeVm
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
@@ -34,22 +34,5 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.ViewModels
 
         [BsonElement("solving_employee")]
         public EmbeddedEmployee SolvingEmployee { get; set; } = new EmbeddedEmployee();
-        public TicketViewModel()
-        {
-
-        }
-
-        /*public TicketViewModel()
-        {
-            TicketId = ticket.TicketId;
-            CreationTime = ticket.CreationTime;
-            TicketStatus = ticket.TicketStatus;
-            TicketName = ticket.TicketName;
-            Description = ticket.Description;
-            IsSolved = ticket.IsSolved;
-            TicketEscalationDescription = ticket.TicketEscalationDescription;
-            ReportingEmployee = ticket.ReportingEmployee;
-            SolvingEmployee = ticket.SolvingEmployee;
-        }*/
     }
 }
