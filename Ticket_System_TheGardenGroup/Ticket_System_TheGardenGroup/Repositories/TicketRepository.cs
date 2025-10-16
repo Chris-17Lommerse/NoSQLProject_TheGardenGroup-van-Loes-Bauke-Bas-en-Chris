@@ -53,7 +53,8 @@ namespace Ticket_System_TheGardenGroup.Repositories
                 Builders<Ticket>.Update.Set("ticket_status", ticket.TicketStatus),
                 Builders<Ticket>.Update.Set("description", ticket.Description),
                 Builders<Ticket>.Update.Set("ticket_escalation_description", ticket.TicketEscalationDescription),
-                Builders<Ticket>.Update.Set("is_solved", ticket.IsSolved)
+                Builders<Ticket>.Update.Set("is_solved", ticket.IsSolved),
+                Builders<Ticket>.Update.Set("priority", ticket.Priority)
             );
             _ticketCollection.UpdateOneAsync(filter, combinedUpdate);
         }

@@ -31,6 +31,7 @@ namespace Ticket_System_TheGardenGroup.Repositories
 
         public async Task<List<EmployeeTicketsVm>> GetAllEmployeesWithAmountOfTicketsAsync()
         {
+            //deze pipeline moet even worden gecheck op bugs met het nieuwe veld. 
             var pipeline = new List<BsonDocument>
             {
                 new BsonDocument("$group", new BsonDocument
@@ -104,7 +105,7 @@ namespace Ticket_System_TheGardenGroup.Repositories
             );
             await _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
         }
-
+        //Ik zou gewoon deze gebruiken. 
         public async Task UpdateEmployee(Employee employee)
         {
                 var filter = Builders<Employee>.Filter.Eq("_id", employee.Id);
@@ -114,10 +115,13 @@ namespace Ticket_System_TheGardenGroup.Repositories
                     Builders<Employee>.Update.Set("emailaddress", employee.EmailAddress),
                     Builders<Employee>.Update.Set("employee_role", employee.EmployeeRole),
                     Builders<Employee>.Update.Set("password", employee.Password),
-                    Builders<Employee>.Update.Set("isActive", employee.IsActive)
+                    Builders<Employee>.Update.Set("isActive", employee.IsActive),
+                    Builders<Employee>.Update.Set("workingOn", employee.WorkingOn)
                 );
                 await _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
         }
+
+        //Waarom Deze twee, Dit is super redundant
         public async Task UpdateRegularEmployee(Employee employee)
         {
             var filter = Builders<Employee>.Filter.Eq("_id", employee.Id);
@@ -126,7 +130,8 @@ namespace Ticket_System_TheGardenGroup.Repositories
                 Builders<Employee>.Update.Set("surname", employee.Surname),
                 Builders<Employee>.Update.Set("emailaddress", employee.EmailAddress),
                 Builders<Employee>.Update.Set("password", employee.Password),
-                Builders<Employee>.Update.Set("isActive", employee.IsActive)
+                Builders<Employee>.Update.Set("isActive", employee.IsActive),
+                Builders<Employee>.Update.Set("workingOn", employee.WorkingOn)
             );
             await _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
         }
@@ -139,11 +144,12 @@ namespace Ticket_System_TheGardenGroup.Repositories
                 Builders<Employee>.Update.Set("surname", employee.Surname),
                 Builders<Employee>.Update.Set("emailaddress", employee.EmailAddress),
                 Builders<Employee>.Update.Set("password", employee.Password),
-                Builders<Employee>.Update.Set("isActive", employee.IsActive)
+                Builders<Employee>.Update.Set("isActive", employee.IsActive),
+                Builders<Employee>.Update.Set("workingOn", employee.WorkingOn)
             );
             await _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
         }
-
+        // einde "deze twee"
         public async Task<EmbeddedEmployee> GetActiveEmbeddedSdEmployeeByIdAsync(int employeeNumber)
         {
             var pipeline = new[]
@@ -160,7 +166,8 @@ namespace Ticket_System_TheGardenGroup.Repositories
                     { "_id", 0 },
                     { "surname", 0 },
                     { "password", 0 },
-                    { "isActive", 0 }
+                    { "isActive", 0 },
+                    { "priority", 0 }
                 })
             };
 

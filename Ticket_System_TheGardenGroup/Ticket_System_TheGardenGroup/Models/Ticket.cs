@@ -25,7 +25,10 @@ namespace Ticket_System_TheGardenGroup.Models
 		[BsonElement("is_solved")]
 		public bool IsSolved { get; set; } = false;
 
-		[BsonElement("ticket_escalation_description")]
+		[BsonElement("priority")]
+		public PriorityEnum Priority { get; set; } = PriorityEnum.P5;
+
+        [BsonElement("ticket_escalation_description")]
 		public string TicketEscalationDescription { get; set; } = "";
 
 		[BsonElement("reporting_employee")]

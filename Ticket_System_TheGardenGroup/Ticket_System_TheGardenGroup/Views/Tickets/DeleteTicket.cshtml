@@ -40,8 +40,13 @@
         </section>
 
         <section>
-            <label readonly readonly for="IsSolved">Is ticket solved?</label>
+            <label readonly for="IsSolved">Is ticket solved?</label>
             <input readonly type="text" id="IsSolved" name="IsSolved" class="form-control" value="@Model?.IsSolved.ToString()" />
+        </section>
+
+        <section>
+            <label readonly for="ticketPriority">Ticket priority (only ds_e)</label>
+            <input readonly type="text" id="ticketPriority" name="ticketPriority" class="form-control" value="@Model?.Priority" />
         </section>
 
         <section>

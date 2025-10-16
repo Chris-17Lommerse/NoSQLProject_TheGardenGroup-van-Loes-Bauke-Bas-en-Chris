@@ -51,6 +51,11 @@
         </section>
 
         <section>
+            <label for="ticketPriority">Ticket priority (only ds_e)</label>
+            <input type="text" id="ticketPriority" name="ticketPriority" class="form-control" value="@Model?.Priority" />
+        </section>
+
+        <section>
             <label readonly for="reportEmployee">Reporting employee</label>
             <input readonly type="text" id="reportEmployee" name="reportEmployee" class="form-control" value="@Model?.ReportingEmployee.Name" />
         </section>
