@@ -1,5 +1,38 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using Ticket_System_TheGardenGroup.ViewModels;
+@model TicketViewModel
 @{
+	ViewData["Title"] = "ViewTicket";
 }
+<h1 class="alert-danger">@TempData["ErrorMessage"]</h1>
+<h1 class="alert-warning">@TempData["WarningMessage"]</h1>
+<h1 class="alert-success">@TempData["SuccesMessage"]</h1>
+<table class="table table-hover">
+	<thead class="table-dark">
+		<tr>
+			<th>ticketId</th>
+			<th>CreationTime</th>
+			<th>TicketStatus</th>
+			<th>TicketName</th>
+			<th>Description</th>
+			<th>IsSolved</th>
+			<th>TicketEscalationDescription</th>
+			<th>ReportingEmployee</th>
+			<th>SolvingEmployee</th>
+		</tr>
+	</thead>
+	<tbody class="bg-opacity-10 bg-black">
+		<tr>
+			<td>@Model.TicketId</td>
+			<td>@Model.CreationTime</td>
+			<td>@Model.TicketStatus</td>
+			<td>@Model.TicketName</td>
+			<td>@Model.Description</td>
+			<td>@Model.IsSolved</td>
+			<td>@Model.TicketEscalationDescription</td>
+			<td>@Model.ReportingEmployee</td>
+			<td>@Model.SolvingEmployee.Name (Employeenumber@Model.SolvingEmployee.EmployeeNumber)</td>
+		</tr>
+	</tbody>
+</table>
+<a class="alert-warning btn btn-primary" href="/Tickets/UpdateTicket/@Model.TicketId">Edit this employee</a>
+<!--<a class="alert-danger  btn btn-primary" href="/Employees/DeactivateEmployee/@Model.TicketId">Deactivate this employee</a>-->
