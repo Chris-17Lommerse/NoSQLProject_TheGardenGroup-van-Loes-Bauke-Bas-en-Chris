@@ -1,5 +1,37 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using Ticket_System_TheGardenGroup.ViewModels;
+@model Task<List<EmployeeTicketsVm>>
 @{
+    ViewData["Title"] = "Employees";
 }
+
+<h1 class="alert-danger">@TempData["ErrorMessage"]</h1>
+<h1 class="alert-warning">@TempData["WarningMessage"]</h1>
+<h1 class="alert-success">@TempData["SuccesMessage"]</h1>
+<h1 class="alert-danger">@TempData["EmbddEmpl"]</h1>
+
+<div class="text-center">
+    <h1>User Management</h1>
+    <a href="/Employees/AddEmployee" class="btn btn-primary">Create New Employee</a>
+
+    <table class="table table-info table-hover">
+        <partial name="_EmployeesHeader" />
+        <tbody>
+            @foreach (EmployeeTicketsVm employeeTicketsViewModel in await Model)
+            {
+                <tr>
+                    <td>@employeeTicketsViewModel.EmployeeNumber</td>
+                    <td>@employeeTicketsViewModel.EmailAddress</td>
+                    <td>@employeeTicketsViewModel.Name</td>
+                    <td>@employeeTicketsViewModel.Surname</td>
+                    <td>@employeeTicketsViewModel.EmployeeRole</td>
+                    <td>@employeeTicketsViewModel.TotalTickets</td>
+                    <td>@employeeTicketsViewModel.Id</td>
+                    <td>
+                        <a href="/Employees/ViewEmployee/@employeeTicketsViewModel.EmployeeNumber">View</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
