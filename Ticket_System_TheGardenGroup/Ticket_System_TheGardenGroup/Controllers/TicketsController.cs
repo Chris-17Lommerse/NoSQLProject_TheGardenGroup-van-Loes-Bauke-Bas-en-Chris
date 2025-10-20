@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
+using System.Linq.Expressions;
 using Ticket_System_TheGardenGroup.Models;
 using Ticket_System_TheGardenGroup.Services;
 using Ticket_System_TheGardenGroup.Services.Interfaces;
@@ -12,9 +13,10 @@ namespace Ticket_System_TheGardenGroup.Controllers
         private readonly ITicketService _ticketService;
         private readonly IEmployeeService _employeeService;
 
-        public TicketsController(ITicketService ticketService)
+        public TicketsController(ITicketService ticketService, IEmployeeService employeeService)
         {
             _ticketService = ticketService;
+            _employeeService = employeeService;
         }
         [HttpGet]
         public async Task<IActionResult> Index()
@@ -31,7 +33,7 @@ namespace Ticket_System_TheGardenGroup.Controllers
             }
             
         }
-        [HttpGet]
+        /*[HttpGet]
         public ActionResult ViewTicket(ObjectId employeeID)
         {
             try
@@ -43,7 +45,7 @@ namespace Ticket_System_TheGardenGroup.Controllers
                 TempData["ErrorMessage"] = "The ViewTicket page could not be loaded.";
                 return RedirectToAction("Index");
             }
-        }
+        }*/
 		[HttpGet]
 		public async Task<IActionResult> UpdateTicket(string ticketId)
 		{
@@ -72,19 +74,43 @@ namespace Ticket_System_TheGardenGroup.Controllers
                 return RedirectToAction("UpdateTicket");
             }
 		}
-		[HttpPost]
-        public IActionResult UpdateTicket(Ticket ticket)
+        [HttpGet]
+        public async Task<IActionResult> LoadEmployee(Ticket ticket, int employeeNumber)
         {
             try
             {
+                EmbeddedEmployee embeddedEmployee = await _employeeService.GetActiveEmbeddedSdEmployeeByIdAsync(employeeNumber);
+                if (embeddedEmployee == null)
+                {
+                    TempData["ErrorMessage"] = "Empty embedded employee";
+                    return RedirectToAction("UpdateTicket");
+                }
+                ticket.SolvingEmployee = embeddedEmployee;
+
+                return View(ticket);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return RedirectToAction("Index");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult UpdateTicket(Ticket ticket)
+        {
+            //This needs to be reworked. Either I make a new view model or something with JavaScript. 
+            try
+            {
+                //Sends the new info to the DB
                 _ticketService.UpdateTicket(ticket);
                 TempData["SuccesMessage"] = "The ticket was succesfully updated.";
-                return View();
+                return View(ticket);
             }
             catch (Exception ex)
             {
                 TempData["ErrorMessage"] = "The UpdateTicket page could not be loaded.";
-                return RedirectToAction("ViewTicket");
+                return RedirectToAction("UpdateTicket", ticket);
             }
         }
 
@@ -115,5 +141,47 @@ namespace Ticket_System_TheGardenGroup.Controllers
                 return RedirectToAction("ViewTicket");
             }
         }
-    }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteTicket(ObjectId ticketId)
+        {
+            try
+            {
+				var ticket = await _ticketService.GetTicketByObjIdAsync(ticketId);
+
+				if (ticket == null)
+				{
+					TempData["NoTicket"] = "Ticket not found.";
+					return RedirectToAction("Index");
+				}
+
+				return View(ticket);
+			}
+            catch (Exception)
+            {
+                throw new Exception("No ticket found to delete");
+            }
+        }       
+
+        [HttpPost]
+		public IActionResult DeleteTicket(Ticket ticket)
+		{
+            try
+            {
+                //first delete the ticket from workingOn array
+                //
+
+                //This deletes a ticket
+                _ticketService.DeleteTicket(ticket);
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex);
+                return RedirectToAction("Index");
+            }
+		}
+
+	}
 }

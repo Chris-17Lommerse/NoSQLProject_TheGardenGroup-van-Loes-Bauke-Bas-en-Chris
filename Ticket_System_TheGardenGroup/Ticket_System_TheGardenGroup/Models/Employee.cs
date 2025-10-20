@@ -16,6 +16,7 @@ namespace Ticket_System_TheGardenGroup.Models
 
         [BsonElement("password")]
         public string Password { get; set; } = "";
+
         //BEN HIER AAN HET EXPERIMENTEREN
         [BsonElement("employee_role")]
         [BsonRepresentation(BsonType.String)]
@@ -32,5 +33,8 @@ namespace Ticket_System_TheGardenGroup.Models
 
         [BsonElement("is_active")]
         public bool IsActive { get; set; } = false;
+
+        [BsonElement("workingOn")]
+        public ObjectId[] WorkingOn { get; set; } = Array.Empty<ObjectId>();
     }
 }
