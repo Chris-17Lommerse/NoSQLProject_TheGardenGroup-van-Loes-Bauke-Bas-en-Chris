@@ -23,7 +23,7 @@ namespace Ticket_System_TheGardenGroup.Controllers
         {
             try
             {
-				var tickets = await _ticketService.GetAllTickets()
+                var tickets = await _ticketService.GetAllTickets();
 				return View(tickets);
 			}
             catch (Exception)
