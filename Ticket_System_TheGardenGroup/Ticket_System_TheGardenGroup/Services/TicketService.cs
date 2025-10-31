@@ -15,6 +15,11 @@ namespace Ticket_System_TheGardenGroup.Services
             _ticketRepository = ticketRepository;
         }
 
+        public void DeleteTicket(Ticket ticket)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<List<Ticket>> GetAllTickets()
         {
             return _ticketRepository.GetAllTickets();

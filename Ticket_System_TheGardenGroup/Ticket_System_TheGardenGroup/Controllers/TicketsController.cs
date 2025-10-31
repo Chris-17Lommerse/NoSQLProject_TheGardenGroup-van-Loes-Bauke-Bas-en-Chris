@@ -66,57 +66,38 @@ namespace Ticket_System_TheGardenGroup.Controllers
 
 			return View(ticket); 
 		}
-        /*[HttpGet]
-        public async Task<IActionResult> UpdateEmbeddedEmployee(int employeeNumber)
+        [HttpGet]
+        public async Task<IActionResult> LoadEmployee(Ticket ticket, int employeeNumber)
         {
-            //I am working on this, but it's probably not gonna work. 
             try
             {
-                //Find the service desk employee for embedding
-                var embeddedEmployee = await _employeeService.GetEmbeddedSdEmployeeByIdAsync(employeeNumber);
-
+                EmbeddedEmployee embeddedEmployee = await _employeeService.GetActiveEmbeddedSdEmployeeByIdAsync(employeeNumber);
                 if (embeddedEmployee == null)
                 {
-                    TempData["EmbddEmpl"] = "This employee is not found.";
+                    TempData["ErrorMessage"] = "Empty embedded employee";
+                    return RedirectToAction("UpdateTicket");
                 }
-                ViewBag.EmbddEmployee = embeddedEmployee;
+                ticket.SolvingEmployee = embeddedEmployee;
 
-                return View(embeddedEmployee);
+                return View(ticket);
             }
             catch (Exception ex)
             {
-                throw new Exception("Error message:" + ex);
+                Console.WriteLine(ex);
+                return RedirectToAction("Index");
             }
-        }*/
+        }
 
-		[HttpPost]
-        public async Task<IActionResult> UpdateTicket(Ticket ticket, int employeeNumber, string loadEmployee)
+        [HttpPost]
+        public IActionResult UpdateTicket(Ticket ticket)
         {
             //This needs to be reworked. Either I make a new view model or something with JavaScript. 
             try
             {
-                //This if statement is not working :0
-                if (!string.IsNullOrEmpty(loadEmployee))
-                {
-                    // Load employee
-                    var embddEmpl = await _employeeService.GetActiveEmbeddedSdEmployeeByIdAsync(employeeNumber);
-                    if (embddEmpl != null)
-                    {
-                        ticket.SolvingEmployee = embddEmpl;
-                    }
-                    else
-                    {
-                        TempData["EmbddEmpl"] = "EmbeddedEmployee not found.";
-                    }
-
-                    return View(ticket); // reload the form with updated employee
-                }
-                else {
-					//Sends the new info to the DB
-					_ticketService.UpdateTicket(ticket);
-					TempData["SuccesMessage"] = "The ticket was succesfully updated.";
-					return View(ticket);
-				}
+                //Sends the new info to the DB
+                _ticketService.UpdateTicket(ticket);
+                TempData["SuccesMessage"] = "The ticket was succesfully updated.";
+                return View(ticket);
             }
             catch (Exception ex)
             {
@@ -157,13 +138,6 @@ namespace Ticket_System_TheGardenGroup.Controllers
         {
             try
             {
-				/*if (string.IsNullOrEmpty(ticketId))
-				{
-					TempData["NoId"] = "Ticket ID missing.";
-					return RedirectToAction("Index");
-				}*/
-
-				//var objectId = new ObjectId(ticketId);
 				var ticket = await _ticketService.GetTicketByObjIdAsync(ticketId);
 
 				if (ticket == null)
@@ -178,12 +152,26 @@ namespace Ticket_System_TheGardenGroup.Controllers
             {
                 throw new Exception("No ticket found to delete");
             }
-        }
+        }       
 
-		[HttpPost]
-		public async Task<IActionResult> DeleteTicket()
+        [HttpPost]
+		public IActionResult DeleteTicket(Ticket ticket)
 		{
-            throw new NotImplementedException();
+            try
+            {
+                //first delete the ticket from workingOn array
+                //
+
+                //This deletes a ticket
+                _ticketService.DeleteTicket(ticket);
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex);
+                return RedirectToAction("Index");
+            }
 		}
 
 	}

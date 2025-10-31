@@ -13,5 +13,7 @@ namespace Ticket_System_TheGardenGroup.Services.Interfaces
 
         void UpdateTicket(Ticket ticket);
 
+        void DeleteTicket(Ticket ticket);
+
 	}
 }
