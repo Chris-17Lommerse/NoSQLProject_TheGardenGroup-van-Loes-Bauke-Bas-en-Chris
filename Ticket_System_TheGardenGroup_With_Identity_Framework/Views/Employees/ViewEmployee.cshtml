@@ -1,0 +1,31 @@
+﻿@using Ticket_System_TheGardenGroup_With_Identity_Framework.ViewModels;
+@model EmployeeViewModel
+@{
+	ViewData["Title"] = "ViewEmployee";
+}
+<h1 class="alert-danger">@TempData["ErrorMessage"]</h1>
+<h1 class="alert-warning">@TempData["WarningMessage"]</h1>
+<h1 class="alert-success">@TempData["SuccesMessage"]</h1>
+<table class="table table-hover">
+	<thead class="table-dark">
+		<tr>
+			<th>Name</th>
+			<th>Surname</th>
+			<th>Employee number</th>
+			<th>Employee role</th>
+			<th>Emailaddress</th>
+			<th>Phonenumber</th>
+			<th>Edit/Delete</th>
+		</tr>
+	</thead>
+	<tbody class="bg-opacity-10 bg-black">
+		<tr>
+			<td>@Model.Name</td>
+			<td>@Model.Surname</td>
+			<td>@Model.EmployeeNumber</td>
+			<td>@Model.EmployeeNumber</td>
+		</tr>
+	</tbody>
+</table>
+<a class="alert-warning btn btn-primary" href="/Employees/UpdateEmployee/">Edit this employee</a>
+<!--<a class="alert-danger" href="/Employees/DeactivateEmployee/@Model.Id">Deactivate this employee</a>-->

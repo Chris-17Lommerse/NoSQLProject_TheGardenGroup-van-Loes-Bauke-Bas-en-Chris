@@ -38,7 +38,7 @@ namespace Ticket_System_TheGardenGroup.Models
             
         }
 
-        public TicketViewModel(Ticket ticket)
+        /*public TicketViewModel()
         {
             TicketId = ticket.TicketId;
             CreationTime = ticket.CreationTime;
@@ -49,6 +49,6 @@ namespace Ticket_System_TheGardenGroup.Models
             TicketEscalationDescription = ticket.TicketEscalationDescription;
             ReportingEmployee = ticket.ReportingEmployee;
             SolvingEmployee = ticket.SolvingEmployee;
-        }
+        }*/
     }
 }

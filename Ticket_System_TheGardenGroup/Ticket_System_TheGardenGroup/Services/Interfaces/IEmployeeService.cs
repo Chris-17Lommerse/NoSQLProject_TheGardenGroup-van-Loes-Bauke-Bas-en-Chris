@@ -12,5 +12,8 @@ namespace Ticket_System_TheGardenGroup.Services.Interfaces
 
 		Task<Employee> GetEmployeeByNumberAsync(string employeeNumber);
 
-	}
+        //for finding a service desk employee to embed
+        Task<EmbeddedEmployee> GetActiveEmbeddedSdEmployeeByIdAsync(int employeeNumber);
+
+    }
 }

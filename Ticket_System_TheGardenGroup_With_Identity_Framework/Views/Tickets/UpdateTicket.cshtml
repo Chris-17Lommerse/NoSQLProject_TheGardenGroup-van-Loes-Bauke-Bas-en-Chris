@@ -1,0 +1,85 @@
+﻿@model Ticket
+
+@{
+    ViewData["Title"] = "Edit ticket";
+}
+<h1 class="alert-danger">@TempData["ErrorMessage"]</h1>
+<h1 class="alert-warning">@TempData["WarningMessage"]</h1>
+<h1 class="alert-success">@TempData["SuccesMessage"]</h1>
+<h1 class="alert-danger">@TempData["EmbddEmpl"]</h1>
+
+<section>
+
+    <a href="/Tickets/index" class="btn btn-primary mb-3">Back to ticket list</a>
+
+    <a href="/Tickets/DeleteTicket?TicketId=@Model?.TicketId" class="btn btn-danger mb-3">Delete ticket</a>
+
+    <form action="/Tickets/UpdateTicket" method="post">
+        <section>
+            <label hidden for="TicketId">Ticket id</label>
+            <input hidden type="text" id="TicketId" name="TicketId" class="form-control" value="@Model?.TicketId" />
+        </section>
+
+        <section>
+            <label readonly for="creationTime">Creation time</label>
+            <input readonly type="datetime" id="creationTime" name="CreationTime" class="form-control" value="@Model?.CreationTime" />
+        </section>
+
+        <section>
+            <label readonly for="TicketStatus">Ticket Status</label>
+            <input readonly type="text" id="TicketStatus" name="TicketStatus" class="form-control" value="@Model?.TicketStatus" />
+        </section>
+
+        <section>
+            <label for="TicketName">Ticket name</label>
+            <input type="text" id="TicketName" name="TicketName" class="form-control" value="@Model?.TicketName" />
+        </section>
+
+        <section>
+            <label for="Description">Ticket Description</label>
+            <input type="text" id="Description" name="Description" class="form-control" value="@Model?.Description" />
+        </section>
+
+        <section>
+            <label for="TicketEscalationDescription">Ticket Description</label>
+            <input type="text" id="TicketEscalationDescription" name="TicketEscalationDescription" class="form-control" value="@Model?.TicketEscalationDescription" />
+        </section>
+
+        <section>
+            <label readonly for="IsSolved">Is ticket solved?</label>
+            <input type="text" id="IsSolved" name="IsSolved" class="form-control" value="@Model?.IsSolved.ToString()" />
+        </section>
+
+        <section>
+            <label for="ticketPriority">Ticket priority (only ds_e)</label>
+            <input type="text" id="ticketPriority" name="ticketPriority" class="form-control" value="@Model?.Priority" />
+        </section>
+
+        <section>
+            <label readonly for="reportEmployee">Reporting employee</label>
+            <input readonly type="text" id="reportEmployee" name="reportEmployee" class="form-control" value="@Model?.ReportingEmployee.Name" />
+        </section>
+
+        <section>
+            <h1 class="alert-danger">@TempData["EmbddEmpl"]</h1>
+
+            <label for="solvEmployee">Solving Employee Number</label>
+            <input type="text" id="solvEmployee" name="SolvingEmployeeNumber" class="form-control" value="@Model?.SolvingEmployee.EmployeeNumber" />
+
+            <button type="submit" name="loadEmployee" value="loadEmployee" class="btn btn-secondary mt-1">Load Employee</button>
+
+            <label readonly class="form-control">Name</label>
+            <input readonly type="text" class="form-control" value="@Model?.SolvingEmployee.Name" />
+
+            <label readonly>Email</label>
+            <input readonly type="text" class="form-control" value="@Model?.SolvingEmployee.EmailAddress" />
+
+            <label readonly>Role</label>
+            <input readonly type="text" class="form-control" value="@Model?.SolvingEmployee.EmployeeRole" />
+        </section>
+
+        <button type="submit" class="btn btn-primary">Update ticket</button>
+
+    </form>
+</section>
+

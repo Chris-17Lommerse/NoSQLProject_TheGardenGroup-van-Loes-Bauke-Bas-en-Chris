@@ -1,0 +1,59 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
+using Ticket_System_TheGardenGroup_With_Identity_Framework.Models;
+using Ticket_System_TheGardenGroup_With_Identity_Framework.Services.Interfaces;
+using Ticket_System_TheGardenGroup_With_Identity_Framework.ViewModels;
+
+namespace Ticket_System_TheGardenGroup.Controllers
+{
+    public class EmployeesController : Controller
+    {
+        private readonly IEmployeeService _employeeService;
+
+        public EmployeesController(IEmployeeService employeeService)
+        {
+            _employeeService = employeeService;
+        }
+        public IActionResult Index()
+        {
+            Task<List<EmployeeTicketsVm>> employees = _employeeService.GetAllEmployeesWithAmountOfTicketsAsync();
+            return View(employees);
+        }
+
+        [HttpGet]
+        public ActionResult ViewEmployee(int employeeNumber)
+        {
+            return View(_employeeService.GetEmployeeAsync(employeeNumber));
+
+        }
+        public IActionResult UpdateEmployee(EmployeeTicketsVm employeeTicketsVm)
+        {
+            return View(employeeTicketsVm);
+        }
+        [HttpGet]
+        public ActionResult AddEmployee()
+        {
+            return View();
+
+        }
+
+        [HttpPost]
+        //Blah blah blah
+        public ActionResult AddEmployee(Employee employee)
+        {
+            try
+            {
+                _employeeService.AddEmployee(employee);
+                TempData["SuccessMessage"] = " User created successfully! :) ";
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = " User could not be created :((((";
+                return View("AddEmployee");
+            }
+        }
+    }
+}
+
+

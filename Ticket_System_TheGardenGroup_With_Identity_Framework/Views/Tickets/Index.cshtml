@@ -1,0 +1,40 @@
+﻿@model List<Ticket>
+@{
+    ViewData["Title"] = "Tickets";
+}
+<h1 class="alert-danger">@TempData["ErrorMessage"]</h1>
+<h1 class="alert-warning">@TempData["WarningMessage"]</h1>
+<h1 class="alert-success">@TempData["SuccesMessage"]</h1>
+<h1 class="alert-danger">@TempData["NoTicket"]</h1>
+<h1 class="alert-danger">@TempData["NoId"]</h1>
+
+<div class="text-center">
+    <h1>Overview Tickets</h1>
+    <a href="/Tickets/AddTicket" class="btn btn-primary">Create Ticket</a>
+
+    <table class="table table-info tavle-hover">
+        <partial name="_TicketsHeader" />
+        <tbody>
+
+            @foreach (Ticket ticket in Model)
+            {
+                <tr>
+                    <td>@ticket.TicketId</td>
+                    <td>@ticket.CreationTime</td>
+                    <td>@ticket.TicketName</td>
+                    <td>@ticket.Description</td>
+                    <td>@ticket.TicketStatus</td>
+                    <td>@ticket.ReportingEmployee.EmailAddress</td>
+                    <td>@ticket.SolvingEmployee.EmailAddress</td>
+                    <td>@ticket.IsSolved</td>
+                    <td>
+                        <a href="/Tickets/UpdateTicket?ticketId=@ticket.TicketId">View</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+
