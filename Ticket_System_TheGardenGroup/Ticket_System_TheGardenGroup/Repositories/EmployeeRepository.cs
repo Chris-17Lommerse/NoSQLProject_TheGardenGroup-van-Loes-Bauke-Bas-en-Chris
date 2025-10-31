@@ -156,7 +156,7 @@ namespace Ticket_System_TheGardenGroup.Repositories
             {
                 new BsonDocument("$match", new BsonDocument
                 {
-                    { "employee_number", "$employeeDetails.employee_number" },
+                    { "employee_number", employeeNumber },
                     { "employee_role", "Service_Desk_Employee" },
                     { "isActive", true }
                 }),
@@ -171,7 +171,7 @@ namespace Ticket_System_TheGardenGroup.Repositories
                 })
             };
 
-            return await _employeeCollection.Aggregate<EmbeddedEmployee>(pipeline).SingleAsync(); //Must return one document, else error ~ Bas
+            return await _employeeCollection.Aggregate<EmbeddedEmployee>(pipeline).FirstOrDefaultAsync(); 
         }
     }
 }
