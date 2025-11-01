@@ -1,7 +1,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver;
+using System.Threading.Tasks;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Data;
+using Ticket_System_TheGardenGroup_With_Identity_Framework.Models;
+using Ticket_System_TheGardenGroup_With_Identity_Framework.Models.Enums;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories.Interfaces;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Services;
@@ -11,7 +14,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             DotNetEnv.Env.TraversePath().Load();
 
@@ -47,8 +50,9 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                 .AddDefaultTokenProviders();
             builder.Services.AddRazorPages();
 
             builder.Services.Configure<IdentityOptions>(options =>
@@ -72,9 +76,29 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework
                 options.User.RequireUniqueEmail = false;
             });
 
+
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
+
+            using(var scope = app.Services.CreateScope())
+            {
+                var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+                await RoleSeeder.SeedRolesAsync(roleManager);
+
+                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+                var serviceDeskEmployee = await userManager.FindByEmailAsync("clommerse@gmx.com");
+                if (serviceDeskEmployee != null && !await userManager.IsInRoleAsync(serviceDeskEmployee, EmployeeRole.Service_Desk_Employee.ToString()))
+                {
+                    await userManager.AddToRoleAsync(serviceDeskEmployee, EmployeeRole.Service_Desk_Employee.ToString());
+                }
+
+                var regularEmployee = await userManager.FindByEmailAsync("clommerse@gmx.com");
+                if (regularEmployee != null && !await userManager.IsInRoleAsync(regularEmployee, EmployeeRole.Regular_Employee.ToString()))
+                {
+                    await userManager.AddToRoleAsync(regularEmployee, EmployeeRole.Regular_Employee.ToString());
+                }
+            }
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

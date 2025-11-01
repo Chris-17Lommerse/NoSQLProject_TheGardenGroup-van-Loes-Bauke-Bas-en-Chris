@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Models;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Services.Interfaces;
@@ -10,17 +11,24 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
     {
         private readonly ITicketService _ticketService;
         private readonly IEmployeeService _employeeService;
+        private readonly SignInManager<IdentityUser> _signInManager;
 
-        public TicketsController(ITicketService ticketService, IEmployeeService employeeService)
+        public TicketsController(ITicketService ticketService, IEmployeeService employeeService, SignInManager<IdentityUser> signInManager)
         {
             _ticketService = ticketService;
             _employeeService = employeeService;
+            _signInManager = signInManager;
         }
         [HttpGet]
         public async Task<IActionResult> Index()
         {
             try
             {
+                if (!_signInManager.IsSignedIn(User))
+                {
+                    TempData["ErrorMessage"] = $"Je moet inloggen om toegang te hebben tot deze pagina";
+                    return RedirectToAction("Index", "Home");
+                }
                 var tickets = await _ticketService.GetAllTickets();
 
                 return View(tickets);
@@ -48,6 +56,11 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
         [HttpGet]
         public async Task<IActionResult> UpdateTicket(string ticketId)
         {
+            if (!_signInManager.IsSignedIn(User))
+            {
+                TempData["ErrorMessage"] = $"Je moet inloggen om toegang te hebben tot deze pagina";
+                return RedirectToAction("Index", "Home");
+            }
             if (string.IsNullOrEmpty(ticketId))
             {
                 TempData["NoId"] = "Ticket ID missing.";
@@ -94,6 +107,11 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
             //This needs to be reworked. Either I make a new view model or something with JavaScript. 
             try
             {
+                if (!_signInManager.IsSignedIn(User))
+                {
+                    TempData["ErrorMessage"] = $"Je moet inloggen om toegang te hebben tot deze pagina";
+                    return RedirectToAction("Index", "Home");
+                }
                 //This if statement is not working :0
                 if (!string.IsNullOrEmpty(loadEmployee))
                 {
@@ -128,6 +146,11 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
         [HttpGet]
         public IActionResult AddTicket()
         {
+            if (!_signInManager.IsSignedIn(User))
+            {
+                TempData["ErrorMessage"] = $"Je moet inloggen om toegang te hebben tot deze pagina";
+                return RedirectToAction("Index", "Home");
+            }
             throw new NotImplementedException();
             try
             {
@@ -159,6 +182,11 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
         {
             try
             {
+                if (!_signInManager.IsSignedIn(User))
+                {
+                    TempData["ErrorMessage"] = $"Je moet inloggen om toegang te hebben tot deze pagina";
+                    return RedirectToAction("Index", "Home");
+                }
                 /*if (string.IsNullOrEmpty(ticketId))
 				{
 					TempData["NoId"] = "Ticket ID missing.";
