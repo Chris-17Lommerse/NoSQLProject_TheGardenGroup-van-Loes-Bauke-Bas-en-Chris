@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Models;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Services.Interfaces;
@@ -9,13 +10,20 @@ namespace Ticket_System_TheGardenGroup.Controllers
     public class EmployeesController : Controller
     {
         private readonly IEmployeeService _employeeService;
+        private readonly SignInManager<IdentityUser> _signInManager;
 
-        public EmployeesController(IEmployeeService employeeService)
+        public EmployeesController(IEmployeeService employeeService, SignInManager<IdentityUser> signInManager)
         {
             _employeeService = employeeService;
+            _signInManager = signInManager;
         }
         public IActionResult Index()
         {
+            if (!_signInManager.IsSignedIn(User))
+            {
+                TempData["ErrorMessage"] = $"Je moet inloggen om toegang te krijgen tot de pagina";
+                return RedirectToAction("Index", "Home");
+            }
             Task<List<EmployeeTicketsVm>> employees = _employeeService.GetAllEmployeesWithAmountOfTicketsAsync();
             return View(employees);
         }
@@ -23,16 +31,31 @@ namespace Ticket_System_TheGardenGroup.Controllers
         [HttpGet]
         public ActionResult ViewEmployee(int employeeNumber)
         {
+            if (!_signInManager.IsSignedIn(User))
+            {
+                TempData["ErrorMessage"] = $"Je moet inloggen om toegang te krijgen tot de pagina";
+                return RedirectToAction("Index", "Home");
+            }
             return View(_employeeService.GetEmployeeAsync(employeeNumber));
 
         }
         public IActionResult UpdateEmployee(EmployeeTicketsVm employeeTicketsVm)
         {
+            if (!_signInManager.IsSignedIn(User))
+            {
+                TempData["ErrorMessage"] = $"Je moet inloggen om toegang te krijgen tot de pagina";
+                return RedirectToAction("Index", "Home");
+            }
             return View(employeeTicketsVm);
         }
         [HttpGet]
         public ActionResult AddEmployee()
         {
+            if (!_signInManager.IsSignedIn(User))
+            {
+                TempData["ErrorMessage"] = $"Je moet inloggen om toegang te krijgen tot de pagina";
+                return RedirectToAction("Index", "Home");
+            }
             return View();
 
         }
@@ -43,6 +66,11 @@ namespace Ticket_System_TheGardenGroup.Controllers
         {
             try
             {
+                if (!_signInManager.IsSignedIn(User))
+                {
+                    TempData["ErrorMessage"] = $"Je moet inloggen om toegang te krijgen tot de pagina";
+                    return RedirectToAction("Index", "Home");
+                }
                 _employeeService.AddEmployee(employee);
                 TempData["SuccessMessage"] = " User created successfully! :) ";
                 return RedirectToAction("Index");
