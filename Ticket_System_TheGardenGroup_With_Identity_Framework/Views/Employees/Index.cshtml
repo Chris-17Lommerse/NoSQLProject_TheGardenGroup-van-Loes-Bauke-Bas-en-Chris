@@ -1,13 +1,10 @@
 ﻿@using Ticket_System_TheGardenGroup_With_Identity_Framework.ViewModels;
-@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
 @model Task<List<EmployeeTicketsVm>>
 @{
     ViewData["Title"] = "Employees";
 }
 
-<partial name="_ErrorMessage" />
+<h1 class="alert-danger">@TempData["ErrorMessage"]</h1>
 <h1 class="alert-warning">@TempData["WarningMessage"]</h1>
 <h1 class="alert-success">@TempData["SuccesMessage"]</h1>
 <h1 class="alert-danger">@TempData["EmbddEmpl"]</h1>

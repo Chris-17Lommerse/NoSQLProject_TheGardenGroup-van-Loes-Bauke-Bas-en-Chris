@@ -3,8 +3,7 @@
 @{
     ViewData["Title"] = "Add Employee";
 }
-
-<partial name="_ErrorMessage" />
+<h1 class="alert-danger">@TempData["ErrorMessage"]</h1>
 <h1 class="alert-warning">@TempData["WarningMessage"]</h1>
 <h1 class="alert-success">@TempData["SuccesMessage"]</h1>
 
