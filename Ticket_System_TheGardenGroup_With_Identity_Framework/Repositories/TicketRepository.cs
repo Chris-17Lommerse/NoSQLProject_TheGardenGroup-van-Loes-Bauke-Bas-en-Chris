@@ -19,6 +19,11 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
             _ticketCollection.InsertOneAsync(ticket);
         }
 
+        public Task<Ticket> FilterTicketsOnSearchInputAsync(string searchString)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<List<Ticket>> GetAllTickets()
         {
             return await _ticketCollection.Find(Builders<Ticket>.Filter.Empty).ToListAsync();
