@@ -10,6 +10,13 @@
 <h1 class="alert-danger">@TempData["NoTicket"]</h1>
 <h1 class="alert-danger">@TempData["NoId"]</h1>
 
+<form method="GET" action="/Tickets/Index">
+    <div class="form-group">
+        <label for="search">Zoek in de tickets:</label>
+        <input type="text" id="search" name="search" class="form-control w-25 m-2" placeholder="Zoek in tickets">
+    </div>
+</form>
+
 <div class="text-center">
     <h1>Overview Tickets</h1>
     <a href="/Tickets/AddTicket" class="btn btn-primary">Create Ticket</a>
