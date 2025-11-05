@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Models;
@@ -20,6 +21,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
             _signInManager = signInManager;
         }
         [HttpGet]
+        [Authorize(Roles = "Service_Desk_Employee,Regular_Employee")]
         public async Task<IActionResult> Index()
         {
             try
@@ -40,6 +42,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Service_Desk_Employee,Regular_Employee")]
         public async Task<IActionResult> Index(string searchString)
         {
             try
@@ -85,6 +88,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
             }
         }*/
         [HttpGet]
+        [Authorize(Roles = "Service_Desk_Employee")]
         public async Task<IActionResult> UpdateTicket(string ticketId)
         {
             if (!_signInManager.IsSignedIn(User))
@@ -134,6 +138,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
         }*/
 
         [HttpPost]
+        [Authorize(Roles = "Service_Desk_Employee")]
         public async Task<IActionResult> UpdateTicket(Ticket ticket, int employeeNumber, string loadEmployee)
         {
             //This needs to be reworked. Either I make a new view model or something with JavaScript. 
@@ -176,6 +181,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Service_Desk_Employee")]
         public IActionResult AddTicket()
         {
             if (!_signInManager.IsSignedIn(User))
@@ -195,6 +201,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
             }
         }
         [HttpGet]
+        [Authorize(Roles = "Service_Desk_Employee")]
         public IActionResult AddTicket(TicketViewModel ticketViewModel)
         {
             if (!_signInManager.IsSignedIn(User))
@@ -215,6 +222,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Service_Desk_Employee")]
         public async Task<IActionResult> DeleteTicket(ObjectId ticketId)
         {
             try
@@ -248,6 +256,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Service_Desk_Employee")]
         public async Task<IActionResult> DeleteTicket()
         {
             if (!_signInManager.IsSignedIn(User))
