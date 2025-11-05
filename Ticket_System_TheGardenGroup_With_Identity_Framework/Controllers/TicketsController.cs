@@ -53,6 +53,12 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
                 {
                     tickets = await _ticketService.GetAllTickets();
                 }
+
+                if(tickets.Count == 0)
+                {
+                    TempData["ErrorMessage"] = $"Er konden geen tickets worden gevonden";
+                    return View(tickets);
+                }
                 return View(tickets);
             } catch (ArgumentNullException ex)
             {
