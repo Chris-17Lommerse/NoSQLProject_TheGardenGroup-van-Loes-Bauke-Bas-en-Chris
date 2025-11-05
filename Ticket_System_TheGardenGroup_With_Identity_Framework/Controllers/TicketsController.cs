@@ -35,10 +35,35 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
             }
             catch (Exception)
             {
-
                 throw new Exception("No tickets found");
             }
+        }
 
+        [HttpPost]
+        public async Task<IActionResult> Index(string searchString)
+        {
+            try
+            {
+                var tickets = await _ticketService.GetAllTickets();
+                if(!string.IsNullOrEmpty(searchString))
+                {
+                   tickets = await _ticketService.FilterTicketsOnSearchInputAsync(searchString);
+                }
+                else
+                {
+                    tickets = await _ticketService.GetAllTickets();
+                }
+                return View(tickets);
+            } catch (ArgumentNullException ex)
+            {
+                TempData["ErrorMessage"] = $"Kon geen tickets vinden. {ex.Message}";
+                return View(ex);
+            }
+            catch (Exception ex)
+            {
+                TempData["EroorMessage"] = $"Er is iets misgegaan. {ex.Message}";
+                return View(ex);
+            }
         }
         /*[HttpGet]
         public ActionResult ViewTicket(ObjectId employeeID)
