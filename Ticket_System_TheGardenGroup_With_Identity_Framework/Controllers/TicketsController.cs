@@ -181,7 +181,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Service_Desk_Employee")]
+        [Authorize(Roles = "Service_Desk_Employee,Regular_Employee")]
         public IActionResult AddTicket()
         {
             if (!_signInManager.IsSignedIn(User))
@@ -201,7 +201,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
             }
         }
         [HttpGet]
-        [Authorize(Roles = "Service_Desk_Employee")]
+        [Authorize(Roles = "Service_Desk_Employee,Regular_Employee")]
         public IActionResult AddTicket(TicketViewModel ticketViewModel)
         {
             if (!_signInManager.IsSignedIn(User))
