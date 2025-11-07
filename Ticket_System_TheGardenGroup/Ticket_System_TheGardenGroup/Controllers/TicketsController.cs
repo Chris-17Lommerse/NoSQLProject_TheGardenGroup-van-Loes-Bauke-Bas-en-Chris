@@ -26,7 +26,7 @@ namespace Ticket_System_TheGardenGroup.Controllers
                 var tickets = await _ticketService.GetAllTickets();
 				return View(tickets);
 			}
-            catch (Exception)
+            catch (Exception ex)
             {
                 TempData["ErrorMessage"] = "No tickets found";
                 return RedirectToAction("Index", "Home");

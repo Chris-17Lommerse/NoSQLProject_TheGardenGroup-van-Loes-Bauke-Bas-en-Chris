@@ -1,0 +1,105 @@
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
+using System;
+using Ticket_System_TheGardenGroup_With_Identity_Framework.Models;
+using Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories.Interfaces;
+
+namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
+{
+    public class TicketRepository : ITicketRepository
+    {
+        private readonly IMongoCollection<Ticket> _ticketCollection;
+
+        public TicketRepository(IMongoDatabase database)
+        {
+            _ticketCollection = database.GetCollection<Ticket>("TICKET");
+        }
+
+        public void AddTicket(Ticket ticket)
+        {
+            _ticketCollection.InsertOneAsync(ticket);
+        }
+
+        public async Task<List<Ticket>> FilterTicketsOnSearchInputAsync(string searchString)
+        {
+            if(string.IsNullOrWhiteSpace(searchString))
+            {
+                return await _ticketCollection.Find(FilterDefinition<Ticket>.Empty).ToListAsync();
+            }
+
+            var orGroups = searchString.Split(new[] { " OR ", " or " }, StringSplitOptions.RemoveEmptyEntries);
+
+            var orFilters = new List<FilterDefinition<Ticket>>();
+            var builder = Builders<Ticket>.Filter;
+
+            foreach (var orGroup in orGroups)
+            {
+                var andParts = orGroup.Split(new[] { " AND ", " and " }, StringSplitOptions.RemoveEmptyEntries);
+
+                var andFilters = new List<FilterDefinition<Ticket>>();
+
+                foreach (var part in andParts)
+                {
+                    var pieces = part.Split(":", 2);
+                    if (pieces.Length == 2)
+                    {
+                        string field = pieces[0].Trim();
+                        string value = pieces[1].Trim();
+
+                        andFilters.Add(builder.Regex(field, new BsonRegularExpression(value, "i")));
+                    }
+                }
+
+                if (andFilters.Count > 0)
+                {
+                    orFilters.Add(builder.And(andFilters));
+                }
+            }
+
+            var finalFilter = orFilters.Count > 0 ? builder.Or(orFilters) : FilterDefinition<Ticket>.Empty;
+
+            return await _ticketCollection.Find(finalFilter).ToListAsync();
+            
+        }
+
+        public async Task<List<Ticket>> GetAllTickets()
+        {
+            return await _ticketCollection.Find(Builders<Ticket>.Filter.Empty).ToListAsync();
+        }
+        public async Task<Ticket> GetTicketAsync(ObjectId id)
+        {
+            var filter = Builders<Ticket>.Filter.Eq("_id", id);
+            return await _ticketCollection.Find(filter).FirstOrDefaultAsync();
+        }
+
+        public async Task<Ticket> GetTicketByObjIdAsync(ObjectId ticketId)
+        {
+            //var filter = Builders<Ticket>.Filter.Eq("_id", objId);
+            //var filter = Builders<Ticket>.Filter.Eq(t => t.TicketId, objId);
+
+            /*var filter = Builders<Ticket>.Filter.Eq("TicketId", objId);
+			Ticket ticket = await _ticketCollection.Find(filter).FirstOrDefaultAsync();*/
+
+            var filter = Builders<Ticket>.Filter.Eq(t => t.TicketId, ticketId);
+            return await _ticketCollection.Find(filter).FirstOrDefaultAsync();
+
+            //return ticket;
+
+        }
+
+        //TODO reporting_employee and solving_employee can not be updated yet
+        public void UpdateTicket(Ticket ticket)
+        {
+            var filter = Builders<Ticket>.Filter.Eq("_id", ticket.TicketId);
+            var combinedUpdate = Builders<Ticket>.Update.Combine(
+                Builders<Ticket>.Update.Set("ticket_name", ticket.TicketName),
+                Builders<Ticket>.Update.Set("ticket_status", ticket.TicketStatus),
+                Builders<Ticket>.Update.Set("description", ticket.Description),
+                Builders<Ticket>.Update.Set("ticket_escalation_description", ticket.TicketEscalationDescription),
+                Builders<Ticket>.Update.Set("is_solved", ticket.IsSolved),
+                Builders<Ticket>.Update.Set("priority", ticket.Priority)
+            );
+            _ticketCollection.UpdateOneAsync(filter, combinedUpdate);
+        }
+    }
+}

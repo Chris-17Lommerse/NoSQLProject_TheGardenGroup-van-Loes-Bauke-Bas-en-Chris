@@ -1,0 +1,38 @@
+﻿@using Ticket_System_TheGardenGroup_With_Identity_Framework.ViewModels;
+@model Task<List<EmployeeTicketsVm>>
+@{
+    ViewData["Title"] = "Employees";
+}
+
+<partial name="_ErrorMessage" />
+<partial name="_WarningMessage" />
+<partial name="_SuccessMessage" />
+<partial name="_EmbeddedEmployee" />
+
+
+<div class="text-center">
+    <h1>User Management</h1>
+    <a href="/Employees/AddEmployee" class="btn btn-primary">Create New Employee</a>
+
+    <table class="table table-info table-hover">
+        <partial name="_EmployeeHeader" />
+        <tbody>
+            @foreach (EmployeeTicketsVm employeeTicketsViewModel in await Model)
+            {
+                <tr>
+                    <td>@employeeTicketsViewModel.EmployeeNumber</td>
+                    <td>@employeeTicketsViewModel.EmailAddress</td>
+                    <td>@employeeTicketsViewModel.Name</td>
+                    <td>@employeeTicketsViewModel.Surname</td>
+                    <td>@employeeTicketsViewModel.EmployeeRole</td>
+                    <td>@employeeTicketsViewModel.TotalTickets</td>
+                    <td>@employeeTicketsViewModel.Id</td>
+                    <td>
+                        <a href="/Employees/ViewEmployee/@employeeTicketsViewModel.EmployeeNumber">View</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
