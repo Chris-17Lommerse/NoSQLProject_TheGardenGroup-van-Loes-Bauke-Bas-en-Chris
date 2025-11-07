@@ -76,7 +76,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString));
+                options.UseSqlServer(connectionString, sql => sql.EnableRetryOnFailure()));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -134,9 +134,11 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
 
-            using(var scope = app.Services.CreateScope())
+            using (var scope = app.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
+                var db = services.GetRequiredService<ApplicationDbContext>();
+                db.Database.Migrate();               // ensure DB + migrations applied
                 await CreateRoles(services);
                 await AssignDefaultRoleToExistingUser(services);
             }
