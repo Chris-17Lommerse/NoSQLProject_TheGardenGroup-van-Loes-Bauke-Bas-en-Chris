@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Models;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Services.Interfaces;
@@ -10,27 +12,67 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
     {
         private readonly ITicketService _ticketService;
         private readonly IEmployeeService _employeeService;
+        private readonly SignInManager<IdentityUser> _signInManager;
 
-        public TicketsController(ITicketService ticketService, IEmployeeService employeeService)
+        public TicketsController(ITicketService ticketService, IEmployeeService employeeService, SignInManager<IdentityUser> signInManager)
         {
             _ticketService = ticketService;
             _employeeService = employeeService;
+            _signInManager = signInManager;
         }
         [HttpGet]
+        [Authorize(Roles = "Service_Desk_Employee,Regular_Employee")]
         public async Task<IActionResult> Index()
         {
             try
             {
+                if(!_signInManager.IsSignedIn(User))
+                {
+                    TempData["ErrorMessage"] = $"Je moet inloggen om toegang te krijgen tot de pagina";
+                    return RedirectToAction("Index", "Home");
+                }
                 var tickets = await _ticketService.GetAllTickets();
 
                 return View(tickets);
             }
             catch (Exception)
             {
-
                 throw new Exception("No tickets found");
             }
+        }
 
+        [HttpPost]
+        [Authorize(Roles = "Service_Desk_Employee,Regular_Employee")]
+        public async Task<IActionResult> Index(string searchString)
+        {
+            try
+            {
+                var tickets = await _ticketService.GetAllTickets();
+                if(!string.IsNullOrEmpty(searchString))
+                {
+                   tickets = await _ticketService.FilterTicketsOnSearchInputAsync(searchString);
+                }
+                else
+                {
+                    tickets = await _ticketService.GetAllTickets();
+                }
+
+                if(tickets.Count == 0)
+                {
+                    TempData["ErrorMessage"] = $"Er konden geen tickets worden gevonden";
+                    return View(tickets);
+                }
+                return View(tickets);
+            } catch (ArgumentNullException ex)
+            {
+                TempData["ErrorMessage"] = $"Kon geen tickets vinden. {ex.Message}";
+                return View(ex);
+            }
+            catch (Exception ex)
+            {
+                TempData["EroorMessage"] = $"Er is iets misgegaan. {ex.Message}";
+                return View(ex);
+            }
         }
         /*[HttpGet]
         public ActionResult ViewTicket(ObjectId employeeID)
@@ -46,8 +88,15 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
             }
         }*/
         [HttpGet]
+        [Authorize(Roles = "Service_Desk_Employee")]
         public async Task<IActionResult> UpdateTicket(string ticketId)
         {
+            if (!_signInManager.IsSignedIn(User))
+            {
+                TempData["ErrorMessage"] = $"Je moet inloggen om toegang te krijgen tot de pagina";
+                return RedirectToAction("Index", "Home");
+            }
+
             if (string.IsNullOrEmpty(ticketId))
             {
                 TempData["NoId"] = "Ticket ID missing.";
@@ -89,11 +138,17 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
         }*/
 
         [HttpPost]
+        [Authorize(Roles = "Service_Desk_Employee")]
         public async Task<IActionResult> UpdateTicket(Ticket ticket, int employeeNumber, string loadEmployee)
         {
             //This needs to be reworked. Either I make a new view model or something with JavaScript. 
             try
             {
+                if (!_signInManager.IsSignedIn(User))
+                {
+                    TempData["ErrorMessage"] = $"Je moet inloggen om toegang te krijgen tot de pagina";
+                    return RedirectToAction("Index", "Home");
+                }
                 //This if statement is not working :0
                 if (!string.IsNullOrEmpty(loadEmployee))
                 {
@@ -126,8 +181,14 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Service_Desk_Employee,Regular_Employee")]
         public IActionResult AddTicket()
         {
+            if (!_signInManager.IsSignedIn(User))
+            {
+                TempData["ErrorMessage"] = $"Je moet inloggen om toegang te krijgen tot de pagina";
+                return RedirectToAction("Index", "Home");
+            }
             throw new NotImplementedException();
             try
             {
@@ -140,8 +201,14 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
             }
         }
         [HttpGet]
+        [Authorize(Roles = "Service_Desk_Employee,Regular_Employee")]
         public IActionResult AddTicket(TicketViewModel ticketViewModel)
         {
+            if (!_signInManager.IsSignedIn(User))
+            {
+                TempData["ErrorMessage"] = $"Je moet inloggen om toegang te krijgen tot de pagina";
+                return RedirectToAction("Index", "Home");
+            }
             throw new NotImplementedException();
             try
             {
@@ -155,10 +222,16 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Service_Desk_Employee")]
         public async Task<IActionResult> DeleteTicket(ObjectId ticketId)
         {
             try
             {
+                if (!_signInManager.IsSignedIn(User))
+                {
+                    TempData["ErrorMessage"] = $"Je moet inloggen om toegang te krijgen tot de pagina";
+                    return RedirectToAction("Index", "Home");
+                }
                 /*if (string.IsNullOrEmpty(ticketId))
 				{
 					TempData["NoId"] = "Ticket ID missing.";
@@ -183,8 +256,14 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Service_Desk_Employee")]
         public async Task<IActionResult> DeleteTicket()
         {
+            if (!_signInManager.IsSignedIn(User))
+            {
+                TempData["ErrorMessage"] = $"Je moet inloggen om toegang te krijgen tot de pagina";
+                return RedirectToAction("Index", "Home");
+            }
             throw new NotImplementedException();
         }
     }

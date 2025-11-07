@@ -14,6 +14,15 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Services
             _ticketRepository = ticketRepository;
         }
 
+        public Task<List<Ticket>> FilterTicketsOnSearchInputAsync(string searchString)
+        {
+            if(searchString == null)
+            {
+                throw new ArgumentNullException(nameof(searchString));
+            }
+            return _ticketRepository.FilterTicketsOnSearchInputAsync(searchString);
+        }
+
         public Task<List<Ticket>> GetAllTickets()
         {
             return _ticketRepository.GetAllTickets();

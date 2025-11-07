@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver;
+using System.Threading.Tasks;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Data;
+using Ticket_System_TheGardenGroup_With_Identity_Framework.Models.Enums;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories.Interfaces;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Services;
@@ -11,7 +13,37 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task CreateRoles(IServiceProvider serviceProvider)
+        {
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+            foreach(var roleName in Enum.GetNames(typeof(EmployeeRole)))
+            {
+                var roleExists = await roleManager.RoleExistsAsync(roleName);
+                if(!roleExists)
+                {
+                    await roleManager.CreateAsync(new IdentityRole(roleName));
+                }
+            }
+        }
+
+        public static async Task AssignDefaultRoleToExistingUser(IServiceProvider serviceProvider)
+        {
+            var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+
+            var users = userManager.Users.ToList();
+
+            foreach(var user in users)
+            {
+                var roles = await userManager.GetRolesAsync(user);
+                if(!roles.Any())
+                {
+                    await userManager.AddToRoleAsync(user, EmployeeRole.Regular_Employee.ToString());
+                }
+            }
+        }
+
+        public static async Task Main(string[] args)
         {
             DotNetEnv.Env.TraversePath().Load();
 
@@ -48,6 +80,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddRazorPages();
 
@@ -100,6 +133,13 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
+
+            using(var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                await CreateRoles(services);
+                await AssignDefaultRoleToExistingUser(services);
+            }
 
             app.Run();
         }

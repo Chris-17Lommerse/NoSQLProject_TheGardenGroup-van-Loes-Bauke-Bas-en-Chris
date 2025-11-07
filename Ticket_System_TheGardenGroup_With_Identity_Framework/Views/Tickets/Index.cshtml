@@ -2,11 +2,22 @@
 @{
     ViewData["Title"] = "Tickets";
 }
-<h1 class="alert-danger">@TempData["ErrorMessage"]</h1>
-<h1 class="alert-warning">@TempData["WarningMessage"]</h1>
-<h1 class="alert-success">@TempData["SuccesMessage"]</h1>
+
+<partial name="_ErrorMessage" />
+<partial name="_WarningMessage" />
+<partial name="_SuccessMessage" />
+
 <h1 class="alert-danger">@TempData["NoTicket"]</h1>
 <h1 class="alert-danger">@TempData["NoId"]</h1>
+
+<form method="post" action="/Tickets/Index">
+    <div class="form-group">
+        <label for="search">Zoek in de tickets:</label>
+        <input type="text" id="searchString" name="searchString" class="form-control w-25 m-2" placeholder="Zoek in tickets">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Zoek</button>
+</form>
 
 <div class="text-center">
     <h1>Overview Tickets</h1>

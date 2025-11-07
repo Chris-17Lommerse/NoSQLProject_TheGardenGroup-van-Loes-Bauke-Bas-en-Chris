@@ -3,10 +3,11 @@
 @{
     ViewData["Title"] = "Edit ticket";
 }
-<h1 class="alert-danger">@TempData["ErrorMessage"]</h1>
-<h1 class="alert-warning">@TempData["WarningMessage"]</h1>
-<h1 class="alert-success">@TempData["SuccesMessage"]</h1>
-<h1 class="alert-danger">@TempData["EmbddEmpl"]</h1>
+
+<partial name="_ErrorMessage" />
+<partial name="_WarningMessage" />
+<partial name="_SuccessMessage" />
+<partial name="_EmbeddedEmployee" />
 
 <section>
 

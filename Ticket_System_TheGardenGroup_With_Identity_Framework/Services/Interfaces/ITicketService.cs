@@ -12,5 +12,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Services.Interfac
 
         void UpdateTicket(Ticket ticket);
 
+        Task<List<Ticket>> FilterTicketsOnSearchInputAsync(string searchString);
+
     }
 }

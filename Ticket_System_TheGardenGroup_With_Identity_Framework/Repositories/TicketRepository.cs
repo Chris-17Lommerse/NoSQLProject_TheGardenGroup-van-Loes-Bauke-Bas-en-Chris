@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
+using System;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Models;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories.Interfaces;
 
@@ -17,6 +18,48 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
         public void AddTicket(Ticket ticket)
         {
             _ticketCollection.InsertOneAsync(ticket);
+        }
+
+        public async Task<List<Ticket>> FilterTicketsOnSearchInputAsync(string searchString)
+        {
+            if(string.IsNullOrWhiteSpace(searchString))
+            {
+                return await _ticketCollection.Find(FilterDefinition<Ticket>.Empty).ToListAsync();
+            }
+
+            var orGroups = searchString.Split(new[] { " OR ", " or " }, StringSplitOptions.RemoveEmptyEntries);
+
+            var orFilters = new List<FilterDefinition<Ticket>>();
+            var builder = Builders<Ticket>.Filter;
+
+            foreach (var orGroup in orGroups)
+            {
+                var andParts = orGroup.Split(new[] { " AND ", " and " }, StringSplitOptions.RemoveEmptyEntries);
+
+                var andFilters = new List<FilterDefinition<Ticket>>();
+
+                foreach (var part in andParts)
+                {
+                    var pieces = part.Split(":", 2);
+                    if (pieces.Length == 2)
+                    {
+                        string field = pieces[0].Trim();
+                        string value = pieces[1].Trim();
+
+                        andFilters.Add(builder.Regex(field, new BsonRegularExpression(value, "i")));
+                    }
+                }
+
+                if (andFilters.Count > 0)
+                {
+                    orFilters.Add(builder.And(andFilters));
+                }
+            }
+
+            var finalFilter = orFilters.Count > 0 ? builder.Or(orFilters) : FilterDefinition<Ticket>.Empty;
+
+            return await _ticketCollection.Find(finalFilter).ToListAsync();
+            
         }
 
         public async Task<List<Ticket>> GetAllTickets()
