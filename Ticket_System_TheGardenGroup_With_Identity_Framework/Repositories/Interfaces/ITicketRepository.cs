@@ -10,6 +10,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories.Inte
         Task<Ticket> GetTicketAsync(ObjectId id);
         Task<Ticket> GetTicketByObjIdAsync(ObjectId objId);
         void UpdateTicket(Ticket ticket);
-        Task<List<Ticket>> FilterTicketsOnSearchInputAsync(string searchString);
+        Task<List<Ticket>> FilterTicketsOnAndOrSearchInputAsync(string searchString);
+        Task<List<Ticket>> FilterTicketsOnNormalSearchInputAsync(string searchString);
     }
 }

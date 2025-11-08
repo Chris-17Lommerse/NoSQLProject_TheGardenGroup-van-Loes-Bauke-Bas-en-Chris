@@ -20,9 +20,9 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
             _ticketCollection.InsertOneAsync(ticket);
         }
 
-        public async Task<List<Ticket>> FilterTicketsOnSearchInputAsync(string searchString)
+        public async Task<List<Ticket>> FilterTicketsOnAndOrSearchInputAsync(string searchString)
         {
-            if(string.IsNullOrWhiteSpace(searchString))
+            if (string.IsNullOrWhiteSpace(searchString))
             {
                 return await _ticketCollection.Find(FilterDefinition<Ticket>.Empty).ToListAsync();
             }
@@ -59,7 +59,36 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
             var finalFilter = orFilters.Count > 0 ? builder.Or(orFilters) : FilterDefinition<Ticket>.Empty;
 
             return await _ticketCollection.Find(finalFilter).ToListAsync();
-            
+
+        }
+
+        public async Task<List<Ticket>> FilterTicketsOnNormalSearchInputAsync(string searchString)
+        {
+            var builders = Builders<Ticket>.Filter;
+            var finalFilter = new List<FilterDefinition<Ticket>>
+            {
+                builders.Eq("creation_time", searchString),
+                builders.Eq("ticket_status", searchString),
+                builders.Eq("ticket_name", searchString),
+                builders.Eq("ticket_escalation_description", searchString),
+                builders.Eq("is_solved", searchString),
+                builders.Eq("reporting_employee", searchString),
+                builders.Eq("solving_employee", searchString),
+                builders.Eq("priority", searchString)
+            };
+
+            FilterDefinition<Ticket> combinedFilter;
+
+            if (finalFilter.Count > 0)
+            {
+                combinedFilter = builders.Or(finalFilter);
+            }
+            else
+            {
+                combinedFilter = FilterDefinition<Ticket>.Empty;
+            }
+
+            return await _ticketCollection.Find(combinedFilter).ToListAsync();
         }
 
         public async Task<List<Ticket>> GetAllTickets()
