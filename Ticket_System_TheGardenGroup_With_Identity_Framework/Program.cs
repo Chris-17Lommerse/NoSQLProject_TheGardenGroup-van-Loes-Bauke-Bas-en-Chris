@@ -38,7 +38,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework
                 var roles = await userManager.GetRolesAsync(user);
                 if(!roles.Any())
                 {
-                    await userManager.AddToRoleAsync(user, EmployeeRole.Regular_Employee.ToString());
+                    await userManager.AddToRoleAsync(user, EmployeeRole.Service_Desk_Employee.ToString());
                 }
             }
         }
