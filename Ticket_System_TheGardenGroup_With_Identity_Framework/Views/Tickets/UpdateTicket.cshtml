@@ -16,6 +16,19 @@
     <a href="/Tickets/DeleteTicket?TicketId=@Model?.TicketId" class="btn btn-danger mb-3">Delete ticket</a>
 
     <form action="/Tickets/UpdateTicket" method="post">
+        <p>This form is for updating the employee who is solving this ticket. Ignore this form if you don't need it.</p>
+        <partial name="_EmbeddedEmployee" />
+        <label for="solvEmployee">Solving Employee Number</label>
+        <input type="text" id="solvEmployee" name="SolvingEmployeeNumber" class="form-control" value="@Model?.SolvingEmployee.EmployeeNumber" />
+
+        <label readonly>Name: @Model?.SolvingEmployee.Name</label>
+        <label readonly>Email: @Model?.SolvingEmployee.EmailAddress</label>
+        <label readonly>Role: @Model?.SolvingEmployee.EmployeeRole</label>
+
+        <button type="submit" name="loadEmployee" value="loadEmployee" class="btn btn-secondary mt-1">Load Employee</button>
+    </form>
+    <h2>-----</h2>
+    <form action="/Tickets/UpdateTicket" method="post">
         <section>
             <label hidden for="TicketId">Ticket id</label>
             <input hidden type="text" id="TicketId" name="TicketId" class="form-control" value="@Model?.TicketId" />
@@ -48,7 +61,7 @@
 
         <section>
             <label readonly for="IsSolved">Is ticket solved?</label>
-            <input type="text" id="IsSolved" name="IsSolved" class="form-control" value="@Model?.IsSolved.ToString()" />
+            <input type="checkbox" id="IsSolved" name="IsSolved" value="@Model?.IsSolved" />
         </section>
 
         <section>
@@ -62,24 +75,20 @@
         </section>
 
         <section>
-            <h1 class="alert-danger">@TempData["EmbddEmpl"]</h1>
+            <label readonly for="solvEmployee">Solving Employee Number</label>
+            <input readonly type="text" id="solvEmployee" name="SolvingEmployeeNumber" class="form-control" value="@Model?.SolvingEmployee.EmployeeNumber" />
 
-            <label for="solvEmployee">Solving Employee Number</label>
-            <input type="text" id="solvEmployee" name="SolvingEmployeeNumber" class="form-control" value="@Model?.SolvingEmployee.EmployeeNumber" />
+            <label readonly for="SolvingEmployeeName">Name</label>
+            <input readonly id="SolvingEmployeeName" type="text" class="form-control" value="@Model?.SolvingEmployee.Name" />
 
-            <button type="submit" name="loadEmployee" value="loadEmployee" class="btn btn-secondary mt-1">Load Employee</button>
+            <label readonly for="SolvingEmployeeEmail">Email</label>
+            <input readonly id="SolvingEmployeeEmail" type="text" class="form-control" value="@Model?.SolvingEmployee.EmailAddress" />
 
-            <label readonly class="form-control">Name</label>
-            <input readonly type="text" class="form-control" value="@Model?.SolvingEmployee.Name" />
-
-            <label readonly>Email</label>
-            <input readonly type="text" class="form-control" value="@Model?.SolvingEmployee.EmailAddress" />
-
-            <label readonly>Role</label>
-            <input readonly type="text" class="form-control" value="@Model?.SolvingEmployee.EmployeeRole" />
+            <label readonly for="SolvingEmployeeRole">Role</label>
+            <input readonly id="SolvingEmployeeRole" type="text" class="form-control" value="@Model?.SolvingEmployee.EmployeeRole" />
         </section>
 
-        <button type="submit" class="btn btn-primary">Update ticket</button>
+        <button type="submit" name="updateTicket" class="btn btn-primary">Update ticket</button>
 
     </form>
 </section>

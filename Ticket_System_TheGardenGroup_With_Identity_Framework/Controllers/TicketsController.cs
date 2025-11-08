@@ -31,7 +31,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
                     TempData["ErrorMessage"] = $"Je moet inloggen om toegang te krijgen tot de pagina";
                     return RedirectToAction("Index", "Home");
                 }
-                var tickets = await _ticketService.GetAllTickets();
+                List<Ticket> tickets = await _ticketService.GetAllTickets();
 
                 return View(tickets);
             }
@@ -103,8 +103,8 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
                 return RedirectToAction("Index");
             }
 
-            var objectId = new ObjectId(ticketId);
-            var ticket = await _ticketService.GetTicketByObjIdAsync(objectId);
+            ObjectId objectId = new ObjectId(ticketId);
+            Ticket ticket = await _ticketService.GetTicketByObjIdAsync(objectId);
 
             if (ticket == null)
             {
@@ -140,6 +140,8 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
         [HttpPost]
         [Authorize(Roles = "Service_Desk_Employee")]
         public async Task<IActionResult> UpdateTicket(Ticket ticket, int employeeNumber, string loadEmployee)
+            //Hopefully it will look like this in the future
+            //public async Task<IActionResult> UpdateTicket(Ticket ticket)
         {
             //This needs to be reworked. Either I make a new view model or something with JavaScript. 
             try
@@ -153,7 +155,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
                 if (!string.IsNullOrEmpty(loadEmployee))
                 {
                     // Load employee
-                    var embddEmpl = await _employeeService.GetActiveEmbeddedSdEmployeeByIdAsync(employeeNumber);
+                    EmbeddedEmployee embddEmpl = await _employeeService.GetActiveEmbeddedSdEmployeeByIdAsync(employeeNumber);
                     if (embddEmpl != null)
                     {
                         ticket.SolvingEmployee = embddEmpl;
@@ -179,19 +181,29 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
                 return RedirectToAction("UpdateTicket", ticket);
             }
         }
-
+        [HttpPost]
+        [Authorize(Roles = "Service_Desk_Employee")]
+        public async Task<IActionResult> UpdateSolvingEmployee(string ticketId, int employeeNumber)
+        {
+            EmbeddedEmployee embeddedEmployee = await _employeeService.GetActiveEmbeddedSdEmployeeByIdAsync(employeeNumber);
+            ObjectId objectId = new ObjectId(ticketId);
+            Ticket ticket = await _ticketService.GetTicketByObjIdAsync(objectId);
+            ticket.SolvingEmployee = embeddedEmployee;
+            return RedirectToAction("UpdateTicket", ticket);
+        }
+        
         [HttpGet]
         [Authorize(Roles = "Service_Desk_Employee,Regular_Employee")]
         public IActionResult AddTicket()
         {
-            if (!_signInManager.IsSignedIn(User))
-            {
-                TempData["ErrorMessage"] = $"Je moet inloggen om toegang te krijgen tot de pagina";
-                return RedirectToAction("Index", "Home");
-            }
-            throw new NotImplementedException();
             try
             {
+                if (!_signInManager.IsSignedIn(User))
+                {
+                    TempData["ErrorMessage"] = $"Je moet inloggen om toegang te krijgen tot de pagina";
+                    return RedirectToAction("Index", "Home");
+                }
+                throw new NotImplementedException();
                 return View();
             }
             catch (Exception ex)
