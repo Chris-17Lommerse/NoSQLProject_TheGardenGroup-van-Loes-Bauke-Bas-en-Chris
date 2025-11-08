@@ -15,17 +15,19 @@
 
     <a href="/Tickets/DeleteTicket?TicketId=@Model?.TicketId" class="btn btn-danger mb-3">Delete ticket</a>
 
-    <form action="/Tickets/UpdateTicket" method="post">
+    <form action="/Tickets/UpdateSolvingEmployee" method="post">
         <p>This form is for updating the employee who is solving this ticket. Ignore this form if you don't need it.</p>
         <partial name="_EmbeddedEmployee" />
         <label for="solvEmployee">Solving Employee Number</label>
-        <input type="text" id="solvEmployee" name="SolvingEmployeeNumber" class="form-control" value="@Model?.SolvingEmployee.EmployeeNumber" />
+        <input type="text" id="solvEmployee" name="solvingEmployeeNumber" class="form-control" value="@Model?.SolvingEmployee.EmployeeNumber" />
+        <label hidden for="TicketId">Ticket id</label>
+        <input hidden type="text" id="TicketId" name="ticketId" class="form-control" value="@Model?.TicketId" />
+        
+        <label readonly class="form-control">Name: @Model?.SolvingEmployee.Name</label>
+        <label readonly class="form-control">Email: @Model?.SolvingEmployee.EmailAddress</label>
+        <label readonly class="form-control">Role: @Model?.SolvingEmployee.EmployeeRole</label>
 
-        <label readonly>Name: @Model?.SolvingEmployee.Name</label>
-        <label readonly>Email: @Model?.SolvingEmployee.EmailAddress</label>
-        <label readonly>Role: @Model?.SolvingEmployee.EmployeeRole</label>
-
-        <button type="submit" name="loadEmployee" value="loadEmployee" class="btn btn-secondary mt-1">Load Employee</button>
+        <button type="submit" name="loadEmployee" class="btn btn-secondary mt-1">Load Employee</button>
     </form>
     <h2>-----</h2>
     <form action="/Tickets/UpdateTicket" method="post">

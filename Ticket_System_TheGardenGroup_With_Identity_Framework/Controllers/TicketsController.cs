@@ -183,13 +183,13 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
         }
         [HttpPost]
         [Authorize(Roles = "Service_Desk_Employee")]
-        public async Task<IActionResult> UpdateSolvingEmployee(string ticketId, int employeeNumber)
+        public async Task<IActionResult> UpdateSolvingEmployee(string ticketId, int solvingEmployeeNumber)
         {
-            EmbeddedEmployee embeddedEmployee = await _employeeService.GetActiveEmbeddedSdEmployeeByIdAsync(employeeNumber);
+            EmbeddedEmployee embeddedSolvingEmployee = await _employeeService.GetActiveEmbeddedSdEmployeeByIdAsync(solvingEmployeeNumber);
             ObjectId objectId = new ObjectId(ticketId);
             Ticket ticket = await _ticketService.GetTicketByObjIdAsync(objectId);
-            ticket.SolvingEmployee = embeddedEmployee;
-            return RedirectToAction("UpdateTicket", ticket);
+            ticket.SolvingEmployee = embeddedSolvingEmployee;
+            return View(ticket);
         }
         
         [HttpGet]
