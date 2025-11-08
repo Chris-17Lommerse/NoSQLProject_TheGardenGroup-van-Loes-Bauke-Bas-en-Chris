@@ -65,17 +65,17 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
         public async Task<List<Ticket>> FilterTicketsOnNormalSearchInputAsync(string searchString)
         {
             var builders = Builders<Ticket>.Filter;
-            var finalFilter = new List<FilterDefinition<Ticket>>
-            {
-                builders.Eq("creation_time", searchString),
-                builders.Eq("ticket_status", searchString),
-                builders.Eq("ticket_name", searchString),
-                builders.Eq("ticket_escalation_description", searchString),
-                builders.Eq("is_solved", searchString),
-                builders.Eq("reporting_employee", searchString),
-                builders.Eq("solving_employee", searchString),
-                builders.Eq("priority", searchString)
-            };
+            var finalFilter = new List<FilterDefinition<Ticket>>();
+
+            var regex = new BsonRegularExpression(searchString, "i");
+
+            finalFilter.Add(builders.Regex("ticket_name", regex));
+            finalFilter.Add(builders.Regex("ticcket_status", regex));
+            finalFilter.Add(builders.Regex("ticket_escalation_description", regex));
+            finalFilter.Add(builders.Regex("reporting_employee", regex));
+            finalFilter.Add(builders.Regex("solving_employee", regex));
+            finalFilter.Add(builders.Regex("priority", regex));
+            
 
             FilterDefinition<Ticket> combinedFilter;
 
