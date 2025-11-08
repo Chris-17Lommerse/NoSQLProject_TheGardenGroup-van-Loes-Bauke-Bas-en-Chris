@@ -14,13 +14,21 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Services
             _ticketRepository = ticketRepository;
         }
 
-        public Task<List<Ticket>> FilterTicketsOnSearchInputAsync(string searchString)
+        public async Task<List<Ticket>> FilterTicketsOnSearchInputAsync(string searchString)
         {
             if(searchString == null)
             {
                 throw new ArgumentNullException(nameof(searchString));
             }
-            return _ticketRepository.FilterTicketsOnSearchInputAsync(searchString);
+
+            if (searchString.Contains("AND") || searchString.Contains("OR"))
+            {
+                return await _ticketRepository.FilterTicketsOnAndOrSearchInputAsync(searchString);
+            }
+            else
+            {
+                return await _ticketRepository.FilterTicketsOnNormalSearchInputAsync(searchString);
+            }
         }
 
         public Task<List<Ticket>> GetAllTickets()

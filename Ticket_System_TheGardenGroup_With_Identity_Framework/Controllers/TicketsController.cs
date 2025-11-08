@@ -47,14 +47,14 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
         {
             try
             {
-                var tickets = await _ticketService.GetAllTickets();
+                List<Ticket> tickets;
                 if(!string.IsNullOrEmpty(searchString))
                 {
                    tickets = await _ticketService.FilterTicketsOnSearchInputAsync(searchString);
                 }
                 else
                 {
-                    tickets = await _ticketService.GetAllTickets();
+                   tickets = await _ticketService.GetAllTickets();
                 }
 
                 if(tickets.Count == 0)
