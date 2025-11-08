@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using MongoDB.Bson;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Models;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Services.Interfaces;
@@ -19,6 +20,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
             _ticketService = ticketService;
             _employeeService = employeeService;
             _signInManager = signInManager;
+           
         }
         [HttpGet]
         [Authorize(Roles = "Service_Desk_Employee,Regular_Employee")]
@@ -26,14 +28,27 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
         {
             try
             {
+                List<Ticket> tickets;
                 if(!_signInManager.IsSignedIn(User))
                 {
                     TempData["ErrorMessage"] = $"Je moet inloggen om toegang te krijgen tot de pagina";
                     return RedirectToAction("Index", "Home");
                 }
-                var tickets = await _ticketService.GetAllTickets();
-
-                return View(tickets);
+                if (User.IsInRole("Service_Desk_Employee"))
+                {
+                    tickets = await _ticketService.GetAllTickets();
+                    return View(tickets);
+                }
+                else if(User.IsInRole("Regular_Employee"))
+                {
+                    tickets = await _ticketService.GetTicketsByEmployeeId();
+                    return View(tickets);
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = $"Je hebt geen toegang tot deze pagina";
+                    return RedirectToAction("Index", "Home");
+                }
             }
             catch (Exception)
             {
