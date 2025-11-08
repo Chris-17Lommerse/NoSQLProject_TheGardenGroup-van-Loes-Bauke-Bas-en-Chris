@@ -51,17 +51,20 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
                 if(!string.IsNullOrEmpty(searchString))
                 {
                    tickets = await _ticketService.FilterTicketsOnSearchInputAsync(searchString);
+                   
                 }
                 else
                 {
                    tickets = await _ticketService.GetAllTickets();
                 }
 
-                if(tickets.Count == 0)
+                if(tickets.Count > 0)
                 {
-                    TempData["ErrorMessage"] = $"Er konden geen tickets worden gevonden";
+                    TempData["SuccesMessage"] = $"Er zijn {tickets.Count} tickets gevonden die overeenkomen met de invoer";
                     return View(tickets);
                 }
+
+                TempData["ErrorMessage"] = $"Er konden geen tickets worden gevonden";
                 return View(tickets);
             } catch (ArgumentNullException ex)
             {
