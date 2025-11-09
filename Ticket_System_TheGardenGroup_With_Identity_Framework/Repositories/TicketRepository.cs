@@ -22,10 +22,12 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
 
         public async Task<List<Ticket>> FilterTicketsOnAndOrSearchInputAsync(string searchString)
         {
+            var builder = Builders<Ticket>.Filter;
+            var sortBuilder = Builders<Ticket>.Sort;
+
             string[] orGroups = searchString.Split(new[] { " OR ", " or " }, StringSplitOptions.RemoveEmptyEntries);
 
             List<FilterDefinition<Ticket>> orFilters = new List<FilterDefinition<Ticket>>();
-            var builder = Builders<Ticket>.Filter;
 
             foreach (string orGroup in orGroups)
             {
@@ -53,13 +55,17 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
 
             FilterDefinition<Ticket> finalFilter = orFilters.Count > 0 ? builder.Or(orFilters) : FilterDefinition<Ticket>.Empty;
 
-            return await _ticketCollection.Find(finalFilter).ToListAsync();
+            var sortByCreationDate = sortBuilder.Descending("creation_time");
+
+            return await _ticketCollection.Find(finalFilter).Sort(sortByCreationDate).ToListAsync();
 
         }
 
         public async Task<List<Ticket>> FilterTicketsOnNormalSearchInputAsync(string searchString)
         {
             var builders = Builders<Ticket>.Filter;
+            var sortBuilder = Builders<Ticket>.Sort;
+
             List<FilterDefinition<Ticket>> finalFilter = new List<FilterDefinition<Ticket>>();
 
             BsonRegularExpression regex = new BsonRegularExpression(searchString, "i");
@@ -83,7 +89,9 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
                 combinedFilter = FilterDefinition<Ticket>.Empty;
             }
 
-            return await _ticketCollection.Find(combinedFilter).ToListAsync();
+            var sortByCreationDate = sortBuilder.Descending("creation_time");
+
+            return await _ticketCollection.Find(combinedFilter).Sort(sortByCreationDate).ToListAsync();
         }
 
         public async Task<List<Ticket>> GetAllTickets()
