@@ -73,32 +73,32 @@
 
         <section>
             <p class="bg-info">Reporting Employee</p>
-            <label readonly for="ReportingEmployee">Reporting Employee Number</label>
-            <input readonly type="text" id="ReportingEmployeeNumber" name="ReportingEmployee.Name" class="form-control" value="@Model?.ReportingEmployee.EmployeeNumber" />
+            <label readonly for="ReportingEmployeeNumber">Reporting Employee Number</label>
+            <input readonly type="text" id="ReportingEmployeeNumber" name="ReportingEmployee.EmployeeNumber" class="form-control" value="@Model?.ReportingEmployee.EmployeeNumber" />
 
             <label readonly for="ReportingEmployeeName">Name</label>
-            <input readonly id="ReportingEmployeeName" type="text" class="form-control" value="@Model?.ReportingEmployee.Name" />
+            <input readonly id="ReportingEmployeeName" type="text" class="form-control" name="ReportingEmployee.Name" value="@Model?.ReportingEmployee.Name" />
 
             <label readonly for="ReportingEmployeeEmail">Email</label>
-            <input readonly id="ReportingEmployeeEmail" type="text" class="form-control" value="@Model?.ReportingEmployee.EmailAddress" />
+            <input readonly id="ReportingEmployeeEmail" type="text" class="form-control" name="ReportingEmployee.EmailAddress" value="@Model?.ReportingEmployee.EmailAddress" />
 
-            <label hidden readonly for="SolvingEmployeeRole">Role</label>
-            <input hidden readonly id="SolvingEmployeeRole" type="text" class="form-control" value="@Model?.ReportingEmployee.EmployeeRole" />
+            <label hidden readonly for="ReportingEmployeeRole">Role</label>
+            <input hidden readonly id="ReportingEmployeeRole" type="text" class="form-control" name="ReportingEmployee.EmployeeRole" value="@Model?.ReportingEmployee.EmployeeRole" />
         </section>
 
         <section>
             <p class="bg-info">Solving Employee</p>
             <label readonly for="SolvingEmployeeNumber">Solving Employee Number</label>
-            <input readonly type="text" id="SolvingEmployeeNumber" name="SolvingEmployeeNumber" class="form-control" value="@Model?.SolvingEmployee.EmployeeNumber" />
+            <input readonly type="text" id="SolvingEmployeeNumber" name="SolvingEmployee.EmployeeNumber" class="form-control" value="@Model?.SolvingEmployee.EmployeeNumber" />
 
             <label readonly for="SolvingEmployeeName">Name</label>
-            <input readonly id="SolvingEmployeeName" type="text" class="form-control" value="@Model?.SolvingEmployee.Name" />
+            <input readonly id="SolvingEmployeeName" type="text" class="form-control" name="SolvingEmployee.Name" value="@Model?.SolvingEmployee.Name" />
 
             <label hidden readonly for="SolvingEmployeeEmail">Email</label>
-            <input hidden readonly id="SolvingEmployeeEmail" type="text" class="form-control" value="@Model?.SolvingEmployee.EmailAddress" />
+            <input hidden readonly id="SolvingEmployeeEmail" type="text" class="form-control" name="SolvingEmployee.EmailAddress" value="@Model?.SolvingEmployee.EmailAddress" />
 
             <label hidden readonly for="SolvingEmployeeRole">Role</label>
-            <input hidden readonly id="SolvingEmployeeRole" type="text" class="form-control" value="@Model?.SolvingEmployee.EmployeeRole" />
+            <input hidden readonly id="SolvingEmployeeRole" type="text" class="form-control" name="SolvingEmployee.EmployeeRole" value="@Model?.SolvingEmployee.EmployeeRole" />
         </section>
 
         <button type="submit" name="updateTicket" class="btn btn-primary">Update ticket</button>

@@ -202,6 +202,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
             if (ticket.CreationTime != updatedTicket.CreationTime)
             {
                 Console.WriteLine($"CreationTime as DateTime: {ticket.CreationTime} != {updatedTicket.CreationTime}");
+                Console.WriteLine($"DateTime.Compare: { DateTime.Compare(ticket.CreationTime, updatedTicket.CreationTime)}");
                 switch (ticket.CreationTime.ToString() == updatedTicket.CreationTime.ToString())
                 {
                     case true:
@@ -217,29 +218,26 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
             if (ticket.Description != updatedTicket.Description) { Console.WriteLine($"Description: {ticket.Description} != {updatedTicket.Description}"); }
             if (ticket.IsSolved != updatedTicket.IsSolved) { Console.WriteLine($"IsSolved: {ticket.IsSolved} != {updatedTicket.IsSolved}"); }
             if (ticket.Priority != updatedTicket.Priority) { Console.WriteLine($"Priority: {ticket.Priority} != {updatedTicket.Priority}"); }
-            if (ticket.TicketEscalationDescription != updatedTicket.TicketEscalationDescription) { Console.WriteLine($"TicketEscalationDescription: {ticket.TicketEscalationDescription} != {updatedTicket.TicketEscalationDescription}"); }
-            if (ticket.ReportingEmployee != updatedTicket.ReportingEmployee)
+            if (ticket.TicketEscalationDescription != updatedTicket.TicketEscalationDescription)
             {
-                Console.WriteLine("ReportingEmployee: ticket.ReportingEmployee != updatedTicket.ReportingEmployee");
-                Console.BackgroundColor = ConsoleColor.DarkBlue;
-                Console.WriteLine("ReportingEmployee:");
-                if (ticket.ReportingEmployee.EmployeeNumber != updatedTicket.ReportingEmployee.EmployeeNumber) { Console.WriteLine($"EmployeeNumber: {ticket.ReportingEmployee.EmployeeNumber} != {updatedTicket.ReportingEmployee.EmployeeNumber}"); }
-                if (ticket.ReportingEmployee.EmployeeRole != updatedTicket.ReportingEmployee.EmployeeRole) { Console.WriteLine($"EmployeeRole: {ticket.ReportingEmployee.EmployeeRole} != {updatedTicket.ReportingEmployee.EmployeeRole}"); }
-                if (ticket.ReportingEmployee.EmailAddress != updatedTicket.ReportingEmployee.EmailAddress) { Console.WriteLine($"EmailAddress: {ticket.ReportingEmployee.EmailAddress} != {updatedTicket.ReportingEmployee.EmailAddress}"); }
-                if (ticket.ReportingEmployee.Name != updatedTicket.ReportingEmployee.Name) { Console.WriteLine($"Name: {ticket.ReportingEmployee.Name} != {updatedTicket.ReportingEmployee.Name}"); }
-                Console.BackgroundColor = ConsoleColor.Black;
+                Console.WriteLine($"TicketEscalationDescription: {ticket.TicketEscalationDescription} != {updatedTicket.TicketEscalationDescription}");
             }
-            if (ticket.SolvingEmployee != updatedTicket.SolvingEmployee)
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine("ReportingEmployee:");
+            if (ticket.ReportingEmployee.EmployeeNumber != updatedTicket.ReportingEmployee.EmployeeNumber) { Console.WriteLine($"EmployeeNumber: {ticket.ReportingEmployee.EmployeeNumber} != {updatedTicket.ReportingEmployee.EmployeeNumber}"); }
+            if (ticket.ReportingEmployee.EmployeeRole != updatedTicket.ReportingEmployee.EmployeeRole) { Console.WriteLine($"EmployeeRole: {ticket.ReportingEmployee.EmployeeRole} != {updatedTicket.ReportingEmployee.EmployeeRole}"); }
+            if (ticket.ReportingEmployee.EmailAddress != updatedTicket.ReportingEmployee.EmailAddress) { Console.WriteLine($"EmailAddress: {ticket.ReportingEmployee.EmailAddress} != {updatedTicket.ReportingEmployee.EmailAddress}"); }
+            if (ticket.ReportingEmployee.Name != updatedTicket.ReportingEmployee.Name)
             {
-                Console.WriteLine("SolvingEmployee: ticket.SolvingEmployee != updatedTicket.SolvingEmployee");
-                Console.WriteLine("SolvingEmployee:");
-                Console.BackgroundColor = ConsoleColor.DarkBlue;
-                if (ticket.SolvingEmployee.EmployeeNumber != updatedTicket.SolvingEmployee.EmployeeNumber) { Console.WriteLine($"EmployeeNumber: {ticket.SolvingEmployee.EmployeeNumber} != {updatedTicket.SolvingEmployee.EmployeeNumber}"); }
-                if (ticket.SolvingEmployee.EmployeeRole != updatedTicket.SolvingEmployee.EmployeeRole) { Console.WriteLine($"EmployeeRole: {ticket.SolvingEmployee.EmployeeRole} != {updatedTicket.SolvingEmployee.EmployeeRole}"); }
-                if (ticket.SolvingEmployee.EmailAddress != updatedTicket.SolvingEmployee.EmailAddress) { Console.WriteLine($"EmailAddress: {ticket.SolvingEmployee.EmailAddress} != {updatedTicket.SolvingEmployee.EmailAddress}"); }
-                if (ticket.SolvingEmployee.Name != updatedTicket.SolvingEmployee.Name) { Console.WriteLine($"Name: {ticket.SolvingEmployee.Name} != {updatedTicket.SolvingEmployee.Name}"); }
-                Console.BackgroundColor = ConsoleColor.Black;
+                Console.WriteLine($"Name: {ticket.ReportingEmployee.Name} != {updatedTicket.ReportingEmployee.Name}");
             }
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.WriteLine("SolvingEmployee:");
+            if (ticket.SolvingEmployee.EmployeeNumber != updatedTicket.SolvingEmployee.EmployeeNumber) { Console.WriteLine($"EmployeeNumber: {ticket.SolvingEmployee.EmployeeNumber} != {updatedTicket.SolvingEmployee.EmployeeNumber}"); }
+            if (ticket.SolvingEmployee.EmployeeRole != updatedTicket.SolvingEmployee.EmployeeRole) { Console.WriteLine($"EmployeeRole: {ticket.SolvingEmployee.EmployeeRole} != {updatedTicket.SolvingEmployee.EmployeeRole}"); }
+            if (ticket.SolvingEmployee.EmailAddress != updatedTicket.SolvingEmployee.EmailAddress) { Console.WriteLine($"EmailAddress: {ticket.SolvingEmployee.EmailAddress} != {updatedTicket.SolvingEmployee.EmailAddress}"); }
+            if (ticket.SolvingEmployee.Name != updatedTicket.SolvingEmployee.Name) { Console.WriteLine($"Name: {ticket.SolvingEmployee.Name} != {updatedTicket.SolvingEmployee.Name}"); }
+            Console.BackgroundColor = ConsoleColor.Black;
         }
         [HttpPost]
         [Authorize(Roles = "Service_Desk_Employee")]
