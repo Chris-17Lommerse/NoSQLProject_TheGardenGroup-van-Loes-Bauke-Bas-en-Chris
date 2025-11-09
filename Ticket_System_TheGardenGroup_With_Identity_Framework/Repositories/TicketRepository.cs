@@ -22,25 +22,20 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
 
         public async Task<List<Ticket>> FilterTicketsOnAndOrSearchInputAsync(string searchString)
         {
-            if (string.IsNullOrWhiteSpace(searchString))
-            {
-                return await _ticketCollection.Find(FilterDefinition<Ticket>.Empty).ToListAsync();
-            }
+            string[] orGroups = searchString.Split(new[] { " OR ", " or " }, StringSplitOptions.RemoveEmptyEntries);
 
-            var orGroups = searchString.Split(new[] { " OR ", " or " }, StringSplitOptions.RemoveEmptyEntries);
-
-            var orFilters = new List<FilterDefinition<Ticket>>();
+            List<FilterDefinition<Ticket>> orFilters = new List<FilterDefinition<Ticket>>();
             var builder = Builders<Ticket>.Filter;
 
-            foreach (var orGroup in orGroups)
+            foreach (string orGroup in orGroups)
             {
-                var andParts = orGroup.Split(new[] { " AND ", " and " }, StringSplitOptions.RemoveEmptyEntries);
+                string[] andParts = orGroup.Split(new[] { " AND ", " and " }, StringSplitOptions.RemoveEmptyEntries);
 
-                var andFilters = new List<FilterDefinition<Ticket>>();
+                List<FilterDefinition<Ticket>> andFilters = new List<FilterDefinition<Ticket>>();
 
-                foreach (var part in andParts)
+                foreach (string part in andParts)
                 {
-                    var pieces = part.Split(":", 2);
+                    string[] pieces = part.Split(":", 2);
                     if (pieces.Length == 2)
                     {
                         string field = pieces[0].Trim();
@@ -56,7 +51,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
                 }
             }
 
-            var finalFilter = orFilters.Count > 0 ? builder.Or(orFilters) : FilterDefinition<Ticket>.Empty;
+            FilterDefinition<Ticket> finalFilter = orFilters.Count > 0 ? builder.Or(orFilters) : FilterDefinition<Ticket>.Empty;
 
             return await _ticketCollection.Find(finalFilter).ToListAsync();
 
