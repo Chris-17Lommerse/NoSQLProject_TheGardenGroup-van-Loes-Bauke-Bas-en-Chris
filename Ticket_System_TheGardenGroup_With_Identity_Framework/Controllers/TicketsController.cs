@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
+using System.Net.Sockets;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Models;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Services.Interfaces;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.ViewModels;
@@ -139,46 +140,105 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Service_Desk_Employee")]
-        public async Task<IActionResult> UpdateTicket(Ticket ticket, int employeeNumber, string loadEmployee)
-            //Hopefully it will look like this in the future
-            //public async Task<IActionResult> UpdateTicket(Ticket ticket)
-        {
-            //This needs to be reworked. Either I make a new view model or something with JavaScript. 
+        public async Task<IActionResult> UpdateTicket(Ticket ticket)
+        { 
             try
             {
                 if (!_signInManager.IsSignedIn(User))
                 {
-                    TempData["ErrorMessage"] = $"Je moet inloggen om toegang te krijgen tot de pagina";
+                    TempData["ErrorMessage"] = "Je moet inloggen om toegang te krijgen tot de pagina.";
                     return RedirectToAction("Index", "Home");
                 }
-                //This if statement is not working :0
-                if (!string.IsNullOrEmpty(loadEmployee))
+                
+                //Sends the new info to the DB
+                _ticketService.UpdateTicket(ticket);
+                Ticket updatedTicket = await _ticketService.GetTicketByObjIdAsync(ticket.TicketId);
+                if (updatedTicket == null) 
                 {
-                    // Load employee
-                    EmbeddedEmployee embddEmpl = await _employeeService.GetActiveEmbeddedSdEmployeeByIdAsync(employeeNumber);
-                    if (embddEmpl != null)
-                    {
-                        ticket.SolvingEmployee = embddEmpl;
-                    }
-                    else
-                    {
-                        TempData["EmbddEmpl"] = "EmbeddedEmployee not found.";
-                    }
-
-                    return View(ticket); // reload the form with updated employee
+                    TempData["ErrorMessage"] = "The update corrupted the ticket or something else went terribly wrong.";
+                    return RedirectToAction("Index", "Tickets");
                 }
-                else
+                else if (updatedTicket == ticket) 
                 {
-                    //Sends the new info to the DB
-                    _ticketService.UpdateTicket(ticket);
                     TempData["SuccesMessage"] = "The ticket was succesfully updated.";
-                    return View(ticket);
+                    return View(updatedTicket);
+                }
+                else 
+                {
+                    Debugger(ticket, updatedTicket);
+                    TempData["ErrorMessage"] = "Ik weet niet hoe je hier bent gekomen, maar er is waarschijnlijk iets fout gegaan op de HttpPost van UpdateTicket.";
+                    return RedirectToAction("Index", "Tickets");
                 }
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = "The UpdateTicket page could not be loaded.";
+                TempData["ErrorMessage"] = "The HttpPost UpdateTicket page failed to load.";
+                Console.WriteLine(ex.ToString());
                 return RedirectToAction("UpdateTicket", ticket);
+            }
+        }
+        public void Debugger(Ticket ticket, Ticket updatedTicket)
+        {
+            Console.BackgroundColor = ConsoleColor.Magenta;
+            Console.WriteLine();
+            Console.WriteLine("Debugging UpdateTicket HttpPost");
+            Console.WriteLine("ticket : updatedTicket"); //what should have happened : what actually happened
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.WriteLine();
+            if (ticket.TicketId != updatedTicket.TicketId)
+            {
+                Console.WriteLine($"TicketId as ObjectId: {ticket.TicketId} != {updatedTicket.TicketId}");
+                switch (ticket.TicketId.ToString() == updatedTicket.TicketId.ToString())
+                {
+                    case true:
+                        Console.WriteLine($"TicketId as string: {ticket.TicketId.ToString()} == {updatedTicket.TicketId.ToString()}");
+                        break;
+                    case false:
+                        Console.WriteLine($"TicketId as string: {ticket.TicketId.ToString()} != {updatedTicket.TicketId.ToString()}");
+                        break;
+                }
+            }
+            
+            if (ticket.CreationTime != updatedTicket.CreationTime)
+            {
+                Console.WriteLine($"CreationTime as DateTime: {ticket.CreationTime} != {updatedTicket.CreationTime}");
+                switch (ticket.CreationTime.ToString() == updatedTicket.CreationTime.ToString())
+                {
+                    case true:
+                        Console.WriteLine($"CreationTime as string: {ticket.CreationTime.ToString()} == {updatedTicket.CreationTime.ToString()}");
+                        break;
+                    case false:
+                        Console.WriteLine($"CreationTime as string: {ticket.CreationTime} != {updatedTicket.CreationTime}");
+                        break;
+                }
+            }
+            if (ticket.TicketStatus != updatedTicket.TicketStatus) { Console.WriteLine($"TicketStatus: {ticket.TicketStatus} != {updatedTicket.TicketStatus}"); }
+            if (ticket.TicketName != updatedTicket.TicketName) { Console.WriteLine($"TicketName: {ticket.TicketName} != {updatedTicket.TicketName}"); }
+            if (ticket.Description != updatedTicket.Description) { Console.WriteLine($"Description: {ticket.Description} != {updatedTicket.Description}"); }
+            if (ticket.IsSolved != updatedTicket.IsSolved) { Console.WriteLine($"IsSolved: {ticket.IsSolved} != {updatedTicket.IsSolved}"); }
+            if (ticket.Priority != updatedTicket.Priority) { Console.WriteLine($"Priority: {ticket.Priority} != {updatedTicket.Priority}"); }
+            if (ticket.TicketEscalationDescription != updatedTicket.TicketEscalationDescription) { Console.WriteLine($"TicketEscalationDescription: {ticket.TicketEscalationDescription} != {updatedTicket.TicketEscalationDescription}"); }
+            if (ticket.ReportingEmployee != updatedTicket.ReportingEmployee)
+            {
+                Console.WriteLine("ReportingEmployee: ticket.ReportingEmployee != updatedTicket.ReportingEmployee");
+                Console.BackgroundColor = ConsoleColor.DarkBlue;
+                Console.WriteLine("ReportingEmployee:");
+                if (ticket.ReportingEmployee.EmployeeNumber != updatedTicket.ReportingEmployee.EmployeeNumber) { Console.WriteLine($"EmployeeNumber: {ticket.ReportingEmployee.EmployeeNumber} != {updatedTicket.ReportingEmployee.EmployeeNumber}"); }
+                if (ticket.ReportingEmployee.EmployeeRole != updatedTicket.ReportingEmployee.EmployeeRole) { Console.WriteLine($"EmployeeRole: {ticket.ReportingEmployee.EmployeeRole} != {updatedTicket.ReportingEmployee.EmployeeRole}"); }
+                if (ticket.ReportingEmployee.EmailAddress != updatedTicket.ReportingEmployee.EmailAddress) { Console.WriteLine($"EmailAddress: {ticket.ReportingEmployee.EmailAddress} != {updatedTicket.ReportingEmployee.EmailAddress}"); }
+                if (ticket.ReportingEmployee.Name != updatedTicket.ReportingEmployee.Name) { Console.WriteLine($"Name: {ticket.ReportingEmployee.Name} != {updatedTicket.ReportingEmployee.Name}"); }
+                Console.BackgroundColor = ConsoleColor.Black;
+            }
+            if (ticket.SolvingEmployee != updatedTicket.SolvingEmployee)
+            {
+                Console.WriteLine("SolvingEmployee: ticket.SolvingEmployee != updatedTicket.SolvingEmployee");
+                Console.WriteLine("SolvingEmployee:");
+                Console.BackgroundColor = ConsoleColor.DarkBlue;
+                if (ticket.SolvingEmployee.EmployeeNumber != updatedTicket.SolvingEmployee.EmployeeNumber) { Console.WriteLine($"EmployeeNumber: {ticket.SolvingEmployee.EmployeeNumber} != {updatedTicket.SolvingEmployee.EmployeeNumber}"); }
+                if (ticket.SolvingEmployee.EmployeeRole != updatedTicket.SolvingEmployee.EmployeeRole) { Console.WriteLine($"EmployeeRole: {ticket.SolvingEmployee.EmployeeRole} != {updatedTicket.SolvingEmployee.EmployeeRole}"); }
+                if (ticket.SolvingEmployee.EmailAddress != updatedTicket.SolvingEmployee.EmailAddress) { Console.WriteLine($"EmailAddress: {ticket.SolvingEmployee.EmailAddress} != {updatedTicket.SolvingEmployee.EmailAddress}"); }
+                if (ticket.SolvingEmployee.Name != updatedTicket.SolvingEmployee.Name) { Console.WriteLine($"Name: {ticket.SolvingEmployee.Name} != {updatedTicket.SolvingEmployee.Name}"); }
+                Console.BackgroundColor = ConsoleColor.Black;
             }
         }
         [HttpPost]

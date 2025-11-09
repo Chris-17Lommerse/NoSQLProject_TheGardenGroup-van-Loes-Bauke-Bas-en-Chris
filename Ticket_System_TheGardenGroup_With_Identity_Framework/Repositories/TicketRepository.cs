@@ -116,17 +116,22 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
 
         }
 
-        //TODO reporting_employee and solving_employee can not be updated yet
         public void UpdateTicket(Ticket ticket)
         {
             var filter = Builders<Ticket>.Filter.Eq("_id", ticket.TicketId);
             var combinedUpdate = Builders<Ticket>.Update.Combine(
+            //Ticket
                 Builders<Ticket>.Update.Set("ticket_name", ticket.TicketName),
                 Builders<Ticket>.Update.Set("ticket_status", ticket.TicketStatus),
                 Builders<Ticket>.Update.Set("description", ticket.Description),
                 Builders<Ticket>.Update.Set("ticket_escalation_description", ticket.TicketEscalationDescription),
                 Builders<Ticket>.Update.Set("is_solved", ticket.IsSolved),
-                Builders<Ticket>.Update.Set("priority", ticket.Priority)
+                Builders<Ticket>.Update.Set("priority", ticket.Priority),
+            //EmbeddedSolvingEmployee
+                Builders<Ticket>.Update.Set("solving_employee.employee_number", ticket.SolvingEmployee.EmployeeNumber),
+                Builders<Ticket>.Update.Set("solving_employee.employee_role", ticket.SolvingEmployee.EmployeeRole),
+                Builders<Ticket>.Update.Set("solving_employee.emailaddress", ticket.SolvingEmployee.EmailAddress),
+                Builders<Ticket>.Update.Set("solving_employee.name", ticket.SolvingEmployee.Name)
             );
             _ticketCollection.UpdateOneAsync(filter, combinedUpdate);
         }
