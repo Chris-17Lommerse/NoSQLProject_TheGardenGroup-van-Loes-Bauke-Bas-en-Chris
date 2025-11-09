@@ -49,5 +49,11 @@ namespace Ticket_System_TheGardenGroup.Services
         {
             return await _employeeRepository.GetActiveEmbeddedSdEmployeeByIdAsync(employeeNumber);
         }
+
+        //working on this code below
+        public async Task<Employee> FindTicketIdInWorkingOnArry(Ticket ticketId)
+        {
+            return await _employeeRepository.FindTicketIdInWorkingOnArryAsync(ticketId);
+        }
     }
 }

@@ -19,5 +19,7 @@ namespace Ticket_System_TheGardenGroup.Repositories.Interfaces
         //for finding a service desk employee to embed
         Task<EmbeddedEmployee> GetActiveEmbeddedSdEmployeeByIdAsync(int employeeNumber);
 
-	}
+        Task FindTicketIdInWorkingOnArryAsync(ObjectId ticketId, List<ObjectId> connectedTicketIdsToRemove);
+
+    }
 }
