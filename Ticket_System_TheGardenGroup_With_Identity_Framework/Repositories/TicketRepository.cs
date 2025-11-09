@@ -60,9 +60,9 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
         public async Task<List<Ticket>> FilterTicketsOnNormalSearchInputAsync(string searchString)
         {
             var builders = Builders<Ticket>.Filter;
-            var finalFilter = new List<FilterDefinition<Ticket>>();
+            List<FilterDefinition<Ticket>> finalFilter = new List<FilterDefinition<Ticket>>();
 
-            var regex = new BsonRegularExpression(searchString, "i");
+            BsonRegularExpression regex = new BsonRegularExpression(searchString, "i");
 
             finalFilter.Add(builders.Regex("ticket_name", regex));
             finalFilter.Add(builders.Regex("ticcket_status", regex));
