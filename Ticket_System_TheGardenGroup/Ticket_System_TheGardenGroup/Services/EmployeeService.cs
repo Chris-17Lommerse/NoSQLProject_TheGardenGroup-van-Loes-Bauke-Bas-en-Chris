@@ -53,7 +53,8 @@ namespace Ticket_System_TheGardenGroup.Services
         //working on this code below
         public async Task<Employee> FindTicketIdInWorkingOnArry(Ticket ticketId)
         {
-            return await _employeeRepository.FindTicketIdInWorkingOnArryAsync(ticketId);
+            throw new NotImplementedException("Function not yet implemented");
+            //return await _employeeRepository.FindTicketIdInWorkingOnArryAsync(ticketId);
         }
     }
 }

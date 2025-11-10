@@ -61,5 +61,15 @@ namespace Ticket_System_TheGardenGroup.Repositories
             
         }
 
+        public void ArchiveTicekt(Ticket ticket)
+        {
+            var filter = Builders<Ticket>.Filter.Lt(t => t.CreationTime, DateTime.UtcNow.AddYears(-2));
+
+            var combinedUpdate = Builders<Ticket>.Update.Combine(
+                Builders<Ticket>.Update.Set("ticket_status", ticket.TicketStatus)
+                
+            );
+            _ticketCollection.UpdateManyAsync(filter, combinedUpdate);
+        }
     }
 }

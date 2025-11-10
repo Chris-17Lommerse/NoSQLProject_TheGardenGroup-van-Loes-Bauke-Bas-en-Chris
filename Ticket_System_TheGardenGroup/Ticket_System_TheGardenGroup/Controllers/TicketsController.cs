@@ -34,6 +34,14 @@ namespace Ticket_System_TheGardenGroup.Controllers
             }
             
         }
+        /*[HttpPost]
+        public async Task<IActionResult> Index()
+        {
+            //archive tickets
+
+            
+            return View();
+        }*/
         /*[HttpGet]
         public ActionResult ViewTicket(ObjectId employeeID)
         {
