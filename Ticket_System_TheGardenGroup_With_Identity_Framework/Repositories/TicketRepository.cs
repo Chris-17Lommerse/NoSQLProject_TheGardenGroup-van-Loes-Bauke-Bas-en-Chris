@@ -20,27 +20,24 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
             _ticketCollection.InsertOneAsync(ticket);
         }
 
-        public async Task<List<Ticket>> FilterTicketsOnSearchInputAsync(string searchString)
+        public async Task<List<Ticket>> FilterTicketsOnAndOrSearchInputAsync(string searchString)
         {
-            if(string.IsNullOrWhiteSpace(searchString))
-            {
-                return await _ticketCollection.Find(FilterDefinition<Ticket>.Empty).ToListAsync();
-            }
-
-            var orGroups = searchString.Split(new[] { " OR ", " or " }, StringSplitOptions.RemoveEmptyEntries);
-
-            var orFilters = new List<FilterDefinition<Ticket>>();
             var builder = Builders<Ticket>.Filter;
+            var sortBuilder = Builders<Ticket>.Sort;
 
-            foreach (var orGroup in orGroups)
+            string[] orGroups = searchString.Split(new[] { " OR ", " or " }, StringSplitOptions.RemoveEmptyEntries);
+
+            List<FilterDefinition<Ticket>> orFilters = new List<FilterDefinition<Ticket>>();
+
+            foreach (string orGroup in orGroups)
             {
-                var andParts = orGroup.Split(new[] { " AND ", " and " }, StringSplitOptions.RemoveEmptyEntries);
+                string[] andParts = orGroup.Split(new[] { " AND ", " and " }, StringSplitOptions.RemoveEmptyEntries);
 
-                var andFilters = new List<FilterDefinition<Ticket>>();
+                List<FilterDefinition<Ticket>> andFilters = new List<FilterDefinition<Ticket>>();
 
-                foreach (var part in andParts)
+                foreach (string part in andParts)
                 {
-                    var pieces = part.Split(":", 2);
+                    string[] pieces = part.Split(":", 2);
                     if (pieces.Length == 2)
                     {
                         string field = pieces[0].Trim();
@@ -56,10 +53,45 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
                 }
             }
 
-            var finalFilter = orFilters.Count > 0 ? builder.Or(orFilters) : FilterDefinition<Ticket>.Empty;
+            FilterDefinition<Ticket> finalFilter = orFilters.Count > 0 ? builder.Or(orFilters) : FilterDefinition<Ticket>.Empty;
 
-            return await _ticketCollection.Find(finalFilter).ToListAsync();
+            var sortByCreationDate = sortBuilder.Descending("creation_time");
+
+            return await _ticketCollection.Find(finalFilter).Sort(sortByCreationDate).ToListAsync();
+
+        }
+
+        public async Task<List<Ticket>> FilterTicketsOnNormalSearchInputAsync(string searchString)
+        {
+            var builders = Builders<Ticket>.Filter;
+            var sortBuilder = Builders<Ticket>.Sort;
+
+            List<FilterDefinition<Ticket>> finalFilter = new List<FilterDefinition<Ticket>>();
+
+            BsonRegularExpression regex = new BsonRegularExpression(searchString, "i");
+
+            finalFilter.Add(builders.Regex("ticket_name", regex));
+            finalFilter.Add(builders.Regex("ticcket_status", regex));
+            finalFilter.Add(builders.Regex("ticket_escalation_description", regex));
+            finalFilter.Add(builders.Regex("reporting_employee", regex));
+            finalFilter.Add(builders.Regex("solving_employee", regex));
+            finalFilter.Add(builders.Regex("priority", regex));
             
+
+            FilterDefinition<Ticket> combinedFilter;
+
+            if (finalFilter.Count > 0)
+            {
+                combinedFilter = builders.Or(finalFilter);
+            }
+            else
+            {
+                combinedFilter = FilterDefinition<Ticket>.Empty;
+            }
+
+            var sortByCreationDate = sortBuilder.Descending("creation_time");
+
+            return await _ticketCollection.Find(combinedFilter).Sort(sortByCreationDate).ToListAsync();
         }
 
         public async Task<List<Ticket>> GetAllTickets()
