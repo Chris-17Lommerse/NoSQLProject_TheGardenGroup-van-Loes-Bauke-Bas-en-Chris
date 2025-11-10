@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using System.Net.Sockets;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Models;
+using Ticket_System_TheGardenGroup_With_Identity_Framework.Models.Enums;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Services.Interfaces;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.ViewModels;
 
@@ -140,8 +141,78 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Service_Desk_Employee")]
+        //public async Task<IActionResult> UpdateTicket(string ticketId, DateTime creationTime, string ticketStatus, string ticketName, string description, string ticketEscalationDescription, bool isSolved, string priority, int reportingEmployeeEmployeeNumber, string reportingEmployeeName, string reportingEmployeeEmailAddress, string reportingEmployeeEmployeeRole, int solvingEmployeeEmployeeNumber, string solvingEmployeeName, string solvingEmployeeEmailAddress, string solvingEmployeeEmployeeRole)
         public async Task<IActionResult> UpdateTicket(Ticket ticket)
-        { 
+        {
+            /*Ticket ticket;
+            TicketStatus ticketStatusEnum;
+            switch (ticketStatus)
+            {
+                case "Open":
+                    ticketStatusEnum = TicketStatus.Open;
+                    break;
+                case "Closed":
+                    ticketStatusEnum = TicketStatus.Closed;
+                    break;
+                case "Resolved":
+                    ticketStatusEnum = TicketStatus.Resolved;
+                    break;
+                default:
+                    ticketStatusEnum = TicketStatus.Open;
+                    break;
+            }
+            TicketPriorityEnum priorityEnum;
+            switch (priority)
+            {
+                case "P1":
+                    priorityEnum = TicketPriorityEnum.P1;
+                    break;
+                case "P2":
+                    priorityEnum = TicketPriorityEnum.P2;
+                    break;
+                case "P3":
+                    priorityEnum = TicketPriorityEnum.P3;
+                    break;
+                case "P4":
+                    priorityEnum = TicketPriorityEnum.P4;
+                    break;
+                case "P5":
+                    priorityEnum = TicketPriorityEnum.P5;
+                    break;
+                default:
+                    priorityEnum = TicketPriorityEnum.P1;
+                    break;
+            }
+            EmployeeRole reportingEmployeeEmployeeRoleEnum;
+            switch (reportingEmployeeEmployeeRole)
+            {
+                case "Service_Desk_Employee":
+                    reportingEmployeeEmployeeRoleEnum = EmployeeRole.Service_Desk_Employee;
+                    break;
+                case "Regular_Employee":
+                    reportingEmployeeEmployeeRoleEnum = EmployeeRole.Regular_Employee;
+                    break;
+                default:
+                    reportingEmployeeEmployeeRoleEnum = EmployeeRole.Regular_Employee;
+                    break;
+            }
+            EmployeeRole solvingEmployeeEmployeeRoleEnum;
+            switch (priority)
+            {
+                case "Service_Desk_Employee":
+                    solvingEmployeeEmployeeRoleEnum = EmployeeRole.Service_Desk_Employee;
+                    break;
+                case "Regular_Employee":
+                    solvingEmployeeEmployeeRoleEnum = EmployeeRole.Regular_Employee;
+                    break;
+                default:
+                    solvingEmployeeEmployeeRoleEnum = EmployeeRole.Regular_Employee;
+                    break;
+            }
+            ObjectId ticketObjectId = new ObjectId(ticketId);
+            ticket = new Ticket(ticketObjectId, creationTime, ticketStatusEnum, ticketName, description, isSolved, priorityEnum, ticketEscalationDescription, new EmbeddedEmployee(reportingEmployeeEmployeeNumber, reportingEmployeeEmployeeRoleEnum, reportingEmployeeEmailAddress, reportingEmployeeName), new EmbeddedEmployee(solvingEmployeeEmployeeNumber, solvingEmployeeEmployeeRoleEnum, solvingEmployeeEmailAddress, solvingEmployeeName));
+            */
+            Console.WriteLine(ticket.ToString());
             try
             {
                 if (!_signInManager.IsSignedIn(User))
@@ -149,7 +220,6 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
                     TempData["ErrorMessage"] = "Je moet inloggen om toegang te krijgen tot de pagina.";
                     return RedirectToAction("Index", "Home");
                 }
-                
                 //Sends the new info to the DB
                 _ticketService.UpdateTicket(ticket);
                 Ticket updatedTicket = await _ticketService.GetTicketByObjIdAsync(ticket.TicketId);
@@ -158,16 +228,15 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
                     TempData["ErrorMessage"] = "The update corrupted the ticket or something else went terribly wrong.";
                     return RedirectToAction("Index", "Tickets");
                 }
-                else if (updatedTicket == ticket) 
+                else if (!Debugger(ticket, updatedTicket)) 
+                {
+                    TempData["ErrorMessage"] = "Ik weet niet hoe je hier bent gekomen, maar er is waarschijnlijk iets fout gegaan op de HttpPost van UpdateTicket.";
+                    return RedirectToAction("Index", "Tickets");
+                }
+                else
                 {
                     TempData["SuccesMessage"] = "The ticket was succesfully updated.";
                     return View(updatedTicket);
-                }
-                else 
-                {
-                    Debugger(ticket, updatedTicket);
-                    TempData["ErrorMessage"] = "Ik weet niet hoe je hier bent gekomen, maar er is waarschijnlijk iets fout gegaan op de HttpPost van UpdateTicket.";
-                    return RedirectToAction("Index", "Tickets");
                 }
             }
             catch (Exception ex)
@@ -177,8 +246,10 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
                 return RedirectToAction("UpdateTicket", ticket);
             }
         }
-        public void Debugger(Ticket ticket, Ticket updatedTicket)
+        
+        public bool Debugger(Ticket ticket, Ticket updatedTicket)
         {
+            bool hasTicketUpdatedCorrectly = true;
             Console.BackgroundColor = ConsoleColor.Magenta;
             Console.WriteLine();
             Console.WriteLine("Debugging UpdateTicket HttpPost");
@@ -197,6 +268,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
                         Console.WriteLine($"TicketId as string: {ticket.TicketId.ToString()} != {updatedTicket.TicketId.ToString()}");
                         break;
                 }
+                hasTicketUpdatedCorrectly = false;
             }
             
             if (ticket.CreationTime != updatedTicket.CreationTime)
@@ -213,41 +285,52 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
                         break;
                 }
             }
-            if (ticket.TicketStatus != updatedTicket.TicketStatus) { Console.WriteLine($"TicketStatus: {ticket.TicketStatus} != {updatedTicket.TicketStatus}"); }
-            if (ticket.TicketName != updatedTicket.TicketName) { Console.WriteLine($"TicketName: {ticket.TicketName} != {updatedTicket.TicketName}"); }
-            if (ticket.Description != updatedTicket.Description) { Console.WriteLine($"Description: {ticket.Description} != {updatedTicket.Description}"); }
-            if (ticket.IsSolved != updatedTicket.IsSolved) { Console.WriteLine($"IsSolved: {ticket.IsSolved} != {updatedTicket.IsSolved}"); }
-            if (ticket.Priority != updatedTicket.Priority) { Console.WriteLine($"Priority: {ticket.Priority} != {updatedTicket.Priority}"); }
+            if (ticket.TicketStatus != updatedTicket.TicketStatus) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"TicketStatus: {ticket.TicketStatus} != {updatedTicket.TicketStatus}"); }
+            if (ticket.TicketName != updatedTicket.TicketName) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"TicketName: {ticket.TicketName} != {updatedTicket.TicketName}"); }
+            if (ticket.Description != updatedTicket.Description) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"Description: {ticket.Description} != {updatedTicket.Description}"); }
+            if (ticket.IsSolved != updatedTicket.IsSolved) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"IsSolved: {ticket.IsSolved} != {updatedTicket.IsSolved}"); }
+            if (ticket.Priority != updatedTicket.Priority) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"Priority: {ticket.Priority} != {updatedTicket.Priority}"); }
             if (ticket.TicketEscalationDescription != updatedTicket.TicketEscalationDescription)
             {
                 Console.WriteLine($"TicketEscalationDescription: {ticket.TicketEscalationDescription} != {updatedTicket.TicketEscalationDescription}");
+                hasTicketUpdatedCorrectly = false;
             }
             Console.BackgroundColor = ConsoleColor.DarkBlue;
             Console.WriteLine("ReportingEmployee:");
-            if (ticket.ReportingEmployee.EmployeeNumber != updatedTicket.ReportingEmployee.EmployeeNumber) { Console.WriteLine($"EmployeeNumber: {ticket.ReportingEmployee.EmployeeNumber} != {updatedTicket.ReportingEmployee.EmployeeNumber}"); }
-            if (ticket.ReportingEmployee.EmployeeRole != updatedTicket.ReportingEmployee.EmployeeRole) { Console.WriteLine($"EmployeeRole: {ticket.ReportingEmployee.EmployeeRole} != {updatedTicket.ReportingEmployee.EmployeeRole}"); }
-            if (ticket.ReportingEmployee.EmailAddress != updatedTicket.ReportingEmployee.EmailAddress) { Console.WriteLine($"EmailAddress: {ticket.ReportingEmployee.EmailAddress} != {updatedTicket.ReportingEmployee.EmailAddress}"); }
+            if (ticket.ReportingEmployee.EmployeeNumber != updatedTicket.ReportingEmployee.EmployeeNumber) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"EmployeeNumber: {ticket.ReportingEmployee.EmployeeNumber} != {updatedTicket.ReportingEmployee.EmployeeNumber}"); }
+            if (ticket.ReportingEmployee.EmployeeRole != updatedTicket.ReportingEmployee.EmployeeRole) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"EmployeeRole: {ticket.ReportingEmployee.EmployeeRole} != {updatedTicket.ReportingEmployee.EmployeeRole}"); }
+            if (ticket.ReportingEmployee.EmailAddress != updatedTicket.ReportingEmployee.EmailAddress) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"EmailAddress: {ticket.ReportingEmployee.EmailAddress} != {updatedTicket.ReportingEmployee.EmailAddress}"); }
             if (ticket.ReportingEmployee.Name != updatedTicket.ReportingEmployee.Name)
             {
-                Console.WriteLine($"Name: {ticket.ReportingEmployee.Name} != {updatedTicket.ReportingEmployee.Name}");
+                hasTicketUpdatedCorrectly = false; Console.WriteLine($"Name: {ticket.ReportingEmployee.Name} != {updatedTicket.ReportingEmployee.Name}");
             }
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.WriteLine("SolvingEmployee:");
-            if (ticket.SolvingEmployee.EmployeeNumber != updatedTicket.SolvingEmployee.EmployeeNumber) { Console.WriteLine($"EmployeeNumber: {ticket.SolvingEmployee.EmployeeNumber} != {updatedTicket.SolvingEmployee.EmployeeNumber}"); }
-            if (ticket.SolvingEmployee.EmployeeRole != updatedTicket.SolvingEmployee.EmployeeRole) { Console.WriteLine($"EmployeeRole: {ticket.SolvingEmployee.EmployeeRole} != {updatedTicket.SolvingEmployee.EmployeeRole}"); }
-            if (ticket.SolvingEmployee.EmailAddress != updatedTicket.SolvingEmployee.EmailAddress) { Console.WriteLine($"EmailAddress: {ticket.SolvingEmployee.EmailAddress} != {updatedTicket.SolvingEmployee.EmailAddress}"); }
-            if (ticket.SolvingEmployee.Name != updatedTicket.SolvingEmployee.Name) { Console.WriteLine($"Name: {ticket.SolvingEmployee.Name} != {updatedTicket.SolvingEmployee.Name}"); }
+            if (ticket.SolvingEmployee.EmployeeNumber != updatedTicket.SolvingEmployee.EmployeeNumber) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"EmployeeNumber: {ticket.SolvingEmployee.EmployeeNumber} != {updatedTicket.SolvingEmployee.EmployeeNumber}"); }
+            if (ticket.SolvingEmployee.EmployeeRole != updatedTicket.SolvingEmployee.EmployeeRole) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"EmployeeRole: {ticket.SolvingEmployee.EmployeeRole} != {updatedTicket.SolvingEmployee.EmployeeRole}"); }
+            if (ticket.SolvingEmployee.EmailAddress != updatedTicket.SolvingEmployee.EmailAddress) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"EmailAddress: {ticket.SolvingEmployee.EmailAddress} != {updatedTicket.SolvingEmployee.EmailAddress}"); }
+            if (ticket.SolvingEmployee.Name != updatedTicket.SolvingEmployee.Name) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"Name: {ticket.SolvingEmployee.Name} != {updatedTicket.SolvingEmployee.Name}"); }
             Console.BackgroundColor = ConsoleColor.Black;
+            return hasTicketUpdatedCorrectly;
         }
         [HttpPost]
         [Authorize(Roles = "Service_Desk_Employee")]
         public async Task<IActionResult> UpdateSolvingEmployee(string ticketId, int solvingEmployeeNumber)
         {
-            EmbeddedEmployee embeddedSolvingEmployee = await _employeeService.GetActiveEmbeddedSdEmployeeByIdAsync(solvingEmployeeNumber);
-            ObjectId objectId = new ObjectId(ticketId);
-            Ticket ticket = await _ticketService.GetTicketByObjIdAsync(objectId);
-            ticket.SolvingEmployee = embeddedSolvingEmployee;
-            return View(ticket);
+            try
+            {
+                EmbeddedEmployee embeddedSolvingEmployee = await _employeeService.GetActiveEmbeddedSdEmployeeByIdAsync(solvingEmployeeNumber);
+                ObjectId objectId = new ObjectId(ticketId);
+                Ticket ticket = await _ticketService.GetTicketByObjIdAsync(objectId);
+                ticket.SolvingEmployee = embeddedSolvingEmployee;
+                TempData["SuccesMessage"] = "The update embeddedEmployee succeeded.";
+                return View(ticket);
+            }
+            catch (Exception ex) 
+            {
+                TempData["ErrorMessage"] = "The update embeddedEmployee failed.";
+                return RedirectToAction("Index", "Tickets");
+            }
         }
         
         [HttpGet]

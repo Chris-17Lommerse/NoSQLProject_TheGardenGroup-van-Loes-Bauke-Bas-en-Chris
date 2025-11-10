@@ -36,5 +36,27 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Models
 
         [BsonElement("solving_employee")]
         public EmbeddedEmployee SolvingEmployee { get; set; } = new EmbeddedEmployee();
+
+        public Ticket()
+        {
+            
+        }
+        public Ticket(ObjectId ticketId, DateTime creationTime, TicketStatus ticketStatus, string ticketName, string description, bool isSolved, TicketPriorityEnum priority, string ticketEscalationDescription, EmbeddedEmployee reportingEmployee, EmbeddedEmployee solvingEmployee)
+        {
+            TicketId = ticketId;
+            CreationTime = creationTime;
+            TicketStatus = ticketStatus;
+            TicketName = ticketName;
+            Description = description;
+            IsSolved = isSolved;
+            Priority = priority;
+            TicketEscalationDescription = ticketEscalationDescription;
+            ReportingEmployee = reportingEmployee;
+            SolvingEmployee = solvingEmployee;
+        }
+        public override string ToString()
+        {
+            return $"ticketId: {TicketId}, creationTime: {CreationTime}, ticketStatus: {TicketStatus}, ticketName: {TicketName}, description: {Description}, isSolved: {IsSolved}, priority: {Priority}, ticketEscalationDescription: {TicketEscalationDescription}\n ReportingEmployee: {ReportingEmployee.ToString()}\n SolvingEmployee: {SolvingEmployee.ToString()}";
+        }
     }
 }

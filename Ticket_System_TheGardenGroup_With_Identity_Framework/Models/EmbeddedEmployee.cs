@@ -22,5 +22,21 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Models
         {
             throw new NotImplementedException();
         }
+        public EmbeddedEmployee()
+        {
+            
+        }
+
+        public EmbeddedEmployee(int employeeNumber, EmployeeRole employeeRole, string emailAddress, string name)
+        {
+            EmployeeNumber = employeeNumber;
+            EmployeeRole = employeeRole;
+            EmailAddress = emailAddress;
+            Name = name;
+        }
+        public override string ToString()
+        {
+            return $"employeeNumber: {EmployeeNumber}, employeeRole: {EmployeeRole}, emailAddress: {EmailAddress}, name: {Name}";
+        }
     }
 }
