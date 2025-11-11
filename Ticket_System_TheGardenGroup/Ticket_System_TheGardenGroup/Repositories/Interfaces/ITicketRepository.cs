@@ -11,6 +11,6 @@ namespace Ticket_System_TheGardenGroup.Repositories.Interfaces
 		Task<Ticket> GetTicketByObjIdAsync(ObjectId objId);
         void UpdateTicket(Ticket ticket);
         void DeleteTicket(Ticket ticket);
-        void ArchiveTicekt(Ticket ticket);
+        public Task ArchiveAllOldTicektsAsync(Ticket ticket);
     }
 }

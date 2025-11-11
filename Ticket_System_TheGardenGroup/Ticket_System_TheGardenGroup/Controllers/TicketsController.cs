@@ -2,6 +2,7 @@
 using MongoDB.Bson;
 using System.Linq.Expressions;
 using Ticket_System_TheGardenGroup.Models;
+using Ticket_System_TheGardenGroup.Models.Enums;
 using Ticket_System_TheGardenGroup.Services;
 using Ticket_System_TheGardenGroup.Services.Interfaces;
 using Ticket_System_TheGardenGroup.ViewModels;
@@ -34,28 +35,39 @@ namespace Ticket_System_TheGardenGroup.Controllers
             }
             
         }
-        /*[HttpPost]
-        public async Task<IActionResult> Index()
+        [HttpPost]
+        public async Task<IActionResult> Index(Ticket ticket)
         {
-            //archive tickets
+            try
+            {
+                _ticketService.ArchiveAllOldTicektsAsync(ticket);
 
-            
-            return View();
-        }*/
-        /*[HttpGet]
+                List<Ticket> tickets = await _ticketService.GetAllTickets();
+
+                return View(tickets);
+            }
+            catch (Exception ex)
+            {
+                RedirectToAction("index");
+                throw new Exception("Error: " + ex);
+            }
+        }
+
+        [HttpGet]
         public ActionResult ViewTicket(ObjectId employeeID)
         {
             try
             {
-                return View(_ticketService.GetTicketAsync(employeeID));
+                throw new NotImplementedException("Deze methode is nog niet geïmplementeerd!");
+                //return View(_ticketService.GetTicketAsync(employeeID));
             }
             catch (Exception ex)
             {
                 TempData["ErrorMessage"] = "The ViewTicket page could not be loaded.";
                 return RedirectToAction("Index");
             }
-        }*/
-		[HttpGet]
+        }
+        [HttpGet]
 		public async Task<IActionResult> UpdateTicket(string ticketId)
 		{
 			if (string.IsNullOrEmpty(ticketId))

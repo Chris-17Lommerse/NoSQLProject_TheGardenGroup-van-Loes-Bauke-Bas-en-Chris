@@ -1,6 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using Ticket_System_TheGardenGroup.Models;
+using Ticket_System_TheGardenGroup.Models.Enums;
 using Ticket_System_TheGardenGroup.Repositories.Interfaces;
 
 namespace Ticket_System_TheGardenGroup.Repositories
@@ -61,15 +62,14 @@ namespace Ticket_System_TheGardenGroup.Repositories
             
         }
 
-        public void ArchiveTicekt(Ticket ticket)
+        public async Task ArchiveAllOldTicektsAsync(Ticket ticket)
         {
             var filter = Builders<Ticket>.Filter.Lt(t => t.CreationTime, DateTime.UtcNow.AddYears(-2));
 
             var combinedUpdate = Builders<Ticket>.Update.Combine(
-                Builders<Ticket>.Update.Set("ticket_status", ticket.TicketStatus)
-                
+                Builders<Ticket>.Update.Set(t => t.TicketStatus, TicketStatus.Closed)
             );
-            _ticketCollection.UpdateManyAsync(filter, combinedUpdate);
+            await _ticketCollection.UpdateManyAsync(filter, combinedUpdate);
         }
     }
 }
