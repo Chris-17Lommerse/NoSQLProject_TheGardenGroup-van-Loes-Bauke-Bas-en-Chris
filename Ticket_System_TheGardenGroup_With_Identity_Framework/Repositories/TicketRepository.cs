@@ -103,16 +103,8 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
 
         public async Task<Ticket> GetTicketByObjIdAsync(ObjectId ticketId)
         {
-            //var filter = Builders<Ticket>.Filter.Eq("_id", objId);
-            //var filter = Builders<Ticket>.Filter.Eq(t => t.TicketId, objId);
-
-            /*var filter = Builders<Ticket>.Filter.Eq("TicketId", objId);
-			Ticket ticket = await _ticketCollection.Find(filter).FirstOrDefaultAsync();*/
-
             var filter = Builders<Ticket>.Filter.Eq(t => t.TicketId, ticketId);
             return await _ticketCollection.Find(filter).FirstOrDefaultAsync();
-
-            //return ticket;
 
         }
 
@@ -122,17 +114,19 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
             var combinedUpdate = Builders<Ticket>.Update.Combine(
             //Ticket
                 Builders<Ticket>.Update.Set("ticket_name", ticket.TicketName),
-                Builders<Ticket>.Update.Set("ticket_status", ticket.TicketStatus),
+                Builders<Ticket>.Update.Set("ticket_status", ticket.TicketStatus.ToString()),
                 Builders<Ticket>.Update.Set("description", ticket.Description),
                 Builders<Ticket>.Update.Set("ticket_escalation_description", ticket.TicketEscalationDescription),
                 Builders<Ticket>.Update.Set("is_solved", ticket.IsSolved),
-                Builders<Ticket>.Update.Set("priority", ticket.Priority),
+                Builders<Ticket>.Update.Set("priority", ticket.Priority.ToString()),
             //EmbeddedSolvingEmployee
                 Builders<Ticket>.Update.Set("solving_employee.employee_number", ticket.SolvingEmployee.EmployeeNumber),
-                Builders<Ticket>.Update.Set("solving_employee.employee_role", ticket.SolvingEmployee.EmployeeRole),
+                Builders<Ticket>.Update.Set("solving_employee.employee_role", ticket.SolvingEmployee.EmployeeRole.ToString()),
                 Builders<Ticket>.Update.Set("solving_employee.emailaddress", ticket.SolvingEmployee.EmailAddress),
                 Builders<Ticket>.Update.Set("solving_employee.name", ticket.SolvingEmployee.Name)
             );
+            Console.WriteLine(filter);
+            Console.WriteLine(combinedUpdate);
             _ticketCollection.UpdateOneAsync(filter, combinedUpdate);
         }
     }

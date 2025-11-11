@@ -34,7 +34,6 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
                     return RedirectToAction("Index", "Home");
                 }
                 List<Ticket> tickets = await _ticketService.GetAllTickets();
-
                 return View(tickets);
             }
             catch (Exception)
@@ -313,6 +312,20 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
             Console.BackgroundColor = ConsoleColor.Black;
             return hasTicketUpdatedCorrectly;
         }
+        [HttpGet]
+        [Authorize(Roles = "Service_Desk_Employee")]
+        public async Task<IActionResult> UpdateSolvingEmployee(Ticket ticket)
+        {
+            try
+            {
+                return View(ticket);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "123";
+                return RedirectToAction("Index", "Tickets");
+            }
+        }
         [HttpPost]
         [Authorize(Roles = "Service_Desk_Employee")]
         public async Task<IActionResult> UpdateSolvingEmployee(string ticketId, int solvingEmployeeNumber)
@@ -320,9 +333,11 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
             try
             {
                 EmbeddedEmployee embeddedSolvingEmployee = await _employeeService.GetActiveEmbeddedSdEmployeeByIdAsync(solvingEmployeeNumber);
+                Console.WriteLine(embeddedSolvingEmployee.ToString());
                 ObjectId objectId = new ObjectId(ticketId);
                 Ticket ticket = await _ticketService.GetTicketByObjIdAsync(objectId);
                 ticket.SolvingEmployee = embeddedSolvingEmployee;
+                Console.WriteLine(ticket.SolvingEmployee.ToString());
                 TempData["SuccesMessage"] = "The update embeddedEmployee succeeded.";
                 return View(ticket);
             }

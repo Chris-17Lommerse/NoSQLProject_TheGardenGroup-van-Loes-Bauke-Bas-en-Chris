@@ -36,7 +36,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Models
         }
         public override string ToString()
         {
-            return $"employeeNumber: {EmployeeNumber}, employeeRole: {EmployeeRole}, emailAddress: {EmailAddress}, name: {Name}";
+            return $"employeeNumber: {EmployeeNumber}, employeeRole: {EmployeeRole.ToString()}, emailAddress: {EmailAddress}, name: {Name}";
         }
     }
 }
