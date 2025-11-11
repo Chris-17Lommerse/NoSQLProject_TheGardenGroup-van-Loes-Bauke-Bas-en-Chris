@@ -21,7 +21,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Services
         }
         public async Task<EmployeeViewModel> GetEmployeeAsync(int employeeNumber)
         {
-            Employee employee = await _employeeRepository.GetEmployeeAsync(employeeNumber);
+            Employee employee = await _employeeRepository.GetEmployeeByEmployeeNumberAsync(employeeNumber);
             if (employee == null) { return new EmployeeViewModel(employeeNumber, "emailAddress", "name", "surname", EmployeeRole.Regular_Employee, false); }
             EmployeeViewModel employeeViewModel = new EmployeeViewModel(employee);
             List<EmployeeViewModel> employeeViewModels = new List<EmployeeViewModel>();
@@ -34,12 +34,17 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Services
             _employeeRepository.AddEmployee(employee);
         }
 
+        public async Task <EmbeddedEmployee> GetEmbeddedEmployeeByEmployeeNumberAsync(int employeeNumber) 
+        {
+            Employee employee = await _employeeRepository.GetEmployeeByEmployeeNumberAsync(employeeNumber);
+            return new EmbeddedEmployee(employee.EmployeeNumber, employee.EmployeeRole, employee.EmailAddress, employee.Name);
+        }
         public async Task<Employee> GetEmployeeByNumberAsync(string employeeNumber)
         {
             if (!int.TryParse(employeeNumber, out int empNum))
                 return null;
 
-            return await _employeeRepository.GetEmployeeAsync(empNum);
+            return await _employeeRepository.GetEmployeeByEmployeeNumberAsync(empNum);
         }
 
         public async Task<EmbeddedEmployee> GetActiveEmbeddedSdEmployeeByIdAsync(int employeeNumber)

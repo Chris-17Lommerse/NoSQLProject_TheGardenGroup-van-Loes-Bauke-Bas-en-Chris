@@ -105,7 +105,6 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
         {
             var filter = Builders<Ticket>.Filter.Eq(t => t.TicketId, ticketId);
             return await _ticketCollection.Find(filter).FirstOrDefaultAsync();
-
         }
 
         public void UpdateTicket(Ticket ticket)

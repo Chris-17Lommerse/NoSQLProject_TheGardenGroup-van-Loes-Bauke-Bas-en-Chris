@@ -7,6 +7,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Services.Interfac
     {
         Task<List<EmployeeTicketsVm>> GetAllEmployeesWithAmountOfTicketsAsync();
         Task<EmployeeViewModel> GetEmployeeAsync(int employeeNumber);
+        Task<EmbeddedEmployee> GetEmbeddedEmployeeByEmployeeNumberAsync(int employeeNumber);
         void AddEmployee(Employee employee);
 
         Task<Employee> GetEmployeeByNumberAsync(string employeeNumber);
