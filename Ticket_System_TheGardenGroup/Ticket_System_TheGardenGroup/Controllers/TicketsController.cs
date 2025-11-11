@@ -1,11 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
-using System.Linq.Expressions;
 using Ticket_System_TheGardenGroup.Models;
-using Ticket_System_TheGardenGroup.Models.Enums;
-using Ticket_System_TheGardenGroup.Services;
 using Ticket_System_TheGardenGroup.Services.Interfaces;
-using Ticket_System_TheGardenGroup.ViewModels;
 
 namespace Ticket_System_TheGardenGroup.Controllers
 {
@@ -40,7 +36,7 @@ namespace Ticket_System_TheGardenGroup.Controllers
         {
             try
             {
-                _ticketService.ArchiveAllOldTicektsAsync(ticket);
+                await _ticketService.ArchiveAllOldTicektsAsync(ticket);
 
                 List<Ticket> tickets = await _ticketService.GetAllTickets();
 
