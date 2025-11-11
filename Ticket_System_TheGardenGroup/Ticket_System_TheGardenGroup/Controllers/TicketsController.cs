@@ -40,7 +40,9 @@ namespace Ticket_System_TheGardenGroup.Controllers
 
                 List<Ticket> tickets = await _ticketService.GetAllTickets();
 
-                return View(tickets);
+				TempData["SuccesMessage"] = "All ticket older then 2 year have been archived.";
+
+				return View(tickets);
             }
             catch (Exception ex)
             {

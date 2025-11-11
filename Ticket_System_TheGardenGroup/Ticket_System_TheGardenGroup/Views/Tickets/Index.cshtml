@@ -12,9 +12,11 @@
     <h1>Overview Tickets</h1>
     <a href="/Tickets/AddTicket" class="btn btn-primary">Create Ticket</a>
 
-    <form action="/Tickets/Index" method="post">
-        <button type="submit" class="btn btn-warning">Archive tickets</button>
+    <form id="archiveForm" action="/Tickets/Index" method="post">
+        <button id="showPopupBtn" type="submit" class="btn btn-warning">Archive tickets</button>
     </form>
+
+    @await Html.PartialAsync("_ArchiveTicketPopUpPV")
 
     <table class="table table-info tavle-hover">
         <partial name="_TicketsHeader" />
@@ -38,6 +40,8 @@
             }
         </tbody>
     </table>
+
+    <script src="~/js/site.js"></script>
 </div>
 
 
