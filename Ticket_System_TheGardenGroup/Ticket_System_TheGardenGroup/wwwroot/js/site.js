@@ -4,7 +4,7 @@
 // Write your JavaScript code.
 
 window.onload = function () {
-    const popup = document.getElementById('confirmationPopup');
+    const popup = document.getElementById('confirmationPopup'); //is deze link goed
     const showBtn = document.getElementById('showPopupBtn');
     const confirmBtn = document.getElementById('confirmBtn');
     const cancelBtn = document.getElementById('cancelBtn');
