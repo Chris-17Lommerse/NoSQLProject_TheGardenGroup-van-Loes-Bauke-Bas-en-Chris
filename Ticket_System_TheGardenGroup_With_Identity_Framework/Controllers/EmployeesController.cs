@@ -26,7 +26,7 @@ namespace Ticket_System_TheGardenGroup.Controllers
         {
             if (!_signInManager.IsSignedIn(User))
             {
-                TempData["ErrorMessage"] = $"Je moet inloggen om toegang te krijgen tot de pagina";
+                TempData["ErrorMessage"] = "Je moet inloggen om toegang te krijgen tot de pagina";
                 return RedirectToAction("Index", "Home");
             }
             Task<List<EmployeeTicketsVm>> employees = _employeeService.GetAllEmployeesWithAmountOfTicketsAsync();
@@ -35,14 +35,27 @@ namespace Ticket_System_TheGardenGroup.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Service_Desk_Employee")]
-        public ActionResult ViewEmployee(int employeeNumber)
+        public async Task<IActionResult> ViewEmployee(string employeeIdString)
         {
-            if (!_signInManager.IsSignedIn(User))
+            try
             {
-                TempData["ErrorMessage"] = $"Je moet inloggen om toegang te krijgen tot de pagina";
-                return RedirectToAction("Index", "Home");
+                Console.WriteLine(employeeIdString);
+                if (!_signInManager.IsSignedIn(User))
+                {
+                    TempData["ErrorMessage"] = "Je moet inloggen om toegang te krijgen tot de pagina";
+                    return RedirectToAction("Index", "Home");
+                }
+                Employee employee = await _employeeService.GetEmployeeByEmployeeIdStringAsync(employeeIdString);
+                Console.WriteLine(employee);
+                EmployeeViewModel employeeViewModel = new EmployeeViewModel(employee);
+                Console.WriteLine(employeeViewModel);
+                return View();
             }
-            return View(_employeeService.GetEmployeeAsync(employeeNumber));
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "ViewEmployee failed to load";
+                return RedirectToAction("Index", "Employees");
+            }
 
         }
         [Authorize(Roles = "Service_Desk_Employee")]
@@ -50,7 +63,7 @@ namespace Ticket_System_TheGardenGroup.Controllers
         {
             if (!_signInManager.IsSignedIn(User))
             {
-                TempData["ErrorMessage"] = $"Je moet inloggen om toegang te krijgen tot de pagina";
+                TempData["ErrorMessage"] = "Je moet inloggen om toegang te krijgen tot de pagina";
                 return RedirectToAction("Index", "Home");
             }
             return View(employeeTicketsVm);
@@ -61,7 +74,7 @@ namespace Ticket_System_TheGardenGroup.Controllers
         {
             if (!_signInManager.IsSignedIn(User))
             {
-                TempData["ErrorMessage"] = $"Je moet inloggen om toegang te krijgen tot de pagina";
+                TempData["ErrorMessage"] = "Je moet inloggen om toegang te krijgen tot de pagina";
                 return RedirectToAction("Index", "Home");
             }
             return View();
@@ -76,7 +89,7 @@ namespace Ticket_System_TheGardenGroup.Controllers
             {
                 if (!_signInManager.IsSignedIn(User))
                 {
-                    TempData["ErrorMessage"] = $"Je moet inloggen om toegang te krijgen tot de pagina";
+                    TempData["ErrorMessage"] = "Je moet inloggen om toegang te krijgen tot de pagina";
                     return RedirectToAction("Index", "Home");
                 }
                 _employeeService.AddEmployee(employee);

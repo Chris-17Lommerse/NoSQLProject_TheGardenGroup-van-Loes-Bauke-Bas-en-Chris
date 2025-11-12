@@ -1,5 +1,4 @@
-﻿@using Ticket_System_TheGardenGroup_With_Identity_Framework.ViewModels;
-@model TicketViewModel
+﻿@model Ticket
 @{
 	ViewData["Title"] = "ViewTicket";
 }
@@ -7,34 +6,66 @@
 <partial name="_ErrorMessage" />
 <partial name="_WarningMessage" />
 <partial name="_SuccessMessage" />
+<partial name="_EmbeddedEmployee" />
 
-<table class="table table-hover">
-	<thead class="table-dark">
-		<tr>
-			<th>ticketId</th>
-			<th>CreationTime</th>
-			<th>TicketStatus</th>
-			<th>TicketName</th>
-			<th>Description</th>
-			<th>IsSolved</th>
-			<th>TicketEscalationDescription</th>
-			<th>ReportingEmployee</th>
-			<th>SolvingEmployee</th>
-		</tr>
-	</thead>
-	<tbody class="bg-opacity-10 bg-black">
-		<tr>
-			<td>@Model.TicketId</td>
-			<td>@Model.CreationTime</td>
-			<td>@Model.TicketStatus</td>
-			<td>@Model.TicketName</td>
-			<td>@Model.Description</td>
-			<td>@Model.IsSolved</td>
-			<td>@Model.TicketEscalationDescription</td>
-			<td>@Model.ReportingEmployee</td>
-			<td>@Model.SolvingEmployee.Name (Employeenumber@Model.SolvingEmployee.EmployeeNumber)</td>
-		</tr>
-	</tbody>
-</table>
-<a class="alert-warning btn btn-primary" href="/Tickets/UpdateTicket/@Model.TicketId">Edit this employee</a>
-<!--<a class="alert-danger  btn btn-primary" href="/Employees/DeactivateEmployee/@Model.TicketId">Deactivate this employee</a>-->
+<section>
+
+    <a href="/Tickets/index" class="btn btn-primary mb-3">Back to ticket list</a>
+
+    <a href="/Tickets/UpdateTicket?TicketId=@Model?.TicketId" class="btn mb-3 btn-warning">Update ticket</a>
+    <a href="/Tickets/DeleteTicket?TicketId=@Model?.TicketId" class="btn btn-danger mb-3">Delete ticket</a>
+        <section>
+            <label hidden for="TicketId">Ticket id</label>
+            <input readonly hidden type="text" id="TicketId" name="TicketId" class="form-control" value="@Model?.TicketId" />
+        </section>
+
+        <section>
+            <label readonly for="creationTime">Creation time</label>
+            <input readonly type="datetime" id="creationTime" name="CreationTime" class="form-control" value="@Model?.CreationTime" />
+        </section>
+
+        <section>
+            <label readonly for="TicketStatus">Ticket Status</label>
+            <input readonly type="text" id="TicketStatus" name="TicketStatus" class="form-control" value="@Model?.TicketStatus" />
+        </section>
+
+        <section>
+            <label for="TicketName">Ticket name</label>
+            <input type="text" id="TicketName" name="TicketName" class="form-control" value="@Model?.TicketName" />
+        </section>
+
+        <section>
+            <label for="Description">Ticket Description</label>
+            <input type="text" id="Description" name="Description" class="form-control" value="@Model?.Description" />
+        </section>
+
+        <section>
+            <label for="TicketEscalationDescription">Escalation Ticket Description</label>
+            <input type="text" id="TicketEscalationDescription" name="TicketEscalationDescription" class="form-control" value="@Model?.TicketEscalationDescription" />
+        </section>
+
+        <section>
+            <label readonly for="IsSolved">Is ticket solved?</label>
+            <input type="checkbox" id="IsSolved" name="IsSolved" asp-for="IsSolved" />
+        </section>
+
+        <section>
+            <label for="ticketPriority">Ticket priority (only ds_e)</label>
+            <input type="text" id="ticketPriority" name="Priority" class="form-control" value="@Model?.Priority" />
+        </section>
+
+        <section>
+            <p class="bg-info">Reporting Employee</p>
+            <label readonly for="ReportingEmployeeNumber">Reporting Employee Number</label>
+            <input readonly type="text" id="ReportingEmployeeNumber" name="ReportingEmployee.EmployeeNumber" class="form-control" value="@Model?.ReportingEmployee.EmployeeNumber" />
+
+            <label readonly for="ReportingEmployeeName">Name</label>
+            <input readonly id="ReportingEmployeeName" type="text" class="form-control" name="ReportingEmployee.Name" value="@Model?.ReportingEmployee.Name" />
+
+            <label readonly for="ReportingEmployeeEmail">Email</label>
+            <input readonly id="ReportingEmployeeEmail" type="text" class="form-control" name="ReportingEmployee.EmailAddress" value="@Model?.ReportingEmployee.EmailAddress" />
+
+            <label hidden readonly for="ReportingEmployeeRole">Role</label>
+            <input hidden readonly id="ReportingEmployeeRole" type="text" class="form-control" name="ReportingEmployee.EmployeeRole" value="@Model?.ReportingEmployee.EmployeeRole" />
+        </section>
+</section>

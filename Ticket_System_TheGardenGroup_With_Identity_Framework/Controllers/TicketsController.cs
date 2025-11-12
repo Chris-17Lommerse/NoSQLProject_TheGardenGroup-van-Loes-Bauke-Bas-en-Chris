@@ -76,19 +76,27 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
                 return View(ex);
             }
         }
-        /*[HttpGet]
-        public ActionResult ViewTicket(ObjectId employeeID)
+        [HttpGet]
+        [Authorize(Roles = "Service_Desk_Employee,Regular_Employee")]
+        public async Task<IActionResult> ViewTicket(string ticketIdString)
         {
             try
             {
-                return View(_ticketService.GetTicketAsync(employeeID));
+                if (!_signInManager.IsSignedIn(User))
+                {
+                    TempData["ErrorMessage"] = $"Je moet inloggen om toegang te krijgen tot de pagina";
+                    return RedirectToAction("Index", "Home");
+                }
+                ObjectId ticketId = new ObjectId(ticketIdString);
+                Ticket ticket = await _ticketService.GetTicketByObjIdAsync(ticketId);
+                return View(ticket);
             }
             catch (Exception ex)
             {
                 TempData["ErrorMessage"] = "The ViewTicket page could not be loaded.";
                 return RedirectToAction("Index");
             }
-        }*/
+        }
         [HttpGet]
         [Authorize(Roles = "Service_Desk_Employee")]
         public async Task<IActionResult> UpdateTicket(string ticketId)

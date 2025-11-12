@@ -26,6 +26,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.ViewModels
         public bool IsActive { get; set; } = false;
         public EmployeeViewModel(Employee employee)
         {
+            Id = employee.Id;
             EmployeeNumber = employee.EmployeeNumber;
             EmailAddress = employee.EmailAddress;
             Name = employee.Name;

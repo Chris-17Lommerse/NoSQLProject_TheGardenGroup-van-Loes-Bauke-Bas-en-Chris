@@ -26,14 +26,14 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
             return await _employeeCollection.Find(filter).FirstOrDefaultAsync();
         }
 
-        public void AddEmployee(Employee employee)
+        public void AddEmployeeAsync(Employee employee)
         {
             _employeeCollection.InsertOneAsync(employee);
         }
 
         public async Task<List<EmployeeTicketsVm>> GetAllEmployeesWithAmountOfTicketsAsync()
         {
-            //deze pipeline moet even worden gecheck op bugs met het nieuwe veld. 
+            //deze pipeline moet even worden gecheckt op bugs met het nieuwe veld. 
             var pipeline = new List<BsonDocument>
             {
                 new BsonDocument("$group", new BsonDocument
@@ -61,7 +61,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
                 .ToListAsync();
         }
 
-        public async Task RemoveEmployee(Employee employee)
+        public async Task RemoveEmployeeAsync(Employee employee)
         {
             var filter = Builders<Employee>.Filter.Eq("_id", employee.Id);
             var combinedUpdate = Builders<Employee>.Update.Combine(
@@ -69,7 +69,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
             );
             await _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
         }
-        public async Task RemoveRegularEmployee(Employee employee)
+        public async Task RemoveRegularEmployeeAsync(Employee employee)
         {
             var filter = Builders<Employee>.Filter.Eq("_id", employee.Id);
             var combinedUpdate = Builders<Employee>.Update.Combine(
@@ -78,7 +78,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
             await _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
         }
 
-        public async Task RemoveServiceDeskEmployee(Employee employee)
+        public async Task RemoveServiceDeskEmployeeAsync(Employee employee)
         {
             var filter = Builders<Employee>.Filter.Eq("_id", employee.Id);
             var combinedUpdate = Builders<Employee>.Update.Combine(
@@ -87,7 +87,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
             await _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
         }
         //Ik zou gewoon deze gebruiken. 
-        public async Task UpdateEmployee(Employee employee)
+        public async Task UpdateEmployeeAsync(Employee employee)
         {
             var filter = Builders<Employee>.Filter.Eq("_id", employee.Id);
             var combinedUpdate = Builders<Employee>.Update.Combine(
@@ -98,6 +98,13 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
                 Builders<Employee>.Update.Set("password", employee.Password),
                 Builders<Employee>.Update.Set("isActive", employee.IsActive),
                 Builders<Employee>.Update.Set("workingOn", employee.WorkingOn)
+            );
+            await _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
+        }
+        public async Task UpdateEmployeeWorkingOnAsync(Employee employee)
+        {
+            var filter = Builders<Employee>.Filter.Eq("_id", employee.Id);
+            var combinedUpdate = Builders<Employee>.Update.Combine(Builders<Employee>.Update.Set("workingOn", employee.WorkingOn)
             );
             await _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
         }

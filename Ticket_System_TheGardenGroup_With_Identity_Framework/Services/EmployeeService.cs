@@ -1,4 +1,5 @@
-﻿using Ticket_System_TheGardenGroup_With_Identity_Framework.Models;
+﻿using MongoDB.Bson;
+using Ticket_System_TheGardenGroup_With_Identity_Framework.Models;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Models.Enums;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories.Interfaces;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Services.Interfaces;
@@ -31,9 +32,19 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Services
 
         public void AddEmployee(Employee employee)
         {
-            _employeeRepository.AddEmployee(employee);
+            _employeeRepository.AddEmployeeAsync(employee);
         }
-
+        public async Task<Employee> GetEmployeeByEmployeeIdStringAsync(string employeeIdString)
+        {
+            ObjectId employeeId = new ObjectId(employeeIdString);
+            Employee employee = await _employeeRepository.GetEmployeeByEmployeeIdAsync(employeeId);
+            return employee;
+        }
+        public async Task<Employee> GetEmployeeByEmployeeNumberAsync(int employeeNumber)
+        {
+            Employee employee = await _employeeRepository.GetEmployeeByEmployeeNumberAsync(employeeNumber);
+            return employee;
+        }
         public async Task <EmbeddedEmployee> GetEmbeddedEmployeeByEmployeeNumberAsync(int employeeNumber) 
         {
             Employee employee = await _employeeRepository.GetEmployeeByEmployeeNumberAsync(employeeNumber);

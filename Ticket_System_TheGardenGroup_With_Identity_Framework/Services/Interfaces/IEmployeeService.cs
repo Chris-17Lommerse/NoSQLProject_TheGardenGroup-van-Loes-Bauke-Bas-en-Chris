@@ -1,4 +1,5 @@
-﻿using Ticket_System_TheGardenGroup_With_Identity_Framework.Models;
+﻿using MongoDB.Bson;
+using Ticket_System_TheGardenGroup_With_Identity_Framework.Models;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.ViewModels;
 
 namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Services.Interfaces
@@ -8,6 +9,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Services.Interfac
         Task<List<EmployeeTicketsVm>> GetAllEmployeesWithAmountOfTicketsAsync();
         Task<EmployeeViewModel> GetEmployeeAsync(int employeeNumber);
         Task<EmbeddedEmployee> GetEmbeddedEmployeeByEmployeeNumberAsync(int employeeNumber);
+        Task<Employee> GetEmployeeByEmployeeIdStringAsync(string employeeIdString);
         void AddEmployee(Employee employee);
 
         Task<Employee> GetEmployeeByNumberAsync(string employeeNumber);
