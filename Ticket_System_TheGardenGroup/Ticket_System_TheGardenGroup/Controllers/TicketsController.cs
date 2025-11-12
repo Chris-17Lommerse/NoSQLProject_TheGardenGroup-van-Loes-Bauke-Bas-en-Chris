@@ -22,7 +22,15 @@ namespace Ticket_System_TheGardenGroup.Controllers
             {
 				var tickets = await _ticketService.GetAllTickets();
 
-				return View(tickets);
+                //Debug
+                int ticketCount = 0;
+                foreach (Ticket ticketItem in tickets)
+                {
+                    ticketCount++;
+                }
+                Console.WriteLine($"Ticket Count {ticketCount}");
+
+                return View(tickets);
 			}
             catch (Exception)
             {
@@ -38,9 +46,20 @@ namespace Ticket_System_TheGardenGroup.Controllers
             {
                 await _ticketService.ArchiveAllOldTicektsAsync(ticket);
 
-                List<Ticket> tickets = await _ticketService.GetAllTickets();
+                List<Ticket> tickets = await _ticketService.GetAllUnArchivedTicketsAsync();
 
-				TempData["SuccesMessage"] = "All ticket older then 2 year have been archived.";
+                //Dit moet naar de service
+                int ticketCount = 0;
+                foreach (Ticket ticketItem in tickets)
+                {
+                    ticketCount++;
+                    //Console.WriteLine(ticket.TicketId);
+                    //De creation time is vandaag en de ticketId is leeg, dus het doorgeven van de ticket gaat niet goed.
+                    Console.WriteLine(ticket.CreationTime);
+                }
+                
+
+                TempData["SuccesMessage"] = $"{ticketCount} tickets have been archived.";
 
 				return View(tickets);
             }

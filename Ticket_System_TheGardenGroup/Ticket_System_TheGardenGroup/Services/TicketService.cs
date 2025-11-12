@@ -29,12 +29,18 @@ namespace Ticket_System_TheGardenGroup.Services
         {
             return _ticketRepository.GetAllTickets();
         }
-        /*public async Task<TicketViewModel> GetTicketAsync(ObjectId id)
+
+        public Task<List<Ticket>> GetAllUnArchivedTicketsAsync()
         {
-            Ticket ticket = await _ticketRepository.GetTicketAsync(id);
-            TicketViewModel ticketViewModel = new TicketViewModel(ticket);
-            return ticketViewModel;
-        }*/
+            return _ticketRepository.GetAllUnArchivedTicketsAsync();
+        }
+
+        /*public async Task<TicketViewModel> GetTicketAsync(ObjectId id)
+{
+   Ticket ticket = await _ticketRepository.GetTicketAsync(id);
+   TicketViewModel ticketViewModel = new TicketViewModel(ticket);
+   return ticketViewModel;
+}*/
 
         public async Task<Ticket> GetTicketByObjIdAsync(ObjectId objId)
         {

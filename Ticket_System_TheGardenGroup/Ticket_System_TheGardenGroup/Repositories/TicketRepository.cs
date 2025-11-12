@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
+using System.Linq.Expressions;
 using Ticket_System_TheGardenGroup.Models;
 using Ticket_System_TheGardenGroup.Models.Enums;
 using Ticket_System_TheGardenGroup.Repositories.Interfaces;
@@ -64,12 +65,40 @@ namespace Ticket_System_TheGardenGroup.Repositories
 
         public async Task ArchiveAllOldTicektsAsync(Ticket ticket)
         {
-            var filter = Builders<Ticket>.Filter.Lt(t => t.CreationTime, DateTime.UtcNow.AddYears(-2));
+            try
+            {
+                //List
+                //Geef een gefilterde list mee als argument in de methode. Haal alle tickets die al gearchiveerd zijn eruit, dus TicketStatus.Closed
+                //Check die lijst of daar Tickets in zitten die ouder zijn dan 2 jaar.
+                //Zet dit documenten in een nieuwe TicketsToBeArchived List
+                //Laat zien hoeveel dat erzijn in console+
+                //Dan die handel archiveren
 
-            var combinedUpdate = Builders<Ticket>.Update.Combine(
-                Builders<Ticket>.Update.Set(t => t.TicketStatus, TicketStatus.Closed)
-            );
-            await _ticketCollection.UpdateManyAsync(filter, combinedUpdate);
+
+
+
+
+                var builder = Builders<Ticket>.Filter;
+                var filter = builder.And(
+                        builder.Lt(t => t.CreationTime, DateTime.UtcNow.AddYears(-2)),
+                        builder.Ne(t => t.TicketStatus, TicketStatus.Closed)
+                );
+
+                var combinedUpdate = Builders<Ticket>.Update.Combine(
+                    Builders<Ticket>.Update.Set(t => t.TicketStatus, TicketStatus.Closed)
+                );
+
+                await _ticketCollection.UpdateManyAsync(filter, combinedUpdate);
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+
+        public async Task<List<Ticket>> GetAllUnArchivedTicketsAsync()
+        {
+            return await _ticketCollection.Find(Builders<Ticket>.Filter.Ne(t => t.TicketStatus, TicketStatus.Closed)).ToListAsync();
         }
     }
 }

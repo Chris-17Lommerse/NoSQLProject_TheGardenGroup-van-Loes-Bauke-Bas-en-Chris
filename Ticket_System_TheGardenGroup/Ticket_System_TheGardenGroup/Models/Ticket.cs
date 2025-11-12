@@ -11,10 +11,11 @@ namespace Ticket_System_TheGardenGroup.Models
 		public ObjectId TicketId { get; set; }
 
 		[BsonElement("creation_time")]
-		public DateTime CreationTime { get; set; } = DateTime.Now;
+		public DateTime CreationTime { get; set; } = DateTime.UtcNow;
 
 		[BsonElement("ticket_status")]
-		public TicketStatus TicketStatus { get; set; } = TicketStatus.Open;
+        [BsonRepresentation(BsonType.String)]
+        public TicketStatus TicketStatus { get; set; } = TicketStatus.Open;
 
 		[BsonElement("ticket_name")]
 		public string TicketName { get; set; } = "";

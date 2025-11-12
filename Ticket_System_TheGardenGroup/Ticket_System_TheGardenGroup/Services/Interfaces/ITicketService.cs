@@ -17,6 +17,6 @@ namespace Ticket_System_TheGardenGroup.Services.Interfaces
 
         public Task ArchiveAllOldTicektsAsync(Ticket ticket);
 
-
+        public Task<List<Ticket>> GetAllUnArchivedTicketsAsync();
     }
 }

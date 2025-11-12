@@ -4,43 +4,28 @@
 // Write your JavaScript code.
 
 window.onload = function () {
-    const popup = document.getElementById('confirmationPopup'); //is deze link goed
+    const popup = document.getElementById('confirmationPopup');
     const showBtn = document.getElementById('showPopupBtn');
     const confirmBtn = document.getElementById('confirmBtn');
     const cancelBtn = document.getElementById('cancelBtn');
 
-    const undoMessage = document.getElementById('undoMessage');
-    const undoBtn = document.getElementById('undoBtn');
+    // Zorg dat de popup standaard verborgen is
+    popup.style.display = 'none';
 
-    let archiveTimeout; // to hold the timeout ID
-
-    showBtn.onclick = function () {
-        popup.style.display = 'flex';
+    showBtn.onclick = function (e) {
+        e.preventDefault(); // voorkom dat het formulier meteen wordt verzonden
+        popup.style.display = 'flex'; // toon de popup
     };
 
     confirmBtn.onclick = function () {
+        // Sluit de popup
         popup.style.display = 'none';
-
-        // Show undo message
-        undoMessage.style.display = 'block';
-
-        // Set a timer for 10 seconds to perform the archiving
-        archiveTimeout = setTimeout(function () {
-            undoMessage.style.display = 'none';
-            // Proceed with archiving, e.g., submit form or call API
-            document.getElementById('archiveForm').submit();
-            // Example: document.getElementById('archiveForm').submit();
-        }, 10000); // 10 seconds
+        // Verstuur het formulier om te archiveren
+        document.getElementById('archiveForm').submit();
     };
 
     cancelBtn.onclick = function () {
+        // Sluit de popup zonder actie
         popup.style.display = 'none';
-    };
-
-    // Handle "Undo" click
-    undoBtn.onclick = function () {
-        clearTimeout(archiveTimeout); // cancel the archiving
-        undoMessage.style.display = 'none';
-        alert('Archiving canceled.');
     };
 };
