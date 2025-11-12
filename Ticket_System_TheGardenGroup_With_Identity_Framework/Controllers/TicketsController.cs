@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using MongoDB.Bson;
+using System.Net.Sockets;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Models;
+using Ticket_System_TheGardenGroup_With_Identity_Framework.Models.Enums;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Services.Interfaces;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.ViewModels;
 
@@ -34,21 +36,9 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
                     TempData["ErrorMessage"] = $"Je moet inloggen om toegang te krijgen tot de pagina";
                     return RedirectToAction("Index", "Home");
                 }
-                if (User.IsInRole("Service_Desk_Employee"))
-                {
-                    tickets = await _ticketService.GetAllTickets();
-                    return View(tickets);
-                }
-                else if(User.IsInRole("Regular_Employee"))
-                {
-                    tickets = await _ticketService.GetTicketsByEmployeeId();
-                    return View(tickets);
-                }
-                else
-                {
-                    TempData["ErrorMessage"] = $"Je hebt geen toegang tot deze pagina";
-                    return RedirectToAction("Index", "Home");
-                }
+                List<Ticket> tickets = await _ticketService.GetAllTickets();
+
+                return View(tickets);
             }
             catch (Exception)
             {
@@ -121,8 +111,8 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
                 return RedirectToAction("Index");
             }
 
-            var objectId = new ObjectId(ticketId);
-            var ticket = await _ticketService.GetTicketByObjIdAsync(objectId);
+            ObjectId objectId = new ObjectId(ticketId);
+            Ticket ticket = await _ticketService.GetTicketByObjIdAsync(objectId);
 
             if (ticket == null)
             {
@@ -157,9 +147,84 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Service_Desk_Employee")]
-        public async Task<IActionResult> UpdateTicket(Ticket ticket, int employeeNumber, string loadEmployee)
+        public async Task<IActionResult> UpdateTicketSuccess(Ticket ticket)
         {
-            //This needs to be reworked. Either I make a new view model or something with JavaScript. 
+            Console.WriteLine(ticket.ToString());
+            try
+            {
+                if (!_signInManager.IsSignedIn(User))
+                {
+                    TempData["ErrorMessage"] = "Je moet inloggen om toegang te krijgen tot de pagina.";
+                    return RedirectToAction("Index", "Home");
+                }
+                //Sends the new info to the DB
+                _ticketService.UpdateTicket(ticket);
+                Ticket updatedTicket = await _ticketService.GetTicketByObjIdAsync(ticket.TicketId);
+                if (updatedTicket == null) 
+                {
+                    TempData["ErrorMessage"] = "The update corrupted the ticket or something else went terribly wrong.";
+                    return RedirectToAction("Index", "Tickets");
+                }
+                else if (!Debugger(ticket, updatedTicket)) 
+                {
+                    TempData["ErrorMessage"] = "Ik weet niet hoe je hier bent gekomen, maar er is waarschijnlijk iets fout gegaan op de HttpPost van UpdateTicket.";
+                    return RedirectToAction("Index", "Tickets");
+                }
+                else
+                {
+                    TempData["SuccesMessage"] = "The ticket was succesfully updated.";
+                    return View(updatedTicket);
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "The HttpPost UpdateTicket page failed to load.";
+                Console.WriteLine(ex.ToString());
+                return RedirectToAction("UpdateTicket", ticket);
+            }
+        }
+        
+        [HttpGet]
+        [Authorize(Roles = "Service_Desk_Employee")]
+        public async Task<IActionResult> UpdateTicketSuccess()
+        {
+            try
+            {
+                TempData["SuccesMessage"] = "The ticket was updated successfully.";
+                return View();
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "123";
+                return RedirectToAction("Index", "Tickets");
+            }
+        }
+        [HttpPost]
+        [Authorize(Roles = "Service_Desk_Employee")]
+        public async Task<IActionResult> UpdateTicket(string ticketId, int solvingEmployeeNumber)
+        {
+            try
+            {
+                EmbeddedEmployee embeddedSolvingEmployee = await _employeeService.GetEmbeddedEmployeeByEmployeeNumberAsync(solvingEmployeeNumber);
+                Console.WriteLine(embeddedSolvingEmployee.ToString());
+                ObjectId objectId = new ObjectId(ticketId);
+                Ticket ticket = await _ticketService.GetTicketByObjIdAsync(objectId);
+                ticket.SolvingEmployee = embeddedSolvingEmployee;
+                Console.WriteLine(ticket.SolvingEmployee.ToString());
+                TempData["SuccesMessage"] = "The update embeddedEmployee succeeded.";
+                return View(ticket);
+            }
+            catch (Exception ex) 
+            {
+                TempData["ErrorMessage"] = "The update embeddedEmployee failed.";
+                return RedirectToAction("Index", "Tickets");
+            }
+        }
+        
+        [HttpGet]
+        [Authorize(Roles = "Service_Desk_Employee,Regular_Employee")]
+        public IActionResult AddTicket()
+        {
             try
             {
                 if (!_signInManager.IsSignedIn(User))
@@ -167,49 +232,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
                     TempData["ErrorMessage"] = $"Je moet inloggen om toegang te krijgen tot de pagina";
                     return RedirectToAction("Index", "Home");
                 }
-                //This if statement is not working :0
-                if (!string.IsNullOrEmpty(loadEmployee))
-                {
-                    // Load employee
-                    var embddEmpl = await _employeeService.GetActiveEmbeddedSdEmployeeByIdAsync(employeeNumber);
-                    if (embddEmpl != null)
-                    {
-                        ticket.SolvingEmployee = embddEmpl;
-                    }
-                    else
-                    {
-                        TempData["EmbddEmpl"] = "EmbeddedEmployee not found.";
-                    }
-
-                    return View(ticket); // reload the form with updated employee
-                }
-                else
-                {
-                    //Sends the new info to the DB
-                    _ticketService.UpdateTicket(ticket);
-                    TempData["SuccesMessage"] = "The ticket was succesfully updated.";
-                    return View(ticket);
-                }
-            }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = "The UpdateTicket page could not be loaded.";
-                return RedirectToAction("UpdateTicket", ticket);
-            }
-        }
-
-        [HttpGet]
-        [Authorize(Roles = "Service_Desk_Employee,Regular_Employee")]
-        public IActionResult AddTicket()
-        {
-            if (!_signInManager.IsSignedIn(User))
-            {
-                TempData["ErrorMessage"] = $"Je moet inloggen om toegang te krijgen tot de pagina";
-                return RedirectToAction("Index", "Home");
-            }
-            throw new NotImplementedException();
-            try
-            {
+                throw new NotImplementedException();
                 return View();
             }
             catch (Exception ex)
@@ -283,6 +306,72 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
                 return RedirectToAction("Index", "Home");
             }
             throw new NotImplementedException();
+        }
+        public bool Debugger(Ticket ticket, Ticket updatedTicket)
+        {
+            bool hasTicketUpdatedCorrectly = true;
+            Console.BackgroundColor = ConsoleColor.Magenta;
+            Console.WriteLine();
+            Console.WriteLine("Debugging UpdateTicket HttpPost");
+            Console.WriteLine("ticket : updatedTicket"); //what should have happened : what actually happened
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.WriteLine();
+            if (ticket.TicketId != updatedTicket.TicketId)
+            {
+                Console.WriteLine($"TicketId as ObjectId: {ticket.TicketId} != {updatedTicket.TicketId}");
+                switch (ticket.TicketId.ToString() == updatedTicket.TicketId.ToString())
+                {
+                    case true:
+                        Console.WriteLine($"TicketId as string: {ticket.TicketId.ToString()} == {updatedTicket.TicketId.ToString()}");
+                        break;
+                    case false:
+                        Console.WriteLine($"TicketId as string: {ticket.TicketId.ToString()} != {updatedTicket.TicketId.ToString()}");
+                        break;
+                }
+                hasTicketUpdatedCorrectly = false;
+            }
+
+            if (ticket.CreationTime != updatedTicket.CreationTime)
+            {
+                Console.WriteLine($"CreationTime as DateTime: {ticket.CreationTime} != {updatedTicket.CreationTime}");
+                Console.WriteLine($"DateTime.Compare: {DateTime.Compare(ticket.CreationTime, updatedTicket.CreationTime)}");
+                switch (ticket.CreationTime.ToString() == updatedTicket.CreationTime.ToString())
+                {
+                    case true:
+                        Console.WriteLine($"CreationTime as string: {ticket.CreationTime.ToString()} == {updatedTicket.CreationTime.ToString()}");
+                        break;
+                    case false:
+                        Console.WriteLine($"CreationTime as string: {ticket.CreationTime} != {updatedTicket.CreationTime}");
+                        break;
+                }
+            }
+            if (ticket.TicketStatus != updatedTicket.TicketStatus) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"TicketStatus: {ticket.TicketStatus} != {updatedTicket.TicketStatus}"); }
+            if (ticket.TicketName != updatedTicket.TicketName) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"TicketName: {ticket.TicketName} != {updatedTicket.TicketName}"); }
+            if (ticket.Description != updatedTicket.Description) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"Description: {ticket.Description} != {updatedTicket.Description}"); }
+            if (ticket.IsSolved != updatedTicket.IsSolved) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"IsSolved: {ticket.IsSolved} != {updatedTicket.IsSolved}"); }
+            if (ticket.Priority != updatedTicket.Priority) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"Priority: {ticket.Priority} != {updatedTicket.Priority}"); }
+            if (ticket.TicketEscalationDescription != updatedTicket.TicketEscalationDescription)
+            {
+                Console.WriteLine($"TicketEscalationDescription: {ticket.TicketEscalationDescription} != {updatedTicket.TicketEscalationDescription}");
+                hasTicketUpdatedCorrectly = false;
+            }
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine("ReportingEmployee:");
+            if (ticket.ReportingEmployee.EmployeeNumber != updatedTicket.ReportingEmployee.EmployeeNumber) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"EmployeeNumber: {ticket.ReportingEmployee.EmployeeNumber} != {updatedTicket.ReportingEmployee.EmployeeNumber}"); }
+            if (ticket.ReportingEmployee.EmployeeRole != updatedTicket.ReportingEmployee.EmployeeRole) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"EmployeeRole: {ticket.ReportingEmployee.EmployeeRole} != {updatedTicket.ReportingEmployee.EmployeeRole}"); }
+            if (ticket.ReportingEmployee.EmailAddress != updatedTicket.ReportingEmployee.EmailAddress) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"EmailAddress: {ticket.ReportingEmployee.EmailAddress} != {updatedTicket.ReportingEmployee.EmailAddress}"); }
+            if (ticket.ReportingEmployee.Name != updatedTicket.ReportingEmployee.Name)
+            {
+                hasTicketUpdatedCorrectly = false; Console.WriteLine($"Name: {ticket.ReportingEmployee.Name} != {updatedTicket.ReportingEmployee.Name}");
+            }
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.WriteLine("SolvingEmployee:");
+            if (ticket.SolvingEmployee.EmployeeNumber != updatedTicket.SolvingEmployee.EmployeeNumber) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"EmployeeNumber: {ticket.SolvingEmployee.EmployeeNumber} != {updatedTicket.SolvingEmployee.EmployeeNumber}"); }
+            if (ticket.SolvingEmployee.EmployeeRole != updatedTicket.SolvingEmployee.EmployeeRole) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"EmployeeRole: {ticket.SolvingEmployee.EmployeeRole} != {updatedTicket.SolvingEmployee.EmployeeRole}"); }
+            if (ticket.SolvingEmployee.EmailAddress != updatedTicket.SolvingEmployee.EmailAddress) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"EmailAddress: {ticket.SolvingEmployee.EmailAddress} != {updatedTicket.SolvingEmployee.EmailAddress}"); }
+            if (ticket.SolvingEmployee.Name != updatedTicket.SolvingEmployee.Name) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"Name: {ticket.SolvingEmployee.Name} != {updatedTicket.SolvingEmployee.Name}"); }
+            Console.BackgroundColor = ConsoleColor.Black;
+            return hasTicketUpdatedCorrectly;
         }
     }
 }

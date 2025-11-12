@@ -69,7 +69,6 @@ namespace Ticket_System_TheGardenGroup.Controllers
         }
 
         [HttpPost]
-        //Blah blah blah
         [Authorize(Roles = "Service_Desk_Employee")]
         public ActionResult AddEmployee(Employee employee)
         {
@@ -86,7 +85,7 @@ namespace Ticket_System_TheGardenGroup.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.ErrorMessage = " User could not be created :((((";
+                ViewBag.ErrorMessage = " User could not be created.";
                 return View("AddEmployee");
             }
         }
