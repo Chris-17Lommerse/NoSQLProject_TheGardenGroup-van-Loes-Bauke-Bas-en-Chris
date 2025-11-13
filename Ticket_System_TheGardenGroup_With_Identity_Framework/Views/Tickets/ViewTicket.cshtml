@@ -31,22 +31,22 @@
 
         <section>
             <label for="TicketName">Ticket name</label>
-            <input type="text" id="TicketName" name="TicketName" class="form-control" value="@Model?.TicketName" />
+            <input readonly type="text" id="TicketName" name="TicketName" class="form-control" value="@Model?.TicketName" />
         </section>
 
         <section>
             <label for="Description">Ticket Description</label>
-            <input type="text" id="Description" name="Description" class="form-control" value="@Model?.Description" />
+            <input readonly type="text" id="Description" name="Description" class="form-control" value="@Model?.Description" />
         </section>
 
         <section>
             <label for="TicketEscalationDescription">Escalation Ticket Description</label>
-            <input type="text" id="TicketEscalationDescription" name="TicketEscalationDescription" class="form-control" value="@Model?.TicketEscalationDescription" />
+            <input readonly type="text" id="TicketEscalationDescription" name="TicketEscalationDescription" class="form-control" value="@Model?.TicketEscalationDescription" />
         </section>
 
         <section>
             <label readonly for="IsSolved">Is ticket solved?</label>
-            <input type="checkbox" id="IsSolved" name="IsSolved" asp-for="IsSolved" />
+            <input readonly type="checkbox" id="IsSolved" name="IsSolved" asp-for="IsSolved" />
         </section>
 
         <section>

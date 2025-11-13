@@ -46,27 +46,59 @@ namespace Ticket_System_TheGardenGroup.Controllers
                     return RedirectToAction("Index", "Home");
                 }
                 Employee employee = await _employeeService.GetEmployeeByEmployeeIdStringAsync(employeeIdString);
-                Console.WriteLine(employee);
-                EmployeeViewModel employeeViewModel = new EmployeeViewModel(employee);
-                Console.WriteLine(employeeViewModel);
-                return View();
+                EmployeeViewModel employeeViewModel = new (employee.Id, employee.EmployeeNumber, employee.EmailAddress, employee.Name, employee.Surname, employee.EmployeeRole, employee.IsActive);
+                return View(employeeViewModel);
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = "ViewEmployee failed to load";
+                TempData["ErrorMessage"] = "ViewEmployee failed to load.";
                 return RedirectToAction("Index", "Employees");
             }
 
         }
         [Authorize(Roles = "Service_Desk_Employee")]
-        public IActionResult UpdateEmployee(EmployeeTicketsVm employeeTicketsVm)
+        [HttpGet]
+        public async Task<IActionResult> UpdateEmployee(string employeeIdString)
         {
-            if (!_signInManager.IsSignedIn(User))
+            try 
             {
-                TempData["ErrorMessage"] = "Je moet inloggen om toegang te krijgen tot de pagina";
-                return RedirectToAction("Index", "Home");
+                if (!_signInManager.IsSignedIn(User))
+                {
+                    TempData["ErrorMessage"] = "Je moet inloggen om toegang te krijgen tot de pagina";
+                    return RedirectToAction("Index", "Home");
+                }
+                Employee employee = await _employeeService.GetEmployeeByEmployeeIdStringAsync(employeeIdString);
+                EmployeeViewModel employeeViewModel = new(employee.Id, employee.EmployeeNumber, employee.EmailAddress, employee.Name, employee.Surname, employee.EmployeeRole, employee.IsActive);
+
+                return View(employeeViewModel);
             }
-            return View(employeeTicketsVm);
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"UpdateEmployee failed to load.";
+                return RedirectToAction("Index", "Employees");
+            }
+            
+        }
+        [Authorize(Roles = "Service_Desk_Employee")]
+        [HttpPost]
+        public async Task<IActionResult> UpdateEmployee(EmployeeViewModel employeeViewModel)
+        {
+            try {
+                if (!_signInManager.IsSignedIn(User))
+                {
+                    TempData["ErrorMessage"] = "Je moet inloggen om toegang te krijgen tot de pagina";
+                    return RedirectToAction("Index", "Home");
+                }
+                _employeeService.UpdateEmployeeViewModel(employeeViewModel);
+                TempData["SuccessMessage"] = "Employee updated successfully.";
+                return View(employeeViewModel);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"UpdateEmployee failed: Employee was not updated.";
+                return RedirectToAction("Index", "Employees");
+            }
+            
         }
         [HttpGet]
         [Authorize(Roles = "Service_Desk_Employee")]

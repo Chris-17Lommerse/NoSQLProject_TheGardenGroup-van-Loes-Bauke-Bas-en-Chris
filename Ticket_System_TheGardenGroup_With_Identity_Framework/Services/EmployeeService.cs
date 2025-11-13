@@ -1,6 +1,9 @@
 ﻿using MongoDB.Bson;
+using MongoDB.Driver;
+using System.Net.Sockets;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Models;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Models.Enums;
+using Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories.Interfaces;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Services.Interfaces;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.ViewModels;
@@ -20,15 +23,6 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Services
         {
             return _employeeRepository.GetAllEmployeesWithAmountOfTicketsAsync();
         }
-        public async Task<EmployeeViewModel> GetEmployeeAsync(int employeeNumber)
-        {
-            Employee employee = await _employeeRepository.GetEmployeeByEmployeeNumberAsync(employeeNumber);
-            if (employee == null) { return new EmployeeViewModel(employeeNumber, "emailAddress", "name", "surname", EmployeeRole.Regular_Employee, false); }
-            EmployeeViewModel employeeViewModel = new EmployeeViewModel(employee);
-            List<EmployeeViewModel> employeeViewModels = new List<EmployeeViewModel>();
-            return employeeViewModel;
-        }
-        //Ben hier aan het experimenteren
 
         public void AddEmployee(Employee employee)
         {
@@ -61,6 +55,15 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Services
         public async Task<EmbeddedEmployee> GetActiveEmbeddedSdEmployeeByIdAsync(int employeeNumber)
         {
             return await _employeeRepository.GetActiveEmbeddedSdEmployeeByIdAsync(employeeNumber);
+        }
+
+        public void UpdateEmployeeViewModel(EmployeeViewModel employeeViewModel)
+        {
+            _employeeRepository.UpdateEmployeeViewModelAsync(employeeViewModel);
+        }
+        public void UpdateEmployee(Employee employee)
+        {
+            _employeeRepository.UpdateEmployeeAsync(employee);
         }
     }
 }

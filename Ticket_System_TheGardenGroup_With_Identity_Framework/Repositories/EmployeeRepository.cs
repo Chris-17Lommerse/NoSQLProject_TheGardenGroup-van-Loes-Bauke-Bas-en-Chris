@@ -86,7 +86,6 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
             );
             await _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
         }
-        //Ik zou gewoon deze gebruiken. 
         public async Task UpdateEmployeeAsync(Employee employee)
         {
             var filter = Builders<Employee>.Filter.Eq("_id", employee.Id);
@@ -131,6 +130,42 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
             };
 
             return await _employeeCollection.Aggregate<EmbeddedEmployee>(pipeline).FirstOrDefaultAsync(); //Must return one document, else error ~ Bas
+        }
+        public void UpdateEmployeeViewModelAsync(EmployeeViewModel employeeViewModel)
+        {
+            var filter = Builders<Employee>.Filter.Eq("_id", employeeViewModel.Id);
+            var combinedUpdate = Builders<Employee>.Update.Combine(
+
+                Builders<Employee>.Update.Set("employee_number", employeeViewModel.EmployeeNumber),
+                Builders<Employee>.Update.Set("name", employeeViewModel.Name),
+                Builders<Employee>.Update.Set("surname", employeeViewModel.Surname),
+                Builders<Employee>.Update.Set("emailaddress", employeeViewModel.EmailAddress),
+                Builders<Employee>.Update.Set("employee_role", employeeViewModel.EmployeeRole.ToString()),
+                Builders<Employee>.Update.Set("isActive", employeeViewModel.IsActive)
+            );
+            Console.WriteLine(filter);
+            Console.WriteLine(combinedUpdate);
+            _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
+        }
+
+        void IEmployeeRepository.UpdateEmployeeAsync(Employee employee)
+        {
+            var filter = Builders<Employee>.Filter.Eq("_id", employee.Id);
+            var combinedUpdate = Builders<Employee>.Update.Combine(
+
+                Builders<Employee>.Update.Set("employee_number", employee.EmployeeNumber),
+                Builders<Employee>.Update.Set("password", employee.Password),
+                Builders<Employee>.Update.Set("name", employee.Name),
+                Builders<Employee>.Update.Set("surname", employee.Surname),
+                Builders<Employee>.Update.Set("employee_role", employee.EmployeeRole.ToString()),
+                Builders<Employee>.Update.Set("isActive", employee.IsActive),
+                Builders<Employee>.Update.Set("isActive", employee.WorkingOn),
+                Builders<Employee>.Update.Set("working_on", employee.EmailAddress)
+            );
+            Console.WriteLine(filter);
+            Console.WriteLine(combinedUpdate);
+            
+            _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
         }
     }
 }

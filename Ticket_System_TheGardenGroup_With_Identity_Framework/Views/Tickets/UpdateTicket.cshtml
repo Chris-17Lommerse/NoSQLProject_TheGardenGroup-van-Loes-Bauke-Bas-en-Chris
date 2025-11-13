@@ -48,17 +48,17 @@
 
         <section>
             <label for="TicketName">Ticket name</label>
-            <input type="text" id="TicketName" name="TicketName" class="form-control" value="@Model?.TicketName" />
+            <input required type="text" id="TicketName" name="TicketName" class="form-control" value="@Model?.TicketName" />
         </section>
 
         <section>
             <label for="Description">Ticket Description</label>
-            <input type="text" id="Description" name="Description" class="form-control" value="@Model?.Description" />
+            <input required type="text" id="Description" name="Description" class="form-control" value="@Model?.Description" />
         </section>
 
         <section>
             <label for="TicketEscalationDescription">Escalation Ticket Description</label>
-            <input type="text" id="TicketEscalationDescription" name="TicketEscalationDescription" class="form-control" value="@Model?.TicketEscalationDescription" />
+            <input required type="text" id="TicketEscalationDescription" name="TicketEscalationDescription" class="form-control" value="@Model?.TicketEscalationDescription" />
         </section>
 
         <section>
@@ -68,7 +68,7 @@
 
         <section>
             <label for="ticketPriority">Ticket priority (only ds_e)</label>
-            <input type="text" id="ticketPriority" name="Priority" class="form-control" value="@Model?.Priority" />
+            <input required type="text" id="ticketPriority" name="Priority" class="form-control" value="@Model?.Priority" />
         </section>
 
         <section>

@@ -1,35 +1,35 @@
 ﻿@model Ticket_System_TheGardenGroup_With_Identity_Framework.ViewModels.EmployeeViewModel
 @{
-	ViewData["Title"] = "Edit Lecturer";
+	ViewData["Title"] = "Update Employee";
 }
 
 <partial name="_ErrorMessage" />
 <partial name="_WarningMessage" />
 <partial name="_SuccessMessage" />
 
-<h1>Edit Lecturer</h1>
-<form action="/Lecturers/Edit" method="post">
-	<input hidden type="text" name="ObjectID" value="@Model." />
-	<div class="form-group py-2">
-		<label for="Age">Age:</label>
-		<input type="number" id="Age" name="Age" class="form-control" required value="@Model?.Name" />
-	</div>
-	<div class="form-group py-2">
+<form action="/Employees/UpdateEmployee" method="post">
+	<input hidden readonly type="text" name="ObjectID" value="@Model.Id" />
+	<input hidden readonly type="text" name="EmployeeNumber" value="@Model?.EmployeeNumber" />
+	<section class="form-group py-2">
+		<label for="Name">Name:</label>
+		<input type="text" id="Name" name="Name" class="form-control" required value="@Model?.Name" />
+	</section>
+	<section class="form-group py-2">
 		<label for="Surname">Surname:</label>
 		<input type="text" id="Surname" name="Surname" class="form-control" required value="@Model?.Surname" />
-	</div>
-	<div class="form-group py-2">
+	</section>
+	<section class="form-group py-2">
 		<label for="EmployeeRole">Employee role:</label>
 		<input type="text" id="EmployeeRole" name="EmployeeRole" class="form-control" required value="@Model?.EmployeeRole" />
-	</div>
-	<div class="form-group py-2">
+	</section>
+	<section class="form-group py-2">
 		<label for="EmailAddress">EmailAddress:</label>
 		<input type="tel" id="EmailAddress" name="EmailAddress" class="form-control" required value="@Model?.EmailAddress" />
-	</div>
-	<div class="form-group py-2">
+	</section>
+	<section class="form-group py-2">
 		<label for="IsActive">Is active?:</label>
-		<input type="tel" id="IsActive" name="IsActive" class="form-control" required value="@Model?.IsActive" />
-	</div>
-	<button type="submit" class="btn btn-primary">Edit</button>
+		<input type="checkbox" id="IsActive" name="IsActive" asp-for="IsActive" />
+	</section>
+	<button type="submit" class="btn btn-primary">Update</button>
 </form>
-<a href="/Lecturers/Index">Back to List</a>
+<a href="/Employees/Index">Back to employee list</a>

@@ -124,28 +124,6 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
 
             return View(ticket);
         }
-        /*[HttpGet]
-        public async Task<IActionResult> UpdateEmbeddedEmployee(int employeeNumber)
-        {
-            //I am working on this, but it's probably not gonna work. 
-            try
-            {
-                //Find the service desk employee for embedding
-                var embeddedEmployee = await _employeeService.GetEmbeddedSdEmployeeByIdAsync(employeeNumber);
-
-                if (embeddedEmployee == null)
-                {
-                    TempData["EmbddEmpl"] = "This employee is not found.";
-                }
-                ViewBag.EmbddEmployee = embeddedEmployee;
-
-                return View(embeddedEmployee);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error message:" + ex);
-            }
-        }*/
 
         [HttpPost]
         [Authorize(Roles = "Service_Desk_Employee")]
@@ -162,20 +140,15 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
                 //Sends the new info to the DB
                 _ticketService.UpdateTicket(ticket);
                 Ticket updatedTicket = await _ticketService.GetTicketByObjIdAsync(ticket.TicketId);
-                if (updatedTicket == null) 
-                {
-                    TempData["ErrorMessage"] = "The update corrupted the ticket or something else went terribly wrong.";
-                    return RedirectToAction("Index", "Tickets");
-                }
-                else if (!Debugger(ticket, updatedTicket)) 
-                {
-                    TempData["ErrorMessage"] = "Ik weet niet hoe je hier bent gekomen, maar er is waarschijnlijk iets fout gegaan op de HttpPost van UpdateTicket.";
-                    return RedirectToAction("Index", "Tickets");
-                }
-                else
+                if (await _ticketService.CheckUpdatedTicket(ticket))
                 {
                     TempData["SuccesMessage"] = "The ticket was succesfully updated.";
                     return View(updatedTicket);
+                }
+                else 
+                {
+                    TempData["ErrorMessage"] = "The update corrupted the ticket or something else went terribly wrong.";
+                    return RedirectToAction("Index", "Tickets");
                 }
             }
             catch (Exception ex)
@@ -308,72 +281,6 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
                 return RedirectToAction("Index", "Home");
             }
             throw new NotImplementedException();
-        }
-        public bool Debugger(Ticket ticket, Ticket updatedTicket)
-        {
-            bool hasTicketUpdatedCorrectly = true;
-            Console.BackgroundColor = ConsoleColor.Magenta;
-            Console.WriteLine();
-            Console.WriteLine("Debugging UpdateTicket HttpPost");
-            Console.WriteLine("ticket : updatedTicket"); //what should have happened : what actually happened
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.WriteLine();
-            if (ticket.TicketId != updatedTicket.TicketId)
-            {
-                Console.WriteLine($"TicketId as ObjectId: {ticket.TicketId} != {updatedTicket.TicketId}");
-                switch (ticket.TicketId.ToString() == updatedTicket.TicketId.ToString())
-                {
-                    case true:
-                        Console.WriteLine($"TicketId as string: {ticket.TicketId.ToString()} == {updatedTicket.TicketId.ToString()}");
-                        break;
-                    case false:
-                        Console.WriteLine($"TicketId as string: {ticket.TicketId.ToString()} != {updatedTicket.TicketId.ToString()}");
-                        break;
-                }
-                hasTicketUpdatedCorrectly = false;
-            }
-
-            if (ticket.CreationTime != updatedTicket.CreationTime)
-            {
-                Console.WriteLine($"CreationTime as DateTime: {ticket.CreationTime} != {updatedTicket.CreationTime}");
-                Console.WriteLine($"DateTime.Compare: {DateTime.Compare(ticket.CreationTime, updatedTicket.CreationTime)}");
-                switch (ticket.CreationTime.ToString() == updatedTicket.CreationTime.ToString())
-                {
-                    case true:
-                        Console.WriteLine($"CreationTime as string: {ticket.CreationTime.ToString()} == {updatedTicket.CreationTime.ToString()}");
-                        break;
-                    case false:
-                        Console.WriteLine($"CreationTime as string: {ticket.CreationTime} != {updatedTicket.CreationTime}");
-                        break;
-                }
-            }
-            if (ticket.TicketStatus != updatedTicket.TicketStatus) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"TicketStatus: {ticket.TicketStatus} != {updatedTicket.TicketStatus}"); }
-            if (ticket.TicketName != updatedTicket.TicketName) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"TicketName: {ticket.TicketName} != {updatedTicket.TicketName}"); }
-            if (ticket.Description != updatedTicket.Description) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"Description: {ticket.Description} != {updatedTicket.Description}"); }
-            if (ticket.IsSolved != updatedTicket.IsSolved) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"IsSolved: {ticket.IsSolved} != {updatedTicket.IsSolved}"); }
-            if (ticket.Priority != updatedTicket.Priority) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"Priority: {ticket.Priority} != {updatedTicket.Priority}"); }
-            if (ticket.TicketEscalationDescription != updatedTicket.TicketEscalationDescription)
-            {
-                Console.WriteLine($"TicketEscalationDescription: {ticket.TicketEscalationDescription} != {updatedTicket.TicketEscalationDescription}");
-                hasTicketUpdatedCorrectly = false;
-            }
-            Console.BackgroundColor = ConsoleColor.DarkBlue;
-            Console.WriteLine("ReportingEmployee:");
-            if (ticket.ReportingEmployee.EmployeeNumber != updatedTicket.ReportingEmployee.EmployeeNumber) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"EmployeeNumber: {ticket.ReportingEmployee.EmployeeNumber} != {updatedTicket.ReportingEmployee.EmployeeNumber}"); }
-            if (ticket.ReportingEmployee.EmployeeRole != updatedTicket.ReportingEmployee.EmployeeRole) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"EmployeeRole: {ticket.ReportingEmployee.EmployeeRole} != {updatedTicket.ReportingEmployee.EmployeeRole}"); }
-            if (ticket.ReportingEmployee.EmailAddress != updatedTicket.ReportingEmployee.EmailAddress) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"EmailAddress: {ticket.ReportingEmployee.EmailAddress} != {updatedTicket.ReportingEmployee.EmailAddress}"); }
-            if (ticket.ReportingEmployee.Name != updatedTicket.ReportingEmployee.Name)
-            {
-                hasTicketUpdatedCorrectly = false; Console.WriteLine($"Name: {ticket.ReportingEmployee.Name} != {updatedTicket.ReportingEmployee.Name}");
-            }
-            Console.BackgroundColor = ConsoleColor.Blue;
-            Console.WriteLine("SolvingEmployee:");
-            if (ticket.SolvingEmployee.EmployeeNumber != updatedTicket.SolvingEmployee.EmployeeNumber) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"EmployeeNumber: {ticket.SolvingEmployee.EmployeeNumber} != {updatedTicket.SolvingEmployee.EmployeeNumber}"); }
-            if (ticket.SolvingEmployee.EmployeeRole != updatedTicket.SolvingEmployee.EmployeeRole) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"EmployeeRole: {ticket.SolvingEmployee.EmployeeRole} != {updatedTicket.SolvingEmployee.EmployeeRole}"); }
-            if (ticket.SolvingEmployee.EmailAddress != updatedTicket.SolvingEmployee.EmailAddress) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"EmailAddress: {ticket.SolvingEmployee.EmailAddress} != {updatedTicket.SolvingEmployee.EmailAddress}"); }
-            if (ticket.SolvingEmployee.Name != updatedTicket.SolvingEmployee.Name) { hasTicketUpdatedCorrectly = false; Console.WriteLine($"Name: {ticket.SolvingEmployee.Name} != {updatedTicket.SolvingEmployee.Name}"); }
-            Console.BackgroundColor = ConsoleColor.Black;
-            return hasTicketUpdatedCorrectly;
         }
     }
 }

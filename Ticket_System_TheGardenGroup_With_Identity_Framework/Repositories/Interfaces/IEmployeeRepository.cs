@@ -6,14 +6,15 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories.Inte
 {
     public interface IEmployeeRepository
     {
-        Task<List<EmployeeTicketsVm>> GetAllEmployeesWithAmountOfTicketsAsync();
-        void AddEmployeeAsync(Employee employee);
+        Task<List<EmployeeTicketsVm>> GetAllEmployeesWithAmountOfTicketsAsync();//EmployeesIndex
+        void AddEmployeeAsync(Employee employee);//AddEmployee
+        void UpdateEmployeeViewModelAsync(EmployeeViewModel employeeViewModel);
+        void UpdateEmployeeAsync(Employee employee);
         Task<Employee> GetEmployeeByEmployeeIdAsync(ObjectId employeeID);
         Task<Employee> GetEmployeeByEmployeeNumberAsync(int employeeNumber);
-        Task RemoveRegularEmployeeAsync(Employee employee);
-        Task RemoveServiceDeskEmployeeAsync(Employee employee);
-        Task UpdateEmployeeAsync(Employee employee);
-        Task<EmbeddedEmployee> GetActiveEmbeddedSdEmployeeByIdAsync(int employeeNumber);
+        Task RemoveRegularEmployeeAsync(Employee employee);//Not currently used
+        Task RemoveServiceDeskEmployeeAsync(Employee employee);//Not currently used
+        Task<EmbeddedEmployee> GetActiveEmbeddedSdEmployeeByIdAsync(int employeeNumber);//ViewTicket, UpdateTicket: Not currently used
 
     }
 }

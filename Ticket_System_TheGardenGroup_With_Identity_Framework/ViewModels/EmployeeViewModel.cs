@@ -24,19 +24,10 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.ViewModels
         public EmployeeRole EmployeeRole { get; set; } = EmployeeRole.Regular_Employee;
         [BsonElement("is_active")]
         public bool IsActive { get; set; } = false;
-        public EmployeeViewModel(Employee employee)
-        {
-            Id = employee.Id;
-            EmployeeNumber = employee.EmployeeNumber;
-            EmailAddress = employee.EmailAddress;
-            Name = employee.Name;
-            Surname = employee.Surname;
-            EmployeeRole = employee.EmployeeRole;
-            IsActive = employee.IsActive;
-        }
 
-        public EmployeeViewModel(int employeeNumber, string emailAddress, string name, string surname, EmployeeRole employeeRole, bool isActive)
+        public EmployeeViewModel(ObjectId id, int employeeNumber, string emailAddress, string name, string surname, EmployeeRole employeeRole, bool isActive)
         {
+            Id = id;
             EmployeeNumber = employeeNumber;
             EmailAddress = emailAddress;
             Name = name;

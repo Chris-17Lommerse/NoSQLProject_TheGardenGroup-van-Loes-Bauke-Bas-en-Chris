@@ -8,26 +8,45 @@
 <partial name="_WarningMessage" />
 <partial name="_SuccessMessage" />
 
-<table class="table table-hover">
-	<thead class="table-dark">
-		<tr>
-			<th>Name</th>
-			<th>Surname</th>
-			<th>Employee number</th>
-			<th>Employee role</th>
-			<th>Emailaddress</th>
-			<th>Phonenumber</th>
-			<th>Edit/Delete</th>
-		</tr>
-	</thead>
-	<tbody class="bg-opacity-10 bg-black">
-		<tr>
-			<td>@Model.Name</td>
-			<td>@Model.Surname</td>
-			<td>@Model.EmployeeNumber</td>
-			<td>@Model.EmployeeNumber</td>
-		</tr>
-	</tbody>
-</table>
-<a class="alert-warning btn btn-primary" href="/Employees/UpdateEmployee/">Edit this employee</a>
-<!--<a class="alert-danger" href="/Employees/DeactivateEmployee/@Model.Id">Deactivate this employee</a>-->
+<a href="/Employees/Index" class="btn btn-primary mb-3">Back to employee list</a>
+<a href="/Employees/UpdateEmployee?employeeIdString=@Model?.Id" class="btn mb-3 btn-warning">Update employee</a>
+<a href="/Employees/DeleteEmployee?employeeId=@Model?.Id" class="btn mb-3 btn-danger">Delete employee</a>
+
+<section>
+
+    
+    <section>
+        <label hidden for="EmployeeId">Employee Id</label>
+        <input readonly hidden type="text" id="EmployeeId" name="Id" class="form-control" value="@Model?.Id" />
+    </section>
+
+    <section>
+        <label readonly for="Name">Name</label>
+        <input readonly type="text" id="Name" name="Name" class="form-control" value="@Model?.Name" />
+    </section>
+    
+    <section>
+        <label readonly for="Surname">Surname</label>
+        <input readonly type="text" id="Surname" name="Surname" class="form-control" value="@Model?.Surname" />
+    </section>
+
+    <section>
+        <label readonly for="EmployeeNumber">EmployeeNumber</label>
+        <input readonly type="text" id="EmployeeNumber" name="EmployeeNumber" class="form-control" value="@Model?.EmployeeNumber" />
+    </section>
+
+    <section>
+        <label for="EmployeeRole">EmployeeRole</label>
+        <input readonly type="text" id="EmployeeRole" name="EmployeeRole" class="form-control" value="@Model?.EmployeeRole" />
+    </section>
+
+    <section>
+        <label for="EmailAddress">EmailAddress</label>
+        <input readonly type="text" id="EmailAddress" name="EmailAddress" class="form-control" value="@Model?.EmailAddress" />
+    </section>
+
+    <section>
+        <label readonly for="IsActive">IsActive</label>
+        <input readonly type="checkbox" id="IsActive" name="IsActive" asp-for="IsActive" />
+    </section>
+</section>
