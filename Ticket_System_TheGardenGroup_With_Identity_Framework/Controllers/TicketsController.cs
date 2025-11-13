@@ -36,8 +36,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
                 }
                 if (User.IsInRole("Service_Desk_Employee"))
                 {
-                    string emailAddress = string.Empty;
-                    tickets = await _ticketService.GetAllTicketsByEmailAddress(emailAddress);
+                    tickets = await _ticketService.GetAllTickets();
                     return View(tickets);
                 }
                 else if(User.IsInRole("Regular_Employee"))
@@ -71,8 +70,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
                 }
                 else
                 {
-                   string emailAddress = string.Empty;
-                   tickets = await _ticketService.GetAllTicketsByEmailAddress(emailAddress);
+                   tickets = await _ticketService.GetAllTickets();
                 }
 
                 if(tickets.Count > 0)

@@ -5,7 +5,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Services.Interfac
 {
     public interface ITicketService
     {
-        Task<List<Ticket>> GetAllTicketsByEmailAddress(string emailAddress);
+        Task<List<Ticket>> GetAllTickets();
         Task<List<Ticket>> GetTicketsByEmployeeId();
         //Task<TicketViewModel> GetTicketAsync(ObjectId id);
 
