@@ -1,0 +1,37 @@
+﻿@model Ticket_System_TheGardenGroup.ViewModels.EmployeeViewModel
+@{
+	ViewData["Title"] = "Edit Lecturer";
+}
+
+<h1 class="alert-danger">@TempData["ErrorMessage"]</h1>
+<h1 class="alert-warning">@TempData["WarningMessage"]</h1>
+<h1 class="alert-success">@TempData["SuccesMessage"]</h1>
+
+<h1>Edit Lecturer</h1>
+
+<form action="/Lecturers/Edit" method="post">
+	<input hidden type="text" name="ObjectID" value="@Model." />
+	<div class="form-group py-2">
+		<label for="Age">Age:</label>
+		<input type="number" id="Age" name="Age" class="form-control" required value="@Model?.Name" />
+	</div>
+	<div class="form-group py-2">
+		<label for="Surname">Surname:</label>
+		<input type="text" id="Surname" name="Surname" class="form-control" required value="@Model?.Surname" />
+	</div>
+	<div class="form-group py-2">
+		<label for="EmployeeRole">Employee role:</label>
+		<input type="text" id="EmployeeRole" name="EmployeeRole" class="form-control" required value="@Model?.EmployeeRole" />
+	</div>
+	<div class="form-group py-2">
+		<label for="EmailAddress">EmailAddress:</label>
+		<input type="tel" id="EmailAddress" name="EmailAddress" class="form-control" required value="@Model?.EmailAddress" />
+	</div>
+	<div class="form-group py-2">
+		<label for="IsActive">Is active?:</label>
+		<input type="tel" id="IsActive" name="IsActive" class="form-control" required value="@Model?.IsActive" />
+	</div>
+	<button type="submit" class="btn btn-primary">Edit</button>
+</form>
+
+<a href="/Lecturers/Index">Back to List</a>

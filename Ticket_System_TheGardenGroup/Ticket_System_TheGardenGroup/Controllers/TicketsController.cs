@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
-using System.Linq.Expressions;
 using Ticket_System_TheGardenGroup.Models;
-using Ticket_System_TheGardenGroup.Services;
 using Ticket_System_TheGardenGroup.Services.Interfaces;
-using Ticket_System_TheGardenGroup.ViewModels;
 
 namespace Ticket_System_TheGardenGroup.Controllers
 {
@@ -23,8 +20,9 @@ namespace Ticket_System_TheGardenGroup.Controllers
         {
             try
             {
-                var tickets = await _ticketService.GetAllTickets();
-				return View(tickets);
+				List<Ticket> tickets = await _ticketService.GetAllUnArchivedTicketsAsync();
+
+                return View(tickets);
 			}
             catch (Exception ex)
             {
@@ -33,20 +31,57 @@ namespace Ticket_System_TheGardenGroup.Controllers
             }
             
         }
-        /*[HttpGet]
+        [HttpPost]
+        public async Task<IActionResult> Index(Ticket ticket)
+        {
+            try
+            {
+                long arhivedTicketCount = await _ticketService.ArchiveAllOldTicektsAsync();
+                TempData["SuccesMessage"] = $"{arhivedTicketCount} tickets are archived.";
+
+                List<Ticket> tickets = await _ticketService.GetAllUnArchivedTicketsAsync();
+
+				return View(tickets);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Error with archiving tickets!";
+                return RedirectToAction("Index");
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ArchivedTickets()
+        {
+            try
+            {
+                List<Ticket> archivedTickets = await _ticketService.FindAllArchivedTicketsAsync();
+
+                return View(archivedTickets);
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "something went horibly wrong!";
+                return RedirectToAction("Index");
+            }
+        }
+
+
+        [HttpGet]
         public ActionResult ViewTicket(ObjectId employeeID)
         {
             try
             {
-                return View(_ticketService.GetTicketAsync(employeeID));
+                throw new NotImplementedException("Deze methode is nog niet geïmplementeerd!");
+                //return View(_ticketService.GetTicketAsync(employeeID));
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 TempData["ErrorMessage"] = "The ViewTicket page could not be loaded.";
                 return RedirectToAction("Index");
             }
-        }*/
-		[HttpGet]
+        }
+        [HttpGet]
 		public async Task<IActionResult> UpdateTicket(string ticketId)
 		{
             try
@@ -107,7 +142,7 @@ namespace Ticket_System_TheGardenGroup.Controllers
                 TempData["SuccesMessage"] = "The ticket was succesfully updated.";
                 return View(ticket);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 TempData["ErrorMessage"] = "The UpdateTicket page could not be loaded.";
                 return RedirectToAction("UpdateTicket", ticket);
@@ -147,41 +182,37 @@ namespace Ticket_System_TheGardenGroup.Controllers
         {
             try
             {
-				var ticket = await _ticketService.GetTicketByObjIdAsync(ticketId);
+				Ticket ticket = await _ticketService.GetTicketByObjIdAsync(ticketId);
 
 				if (ticket == null)
 				{
-					TempData["NoTicket"] = "Ticket not found.";
+					TempData["ErrorMsg"] = "No ticket found!";
 					return RedirectToAction("Index");
 				}
 
-				return View(ticket);
+                return View(ticket);
 			}
             catch (Exception)
             {
-                throw new Exception("No ticket found to delete");
+                TempData["ErrorMsg"] = "Something went wrong!";
+                return RedirectToAction("Index");
             }
         }       
-
         [HttpPost]
 		public IActionResult DeleteTicket(Ticket ticket)
 		{
             try
             {
-                //first delete the ticket from workingOn array
-                //
-
-                //This deletes a ticket
                 _ticketService.DeleteTicket(ticket);
+                TempData["SuccesMsg"] = $"Ticket: {ticket.TicketName}, has been deleted";
 
                 return RedirectToAction("Index");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.Write(ex);
+                TempData["ErrorMsg"] = "Something went wrong!";
                 return RedirectToAction("Index");
             }
 		}
-
 	}
 }

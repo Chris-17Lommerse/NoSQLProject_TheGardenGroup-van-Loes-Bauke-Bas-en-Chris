@@ -6,16 +6,20 @@ namespace Ticket_System_TheGardenGroup.Services.Interfaces
 {
     public interface IEmployeeService
     {
+        Task<List<Employee>> GetAllActiveEmployees();
+
         Task<List<EmployeeTicketsVm>> GetAllEmployeesWithAmountOfTicketsAsync();
         Task<EmployeeViewModel> GetEmployeeAsync(int employeeNumber);
+
         void AddEmployee(Employee employee);
+        Task DeleteEmployeeAsync(ObjectId employeeId);
 
 		Task<Employee> GetEmployeeByNumberAsync(string employeeNumber);
 
         //for finding a service desk employee to embed
         Task<EmbeddedEmployee> GetActiveEmbeddedSdEmployeeByIdAsync(int employeeNumber);
 
-        //Task<Employee> GetToBe
+        Task<Employee> FindTicketIdInWorkingOnArry(Ticket ticketId);
 
     }
 }

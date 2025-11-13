@@ -95,8 +95,8 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
                 Builders<Employee>.Update.Set("emailaddress", employee.EmailAddress),
                 Builders<Employee>.Update.Set("employee_role", employee.EmployeeRole),
                 Builders<Employee>.Update.Set("password", employee.Password),
-                Builders<Employee>.Update.Set("isActive", employee.IsActive),
-                Builders<Employee>.Update.Set("workingOn", employee.WorkingOn)
+                Builders<Employee>.Update.Set("isActive", employee.IsActive)//,
+                //Builders<Employee>.Update.Set("workingOn", employee.WorkingOn)
             );
             await _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
         }
@@ -166,6 +166,46 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
             Console.WriteLine(combinedUpdate);
             
             _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
+        }
+
+        public async Task FindTicketIdInWorkingOnArryAsync(ObjectId ticketId, List<ObjectId> connectedTicketIdsToRemove)
+        {
+            throw new NotImplementedException("This method is not yet implemented");
+
+            /*// Stap 1: Vind het Ticket op basis van ticketId
+            var filter = Builders<Employee>.Filter.Eq(t => t.WorkingOn., ticketId);
+            var employee = await _employeeCollection.Find(filter).FirstOrDefaultAsync();
+
+            if (employee != null)
+            {
+                // Stap 2: Lees de lijst van verbonden Tickets
+                var currentWorkingOn = employee.WorkingOn ?? new List<EmbeddedEmployee>();
+
+                // Stap 3: Verwijder de verbonden Tickets die in connectedTicketIdsToRemove staan
+                var updatedWorkingOn = currentWorkingOn
+                    .Where(t => !connectedTicketIdsToRemove.Contains(t.Id))
+                    .ToList();
+
+                // Stap 4: Update de lijst in het Ticket
+                employee.WorkingOn = updatedWorkingOn;
+
+                // Stap 5: Sla het bijgewerkte Ticket weer op in de database
+                await _employeeCollection.ReplaceOneAsync(filter, employee);
+            }*/
+        }
+
+        public async Task<List<Employee>> GetAllActiveEmployees()
+        {
+            var filter = Builders<Employee>.Filter.Eq(e => e.IsActive, true);
+
+            return await _employeeCollection.Find(filter).ToListAsync();
+        }
+
+        public async Task DeleteEmployeeAsync(ObjectId employeeId)
+        {
+            var filter = Builders<Employee>.Filter.Eq(e => e.Id, employeeId);
+
+            await _employeeCollection.DeleteOneAsync(filter);
         }
     }
 }

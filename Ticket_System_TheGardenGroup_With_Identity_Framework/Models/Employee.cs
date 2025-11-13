@@ -34,6 +34,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Models
         public bool IsActive { get; set; } = false;
 
         [BsonElement("workingOn")]
-        public ObjectId[] WorkingOn { get; set; } = Array.Empty<ObjectId>();
+        public List<WorkingOnItem> workingOnList { get; set; } = new List<WorkingOnItem>();
+        //public ObjectId[] WorkingOn { get; set; } = Array.Empty<ObjectId>();
     }
 }
