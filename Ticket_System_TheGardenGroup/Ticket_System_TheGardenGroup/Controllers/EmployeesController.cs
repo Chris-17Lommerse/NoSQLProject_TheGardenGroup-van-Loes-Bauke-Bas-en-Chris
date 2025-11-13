@@ -57,7 +57,7 @@ namespace Ticket_System_TheGardenGroup.Controllers
             }
 
         [HttpGet]
-        public async Task<IActionResult> DeleteTicket(Employee employee)
+        public async Task<IActionResult> DeleteEmployee(Employee employee)
         {
             try
             {
@@ -74,7 +74,7 @@ namespace Ticket_System_TheGardenGroup.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> DeleteTicket(ObjectId employeeId)
+        public async Task<IActionResult> DeleteEmployee(ObjectId employeeId)
         {
             try
             {
