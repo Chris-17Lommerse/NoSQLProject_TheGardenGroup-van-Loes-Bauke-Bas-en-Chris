@@ -20,7 +20,7 @@ namespace Ticket_System_TheGardenGroup.Services
             return _ticketRepository.ArchiveAllOldTicektsAsync();
         }
 
-        public void DeleteTicket(Ticket ticket)
+        public async Task DeleteTicket(Ticket ticket)
         {
             _ticketRepository.DeleteTicket(ticket);
         }

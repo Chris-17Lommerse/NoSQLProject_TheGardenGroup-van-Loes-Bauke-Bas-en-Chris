@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using System.Net.Mail;
+using System.Threading.Tasks;
 using System.Xml.Linq;
 using Ticket_System_TheGardenGroup.Models;
 using Ticket_System_TheGardenGroup.Models.Enums;
@@ -60,6 +61,11 @@ namespace Ticket_System_TheGardenGroup.Services
         public async Task<List<Employee>> GetAllActiveEmployees()
         {
             return await _employeeRepository.GetAllActiveEmployees();
+        }
+
+        public async Task DeleteEmployeeAsync(ObjectId employeeId)
+        {
+           await _employeeRepository.DeleteEmployeeAsync(employeeId);
         }
     }
 }

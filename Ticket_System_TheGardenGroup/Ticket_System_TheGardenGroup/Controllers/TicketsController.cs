@@ -44,10 +44,27 @@ namespace Ticket_System_TheGardenGroup.Controllers
             }
             catch (Exception ex)
             {
-                RedirectToAction("index");
-                throw new Exception("Error: " + ex);
+                TempData["ErrorMessage"] = "Error with archiving tickets!";
+                return RedirectToAction("Index");
             }
         }
+
+        [HttpGet]
+        public async Task<IActionResult> ArchivedTickets()
+        {
+            try
+            {
+                List<Ticket> archivedTickets = await _ticketService.FindAllArchivedTicketsAsync();
+
+                return View(archivedTickets);
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "something went horibly wrong!";
+                return RedirectToAction("Index");
+            }
+        }
+
 
         [HttpGet]
         public ActionResult ViewTicket(ObjectId employeeID)
@@ -57,7 +74,7 @@ namespace Ticket_System_TheGardenGroup.Controllers
                 throw new NotImplementedException("Deze methode is nog niet geïmplementeerd!");
                 //return View(_ticketService.GetTicketAsync(employeeID));
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 TempData["ErrorMessage"] = "The ViewTicket page could not be loaded.";
                 return RedirectToAction("Index");
@@ -116,39 +133,10 @@ namespace Ticket_System_TheGardenGroup.Controllers
                 TempData["SuccesMessage"] = "The ticket was succesfully updated.";
                 return View(ticket);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 TempData["ErrorMessage"] = "The UpdateTicket page could not be loaded.";
                 return RedirectToAction("UpdateTicket", ticket);
-            }
-        }
-
-		[HttpGet]
-        public IActionResult AddTicket()
-        {
-            throw new NotImplementedException();
-            try
-            {
-                return View();
-            }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = "The AddTicket page could not be loaded.";
-                return RedirectToAction("ViewTicket");
-            }
-        }
-        [HttpGet]
-        public IActionResult AddTicket(TicketViewModel ticketViewModel)
-        {
-            throw new NotImplementedException();
-            try
-            {
-                return View();
-            }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = "The AddTicket page could not be loaded.";
-                return RedirectToAction("ViewTicket");
             }
         }
 
@@ -178,9 +166,6 @@ namespace Ticket_System_TheGardenGroup.Controllers
 		{
             try
             {
-                //first delete the ticket from workingOn array
-                //
-
                 _ticketService.DeleteTicket(ticket);
                 TempData["SuccesMsg"] = $"Ticket: {ticket.TicketName}, has been deleted";
 

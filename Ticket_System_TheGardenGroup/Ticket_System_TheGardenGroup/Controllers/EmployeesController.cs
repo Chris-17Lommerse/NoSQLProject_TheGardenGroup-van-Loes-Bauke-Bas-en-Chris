@@ -49,37 +49,46 @@ namespace Ticket_System_TheGardenGroup.Controllers
                     TempData["SuccessMessage"] = " User created successfully! :) ";
                     return RedirectToAction("Index");
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     ViewBag.ErrorMessage = " User could not be created :((((";
                     return View("AddEmployee");
                 }
             }
 
-        /*[HttpGet]
-        public async Task<IActionResult> DeleteTicket(string employeeId)
+        [HttpGet]
+        public async Task<IActionResult> DeleteTicket(Employee employee)
         {
             try
             {
-                
+                //Get ticket by its id and put that in a ObjectId
+                //getting the employee form the db
+
+                //return the view with the employee obj
+                return View();
             }
             catch (Exception)
             {
-
+                TempData["WarningMessage"] = "Something went wrong";
+                return RedirectToAction("Index");
             }
         }
         [HttpPost]
-        public IActionResult DeleteTicket(Ticket ticket)
+        public async Task<IActionResult> DeleteTicket(ObjectId employeeId)
         {
             try
             {
+                await _employeeService.DeleteEmployeeAsync(employeeId);
+                TempData["SuccesMessage"] = $"Employee: {employeeId} is deleted";
 
+                return RedirectToAction("Index");
             }
             catch (Exception)
             {
-
+                TempData["WarningMessage"] = "Something went wrong";
+                return RedirectToAction("Index");
             }
-        }*/
+        }
 
 
 

@@ -3,6 +3,7 @@ using MongoDB.Driver;
 using System.Linq.Expressions;
 using Ticket_System_TheGardenGroup.Models;
 using Ticket_System_TheGardenGroup.Models.Enums;
+using Ticket_System_TheGardenGroup.Repositories.ArchivingFuntionaliteit;
 using Ticket_System_TheGardenGroup.Repositories.Interfaces;
 
 namespace Ticket_System_TheGardenGroup.Repositories
@@ -10,10 +11,12 @@ namespace Ticket_System_TheGardenGroup.Repositories
     public class TicketRepository : ITicketRepository
     {
         private readonly IMongoCollection<Ticket> _ticketCollection;
+        private ArchivingTicketDbQueries queries;
 
         public TicketRepository(IMongoDatabase database)
         {
             _ticketCollection = database.GetCollection<Ticket>("TICKET");
+            queries = new ArchivingTicketDbQueries(database);
         }
 
         public void AddTicket(Ticket ticket)
@@ -55,45 +58,24 @@ namespace Ticket_System_TheGardenGroup.Repositories
             _ticketCollection.UpdateOneAsync(filter, combinedUpdate);
         }
 
-        public void DeleteTicket(Ticket ticket)
+        public async Task DeleteTicket(Ticket ticket)
         {
             var filter = Builders<Ticket>.Filter.Eq(t => t.TicketId, ticket.TicketId);
 
-            _ticketCollection.DeleteOneAsync(filter);
+            await _ticketCollection.DeleteOneAsync(filter);
         }
 
         public async Task<long> ArchiveAllOldTicektsAsync()
         {
-            try
-            {
-                var builder = Builders<Ticket>.Filter;
-                var filter = builder.And(
-                        builder.Lt(t => t.CreationTime, DateTime.UtcNow.AddYears(-2)),
-                        builder.Ne(t => t.TicketStatus, TicketStatus.Closed)
-                );
-
-                var update = Builders<Ticket>.Update.Set(t => t.TicketStatus, TicketStatus.Closed);
-
-                var result = await _ticketCollection.UpdateManyAsync(filter, update);
-
-                long amountOfChangedDocuments = result.ModifiedCount;
-                return amountOfChangedDocuments;
-            }
-            catch (Exception)
-            {
-                throw new Exception();
-            }
+            return await queries.ArchiveAllOldTicektsAsyncClass();
         }
         public async Task<List<Ticket>> GetAllUnArchivedTicketsAsync()
         {
-            return await _ticketCollection.Find(Builders<Ticket>.Filter.Ne(t => t.TicketStatus, TicketStatus.Closed)).ToListAsync();
+            return await queries.GetAllUnArchivedTicketsAsyncClass();
         }
         public async Task<List<Ticket>> FindAllArchivedTicketsAsync()
         {
-            var creationTimeFilter = Builders<Ticket>.Filter.Lt(t => t.CreationTime, DateTime.UtcNow.AddYears(-2));
-            var ticketStatusFilter = Builders<Ticket>.Filter.Eq(t => t.TicketStatus, TicketStatus.Closed);
-
-            return await _ticketCollection.Find(Builders<Ticket>.Filter.And(creationTimeFilter, ticketStatusFilter)).ToListAsync();
+            return await queries.FindAllArchivedTicketsAsyncClass();
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using Ticket_System_TheGardenGroup.Models;
-using Ticket_System_TheGardenGroup.Models.Enums;
 using Ticket_System_TheGardenGroup.Repositories.Interfaces;
 using Ticket_System_TheGardenGroup.ViewModels;
 
@@ -206,6 +205,13 @@ namespace Ticket_System_TheGardenGroup.Repositories
             var filter = Builders<Employee>.Filter.Eq(e => e.IsActive, true);
 
             return await _employeeCollection.Find(filter).ToListAsync();
+        }
+
+        public async Task DeleteEmployeeAsync(ObjectId employeeId)
+        {
+            var filter = Builders<Employee>.Filter.Eq(e => e.Id, employeeId);
+
+            await _employeeCollection.DeleteOneAsync(filter);
         }
     }
 }

@@ -18,26 +18,28 @@ body {
   margin-bottom: 60px;
 }
 
-#archiveModal .modal-content {
-    border-radius: 15px;
-    padding: 20px;
-}
 
-#archiveModal img {
-    max-width: 60px;
+#confirmationPopup {
+    display: none;
+    position: inherit;
+
+    background-color: lightgrey;
+    z-index: 10;
+    border: 5px solid #ff1f1f;
+    border-radius: 1em;
+}
+#warningIMG {
+    width: 80px;
     height: auto;
+    display: inline-block;
 }
-
-#undoMessage {
-    font-size: 1rem;
+#confirmBtn {
+    cursor: pointer;
 }
-
-#undoBtn {
-    font-weight: bold;
-    text-decoration: underline;
+#cancelBtn {
     cursor: pointer;
 }
 
-#confirmationPopup{
-    display: none;
+#archiveForm{
+    padding: 1em;
 }
