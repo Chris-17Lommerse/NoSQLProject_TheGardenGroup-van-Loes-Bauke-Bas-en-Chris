@@ -235,30 +235,17 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
                 return RedirectToAction("ViewTicket");
             }
         }
-
+        [Authorize(Roles = "Service_Desk_Employee,Regular_Employee")]
         [HttpGet]
-        [Authorize(Roles = "Service_Desk_Employee")]
         public async Task<IActionResult> DeleteTicket(ObjectId ticketId)
         {
             try
             {
-                if (!_signInManager.IsSignedIn(User))
-                {
-                    TempData["ErrorMessage"] = $"Je moet inloggen om toegang te krijgen tot de pagina";
-                    return RedirectToAction("Index", "Home");
-                }
-                /*if (string.IsNullOrEmpty(ticketId))
-				{
-					TempData["NoId"] = "Ticket ID missing.";
-					return RedirectToAction("Index");
-				}*/
-
-                //var objectId = new ObjectId(ticketId);
-                var ticket = await _ticketService.GetTicketByObjIdAsync(ticketId);
+                Ticket ticket = await _ticketService.GetTicketByObjIdAsync(ticketId);
 
                 if (ticket == null)
                 {
-                    TempData["NoTicket"] = "Ticket not found.";
+                    TempData["ErrorMessage"] = "No ticket found!";
                     return RedirectToAction("Index");
                 }
 
@@ -266,20 +253,43 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
             }
             catch (Exception)
             {
-                throw new Exception("No ticket found to delete");
+                TempData["ErrorMessage"] = "Something went wrong!";
+                return RedirectToAction("Index");
+            }
+        }
+        [Authorize(Roles = "Service_Desk_Employee,Regular_Employee")]
+        [HttpPost]
+        public IActionResult DeleteTicket(Ticket ticket)
+        {
+            try
+            {
+                _ticketService.DeleteTicket(ticket);
+                TempData["ErrorMessage"] = $"Ticket: {ticket.TicketName}, has been deleted";
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Something went wrong!";
+                return RedirectToAction("Index");
             }
         }
 
-        [HttpPost]
         [Authorize(Roles = "Service_Desk_Employee")]
-        public async Task<IActionResult> DeleteTicket()
+        [HttpGet]
+        public async Task<IActionResult> ArchivedTickets()
         {
-            if (!_signInManager.IsSignedIn(User))
+            try
             {
-                TempData["ErrorMessage"] = $"Je moet inloggen om toegang te krijgen tot de pagina";
-                return RedirectToAction("Index", "Home");
+                List<Ticket> archivedTickets = await _ticketService.FindAllArchivedTicketsAsync();
+
+                return View(archivedTickets);
             }
-            throw new NotImplementedException();
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Something went horribly wrong!";
+                return RedirectToAction("Index");
+            }
         }
     }
 }

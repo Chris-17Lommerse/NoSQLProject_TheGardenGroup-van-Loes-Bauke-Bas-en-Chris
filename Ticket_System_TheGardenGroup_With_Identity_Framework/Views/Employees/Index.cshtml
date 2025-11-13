@@ -20,12 +20,12 @@
             @foreach (EmployeeTicketsVm employeeTicketsViewModel in await Model)
             {
                 <tr>
-                    <td>@employee.EmployeeNumber</td>
-                    <td>@employee.EmailAddress</td>
-                    <td>@employee.Name</td>
-                    <td>@employee.Surname</td>
-                    <td>@employee.EmployeeRole</td>
-                    <td>@employee.Id</td>
+                    <td>@employeeTicketsViewModel.EmployeeNumber</td>
+                    <td>@employeeTicketsViewModel.EmailAddress</td>
+                    <td>@employeeTicketsViewModel.Name</td>
+                    <td>@employeeTicketsViewModel.Surname</td>
+                    <td>@employeeTicketsViewModel.EmployeeRole</td>
+                    <td>@employeeTicketsViewModel.Id</td>
                     <td>
                         <a href="/Employees/ViewEmployee?employeeIdString=@employeeTicketsViewModel.Id">View</a>
                     </td>

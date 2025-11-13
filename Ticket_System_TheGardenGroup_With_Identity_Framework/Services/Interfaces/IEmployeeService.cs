@@ -13,6 +13,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Services.Interfac
         void UpdateEmployeeViewModel(EmployeeViewModel employeeViewModel);
         void UpdateEmployee(Employee employee);
         Task<Employee> GetEmployeeByNumberAsync(string employeeNumber);
+        Task DeleteEmployeeAsync(ObjectId employeeId);
 
         //for finding a service desk employee to embed
         Task<EmbeddedEmployee> GetActiveEmbeddedSdEmployeeByIdAsync(int employeeNumber);

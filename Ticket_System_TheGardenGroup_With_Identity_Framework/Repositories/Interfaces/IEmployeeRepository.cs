@@ -12,6 +12,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories.Inte
         void UpdateEmployeeAsync(Employee employee);
         Task<Employee> GetEmployeeByEmployeeIdAsync(ObjectId employeeID);
         Task<Employee> GetEmployeeByEmployeeNumberAsync(int employeeNumber);
+        Task DeleteEmployeeAsync(ObjectId employeeId);
         Task RemoveRegularEmployeeAsync(Employee employee);//Not currently used
         Task RemoveServiceDeskEmployeeAsync(Employee employee);//Not currently used
         Task<EmbeddedEmployee> GetActiveEmbeddedSdEmployeeByIdAsync(int employeeNumber);//ViewTicket, UpdateTicket: Not currently used

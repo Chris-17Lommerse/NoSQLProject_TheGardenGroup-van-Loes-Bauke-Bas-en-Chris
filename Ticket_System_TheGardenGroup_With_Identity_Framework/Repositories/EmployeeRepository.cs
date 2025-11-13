@@ -107,6 +107,12 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
             );
             await _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
         }
+        public async Task DeleteEmployeeAsync(ObjectId employeeId)
+        {
+            var filter = Builders<Employee>.Filter.Eq(e => e.Id, employeeId);
+
+            await _employeeCollection.DeleteOneAsync(filter);
+        }
 
         public async Task<EmbeddedEmployee> GetActiveEmbeddedSdEmployeeByIdAsync(int employeeNumber)
         {
@@ -199,13 +205,6 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
             var filter = Builders<Employee>.Filter.Eq(e => e.IsActive, true);
 
             return await _employeeCollection.Find(filter).ToListAsync();
-        }
-
-        public async Task DeleteEmployeeAsync(ObjectId employeeId)
-        {
-            var filter = Builders<Employee>.Filter.Eq(e => e.Id, employeeId);
-
-            await _employeeCollection.DeleteOneAsync(filter);
         }
     }
 }

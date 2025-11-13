@@ -23,7 +23,10 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Services
         {
             return _employeeRepository.GetAllEmployeesWithAmountOfTicketsAsync();
         }
-
+        public async Task DeleteEmployeeAsync(ObjectId employeeId)
+        {
+            await _employeeRepository.DeleteEmployeeAsync(employeeId);
+        }
         public void AddEmployee(Employee employee)
         {
             _employeeRepository.AddEmployeeAsync(employee);

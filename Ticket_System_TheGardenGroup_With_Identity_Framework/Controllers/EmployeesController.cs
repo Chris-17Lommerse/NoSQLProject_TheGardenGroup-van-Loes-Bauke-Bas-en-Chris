@@ -150,7 +150,37 @@ namespace Ticket_System_TheGardenGroup.Controllers
 
             TempData["SuccessMessage"] = $"Rol {employeeRole} is succesvol gekoppeld aan {user.UserName}";
             return RedirectToAction("Index");
+        }
+        [Authorize(Roles = "Service_Desk_Employee")]
+        [HttpGet]
+        public async Task<IActionResult> DeleteEmployee(Employee employee)
+        {
+            try
+            {
+                return View(employee);
+            }
+            catch (Exception)
+            {
+                TempData["WarningMessage"] = "Something went wrong";
+                return RedirectToAction("Index");
+            }
+        }
+        [Authorize(Roles = "Service_Desk_Employee")]
+        [HttpPost]
+        public async Task<IActionResult> DeleteEmployee(ObjectId employeeId)
+        {
+            try
+            {
+                await _employeeService.DeleteEmployeeAsync(employeeId);
+                TempData["SuccesMessage"] = $"Employee: {employeeId} is deleted";
 
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                TempData["WarningMessage"] = "Something went wrong";
+                return RedirectToAction("Index");
+            }
         }
     }
 }

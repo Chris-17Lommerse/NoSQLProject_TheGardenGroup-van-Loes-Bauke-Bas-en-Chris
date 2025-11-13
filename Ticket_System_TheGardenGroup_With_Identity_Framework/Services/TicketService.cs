@@ -14,6 +14,22 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Services
             _ticketRepository = ticketRepository;
         }
 
+        public async Task DeleteTicket(Ticket ticket)
+        {
+            _ticketRepository.DeleteTicket(ticket);
+        }
+        public Task<List<Ticket>> FindAllArchivedTicketsAsync()
+        {
+            return _ticketRepository.FindAllArchivedTicketsAsync();
+        }
+        public Task<List<Ticket>> GetAllUnArchivedTicketsAsync()
+        {
+            return _ticketRepository.GetAllUnArchivedTicketsAsync();
+        }
+        public Task<long> ArchiveAllOldTicektsAsync()
+        {
+            return _ticketRepository.ArchiveAllOldTicektsAsync();
+        }
         public async Task<bool> CheckUpdatedTicket(Ticket ticket, Ticket updatedTicket)
         {
             if (updatedTicket == null || !Debugger(ticket, updatedTicket))

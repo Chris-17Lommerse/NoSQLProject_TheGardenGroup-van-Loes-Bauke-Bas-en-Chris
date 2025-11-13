@@ -1,6 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
+using Ticket_System_TheGardenGroup.Repositories.ArchivingFuntionaliteit;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Models;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories.Interfaces;
 
@@ -9,17 +10,36 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
     public class TicketRepository : ITicketRepository
     {
         private readonly IMongoCollection<Ticket> _ticketCollection;
+        private ArchivingTicketDbQueries queries;
 
         public TicketRepository(IMongoDatabase database)
         {
             _ticketCollection = database.GetCollection<Ticket>("TICKET");
+            queries = new ArchivingTicketDbQueries(database);
         }
 
         public void AddTicket(Ticket ticket)
         {
             _ticketCollection.InsertOneAsync(ticket);
         }
+        public async Task DeleteTicket(Ticket ticket)
+        {
+            var filter = Builders<Ticket>.Filter.Eq(t => t.TicketId, ticket.TicketId);
 
+            await _ticketCollection.DeleteOneAsync(filter);
+        }
+        public async Task<long> ArchiveAllOldTicektsAsync()
+        {
+            return await queries.ArchiveAllOldTicektsAsyncClass();
+        }
+        public async Task<List<Ticket>> GetAllUnArchivedTicketsAsync()
+        {
+            return await queries.GetAllUnArchivedTicketsAsyncClass();
+        }
+        public async Task<List<Ticket>> FindAllArchivedTicketsAsync()
+        {
+            return await queries.FindAllArchivedTicketsAsyncClass();
+        }
         public async Task<List<Ticket>> FilterTicketsOnAndOrSearchInputAsync(string searchString)
         {
             if (string.IsNullOrWhiteSpace(searchString))
