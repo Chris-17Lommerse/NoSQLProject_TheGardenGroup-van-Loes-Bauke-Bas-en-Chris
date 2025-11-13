@@ -31,9 +31,9 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Services
             }
         }
 
-        public Task<List<Ticket>> GetAllTickets()
+        public Task<List<Ticket>> GetAllTicketsByEmailAddress(string emailAddress)
         {
-            return _ticketRepository.GetAllTickets();
+            return _ticketRepository.GetAllTicketsByEmailAddress(emailAddress);
         }
         /*public async Task<TicketViewModel> GetTicketAsync(ObjectId id)
         {

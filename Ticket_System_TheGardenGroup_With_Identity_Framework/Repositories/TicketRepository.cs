@@ -94,8 +94,9 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
             return await _ticketCollection.Find(combinedFilter).Sort(sortByCreationDate).ToListAsync();
         }
 
-        public async Task<List<Ticket>> GetAllTickets()
+        public async Task<List<Ticket>> GetAllTicketsByEmailAddress(string emailAddress)
         {
+            var filter = Builders<Ticket>.Filter.Eq("reporting_employee.emailaddress", emailAddress);
             return await _ticketCollection.Find(Builders<Ticket>.Filter.Empty).ToListAsync();
         }
         public async Task<Ticket> GetTicketAsync(ObjectId id)
