@@ -14,9 +14,8 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Services
             _ticketRepository = ticketRepository;
         }
 
-        public async Task<bool> CheckUpdatedTicket(Ticket ticket)
+        public async Task<bool> CheckUpdatedTicket(Ticket ticket, Ticket updatedTicket)
         {
-            Ticket updatedTicket = await _ticketRepository.GetTicketByObjIdAsync(ticket.TicketId);
             if (updatedTicket == null || !Debugger(ticket, updatedTicket))
             {
                 return false;

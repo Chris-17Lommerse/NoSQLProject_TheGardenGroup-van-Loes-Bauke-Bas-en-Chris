@@ -20,12 +20,12 @@
         </section>
 
         <section>
-            <label readonly for="creationTime">Creation time</label>
+            <label for="creationTime">Creation time</label>
             <input readonly type="datetime" id="creationTime" name="CreationTime" class="form-control" value="@Model?.CreationTime" />
         </section>
 
         <section>
-            <label readonly for="TicketStatus">Ticket Status</label>
+            <label for="TicketStatus">Ticket Status</label>
             <input readonly type="text" id="TicketStatus" name="TicketStatus" class="form-control" value="@Model?.TicketStatus" />
         </section>
 
@@ -45,13 +45,13 @@
         </section>
 
         <section>
-            <label readonly for="IsSolved">Is ticket solved?</label>
+            <label for="IsSolved">Is ticket solved?</label>
             <input readonly type="checkbox" id="IsSolved" name="IsSolved" asp-for="IsSolved" />
         </section>
 
         <section>
             <label for="ticketPriority">Ticket priority (only ds_e)</label>
-            <input type="text" id="ticketPriority" name="Priority" class="form-control" value="@Model?.Priority" />
+            <input readonly type="text" id="ticketPriority" name="Priority" class="form-control" value="@Model?.Priority" />
         </section>
 
         <section>

@@ -22,7 +22,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.ViewModels
         public string Surname { get; set; } = "";
         [BsonElement("employee_role")]
         public EmployeeRole EmployeeRole { get; set; } = EmployeeRole.Regular_Employee;
-        [BsonElement("is_active")]
+        [BsonElement("isActive")]
         public bool IsActive { get; set; } = false;
 
         public EmployeeViewModel(ObjectId id, int employeeNumber, string emailAddress, string name, string surname, EmployeeRole employeeRole, bool isActive)

@@ -13,13 +13,13 @@
 
     <a href="/Tickets/index" class="btn btn-primary mb-3">Back to ticket list</a>
 
-    <a href="/Tickets/DeleteTicket?TicketId=@Model?.TicketId" class="btn btn-danger mb-3">Delete ticket</a>
-
     <form action="/Tickets/UpdateTicket" method="post">
         <p class="bg-info">This form is for updating the employee who is solving this ticket. Ignore this form if you don't need it.</p>
         <partial name="_EmbeddedEmployee" />
+        
         <label for="solvEmployee">Solving Employee Number</label>
-        <input type="text" id="solvEmployee" name="solvingEmployeeNumber" class="form-control" value="@Model?.SolvingEmployee.EmployeeNumber" />
+        <input required type="text" id="solvEmployee" name="solvingEmployeeNumber" class="form-control" value="@Model?.SolvingEmployee.EmployeeNumber" />
+       
         <label hidden for="TicketId">Ticket id</label>
         <input hidden type="text" id="TicketId" name="ticketId" class="form-control" value="@Model?.TicketId" />
         
@@ -37,13 +37,13 @@
         </section>
 
         <section>
-            <label readonly for="creationTime">Creation time</label>
-            <input readonly type="datetime" id="creationTime" name="CreationTime" class="form-control" value="@Model?.CreationTime" />
+            <label for="creationTime">Creation time</label>
+            <input required readonly type="datetime" id="creationTime" name="CreationTime" class="form-control" value="@Model?.CreationTime" />
         </section>
 
         <section>
-            <label readonly for="TicketStatus">Ticket Status</label>
-            <input readonly type="text" id="TicketStatus" name="TicketStatus" class="form-control" value="@Model?.TicketStatus" />
+            <label for="TicketStatus">Ticket Status</label>
+            <input required type="text" id="TicketStatus" name="TicketStatus" class="form-control" value="@Model?.TicketStatus" />
         </section>
 
         <section>

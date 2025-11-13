@@ -8,7 +8,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Services.Interfac
         Task<List<Ticket>> GetAllTickets();
         Task<Ticket> GetTicketByObjIdAsync(ObjectId objId);
         void UpdateTicket(Ticket ticket);
-        Task <bool> CheckUpdatedTicket(Ticket ticket);
+        Task <bool> CheckUpdatedTicket(Ticket ticket, Ticket updatedTicket);
         Task<List<Ticket>> FilterTicketsOnSearchInputAsync(string searchString);
     }
 }

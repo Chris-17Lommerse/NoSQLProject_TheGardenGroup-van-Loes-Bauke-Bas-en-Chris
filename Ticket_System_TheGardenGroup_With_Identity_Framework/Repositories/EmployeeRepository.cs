@@ -157,10 +157,10 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
                 Builders<Employee>.Update.Set("password", employee.Password),
                 Builders<Employee>.Update.Set("name", employee.Name),
                 Builders<Employee>.Update.Set("surname", employee.Surname),
+                Builders<Employee>.Update.Set("emailaddress", employee.EmailAddress),
                 Builders<Employee>.Update.Set("employee_role", employee.EmployeeRole.ToString()),
                 Builders<Employee>.Update.Set("isActive", employee.IsActive),
-                Builders<Employee>.Update.Set("isActive", employee.WorkingOn),
-                Builders<Employee>.Update.Set("working_on", employee.EmailAddress)
+                Builders<Employee>.Update.Set("workingOn", employee.WorkingOn)
             );
             Console.WriteLine(filter);
             Console.WriteLine(combinedUpdate);

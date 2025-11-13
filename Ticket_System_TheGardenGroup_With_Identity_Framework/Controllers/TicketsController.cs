@@ -72,7 +72,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
             }
             catch (Exception ex)
             {
-                TempData["EroorMessage"] = $"Er is iets misgegaan. {ex.Message}";
+                TempData["ErrorMessage"] = $"Er is iets misgegaan. {ex.Message}";
                 return View(ex);
             }
         }
@@ -124,56 +124,6 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
 
             return View(ticket);
         }
-
-        [HttpPost]
-        [Authorize(Roles = "Service_Desk_Employee")]
-        public async Task<IActionResult> UpdateTicketSuccess(Ticket ticket)
-        {
-            Console.WriteLine(ticket.ToString());
-            try
-            {
-                if (!_signInManager.IsSignedIn(User))
-                {
-                    TempData["ErrorMessage"] = "Je moet inloggen om toegang te krijgen tot de pagina.";
-                    return RedirectToAction("Index", "Home");
-                }
-                //Sends the new info to the DB
-                _ticketService.UpdateTicket(ticket);
-                Ticket updatedTicket = await _ticketService.GetTicketByObjIdAsync(ticket.TicketId);
-                if (await _ticketService.CheckUpdatedTicket(ticket))
-                {
-                    TempData["SuccesMessage"] = "The ticket was succesfully updated.";
-                    return View(updatedTicket);
-                }
-                else 
-                {
-                    TempData["ErrorMessage"] = "The update corrupted the ticket or something else went terribly wrong.";
-                    return RedirectToAction("Index", "Tickets");
-                }
-            }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = "The HttpPost UpdateTicket page failed to load.";
-                Console.WriteLine(ex.ToString());
-                return RedirectToAction("UpdateTicket", ticket);
-            }
-        }
-        
-        [HttpGet]
-        [Authorize(Roles = "Service_Desk_Employee")]
-        public async Task<IActionResult> UpdateTicketSuccess()
-        {
-            try
-            {
-                TempData["SuccesMessage"] = "The ticket was updated successfully.";
-                return View();
-            }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = "123";
-                return RedirectToAction("Index", "Tickets");
-            }
-        }
         [HttpPost]
         [Authorize(Roles = "Service_Desk_Employee")]
         public async Task<IActionResult> UpdateTicket(string ticketId, int solvingEmployeeNumber)
@@ -189,9 +139,58 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
                 TempData["SuccesMessage"] = "The update embeddedEmployee succeeded.";
                 return View(ticket);
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(Environment.NewLine + ex);
                 TempData["ErrorMessage"] = "The update embeddedEmployee failed.";
+                return RedirectToAction("Index", "Tickets");
+            }
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Service_Desk_Employee")]
+        public async Task<IActionResult> UpdateTicketSuccess(Ticket ticket)
+        {
+            try
+            {
+                if (!_signInManager.IsSignedIn(User))
+                {
+                    TempData["ErrorMessage"] = "Je moet inloggen om toegang te krijgen tot de pagina.";
+                    return RedirectToAction("Index", "Home");
+                }
+                _ticketService.UpdateTicket(ticket);
+                Ticket updatedTicket = await _ticketService.GetTicketByObjIdAsync(ticket.TicketId);
+                if (await _ticketService.CheckUpdatedTicket(ticket, updatedTicket))
+                {
+                    TempData["SuccesMessage"] = "The ticket was succesfully updated.";
+                    return View(updatedTicket);
+                }
+                else 
+                {
+                    TempData["ErrorMessage"] = "The ticket failed to update.";
+                    return View(ticket);
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "The HttpPost UpdateTicket page failed to load.";
+                return RedirectToAction("UpdateTicket", ticket);
+            }
+        }
+        
+        [HttpGet]
+        [Authorize(Roles = "Service_Desk_Employee")]
+        public async Task<IActionResult> UpdateTicketSuccess()
+        {
+            try
+            {
+                TempData["SuccesMessage"] = "The ticket was updated successfully.";
+                return View();
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "UpdateTicketSuccess failed to load. However your ticket was updated correctly";
                 return RedirectToAction("Index", "Tickets");
             }
         }
@@ -220,14 +219,14 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
         [Authorize(Roles = "Service_Desk_Employee,Regular_Employee")]
         public IActionResult AddTicket(TicketViewModel ticketViewModel)
         {
-            if (!_signInManager.IsSignedIn(User))
+            try 
             {
-                TempData["ErrorMessage"] = $"Je moet inloggen om toegang te krijgen tot de pagina";
-                return RedirectToAction("Index", "Home");
-            }
-            throw new NotImplementedException();
-            try
-            {
+                if (!_signInManager.IsSignedIn(User))
+                {
+                    TempData["ErrorMessage"] = $"Je moet inloggen om toegang te krijgen tot de pagina";
+                    return RedirectToAction("Index", "Home");
+                }
+                throw new NotImplementedException();
                 return View();
             }
             catch (Exception ex)
