@@ -60,45 +60,40 @@ namespace Ticket_System_TheGardenGroup.Repositories
             var filter = Builders<Ticket>.Filter.Eq(t => t.TicketId, ticket.TicketId);
 
             _ticketCollection.DeleteOneAsync(filter);
-            
         }
 
-        public async Task ArchiveAllOldTicektsAsync(Ticket ticket)
+        public async Task<long> ArchiveAllOldTicektsAsync()
         {
             try
             {
-                //List
-                //Geef een gefilterde list mee als argument in de methode. Haal alle tickets die al gearchiveerd zijn eruit, dus TicketStatus.Closed
-                //Check die lijst of daar Tickets in zitten die ouder zijn dan 2 jaar.
-                //Zet dit documenten in een nieuwe TicketsToBeArchived List
-                //Laat zien hoeveel dat erzijn in console+
-                //Dan die handel archiveren
-
-
-
-
-
                 var builder = Builders<Ticket>.Filter;
                 var filter = builder.And(
                         builder.Lt(t => t.CreationTime, DateTime.UtcNow.AddYears(-2)),
                         builder.Ne(t => t.TicketStatus, TicketStatus.Closed)
                 );
 
-                var combinedUpdate = Builders<Ticket>.Update.Combine(
-                    Builders<Ticket>.Update.Set(t => t.TicketStatus, TicketStatus.Closed)
-                );
+                var update = Builders<Ticket>.Update.Set(t => t.TicketStatus, TicketStatus.Closed);
 
-                await _ticketCollection.UpdateManyAsync(filter, combinedUpdate);
+                var result = await _ticketCollection.UpdateManyAsync(filter, update);
+
+                long amountOfChangedDocuments = result.ModifiedCount;
+                return amountOfChangedDocuments;
             }
             catch (Exception)
             {
                 throw new Exception();
             }
         }
-
         public async Task<List<Ticket>> GetAllUnArchivedTicketsAsync()
         {
             return await _ticketCollection.Find(Builders<Ticket>.Filter.Ne(t => t.TicketStatus, TicketStatus.Closed)).ToListAsync();
+        }
+        public async Task<List<Ticket>> FindAllArchivedTicketsAsync()
+        {
+            var creationTimeFilter = Builders<Ticket>.Filter.Lt(t => t.CreationTime, DateTime.UtcNow.AddYears(-2));
+            var ticketStatusFilter = Builders<Ticket>.Filter.Eq(t => t.TicketStatus, TicketStatus.Closed);
+
+            return await _ticketCollection.Find(Builders<Ticket>.Filter.And(creationTimeFilter, ticketStatusFilter)).ToListAsync();
         }
     }
 }

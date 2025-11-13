@@ -20,21 +20,12 @@ namespace Ticket_System_TheGardenGroup.Controllers
         {
             try
             {
-				var tickets = await _ticketService.GetAllTickets();
-
-                //Debug
-                int ticketCount = 0;
-                foreach (Ticket ticketItem in tickets)
-                {
-                    ticketCount++;
-                }
-                Console.WriteLine($"Ticket Count {ticketCount}");
+				List<Ticket> tickets = await _ticketService.GetAllUnArchivedTicketsAsync();
 
                 return View(tickets);
 			}
             catch (Exception)
             {
-
                 throw new Exception("No tickets found");
             }
             
@@ -44,22 +35,10 @@ namespace Ticket_System_TheGardenGroup.Controllers
         {
             try
             {
-                await _ticketService.ArchiveAllOldTicektsAsync(ticket);
+                long arhivedTicketCount = await _ticketService.ArchiveAllOldTicektsAsync();
+                TempData["SuccesMessage"] = $"{arhivedTicketCount} tickets are archived.";
 
                 List<Ticket> tickets = await _ticketService.GetAllUnArchivedTicketsAsync();
-
-                //Dit moet naar de service
-                int ticketCount = 0;
-                foreach (Ticket ticketItem in tickets)
-                {
-                    ticketCount++;
-                    //Console.WriteLine(ticket.TicketId);
-                    //De creation time is vandaag en de ticketId is leeg, dus het doorgeven van de ticket gaat niet goed.
-                    Console.WriteLine(ticket.CreationTime);
-                }
-                
-
-                TempData["SuccesMessage"] = $"{ticketCount} tickets have been archived.";
 
 				return View(tickets);
             }
@@ -178,22 +157,22 @@ namespace Ticket_System_TheGardenGroup.Controllers
         {
             try
             {
-				var ticket = await _ticketService.GetTicketByObjIdAsync(ticketId);
+				Ticket ticket = await _ticketService.GetTicketByObjIdAsync(ticketId);
 
 				if (ticket == null)
 				{
-					TempData["NoTicket"] = "Ticket not found.";
+					TempData["ErrorMsg"] = "No ticket found!";
 					return RedirectToAction("Index");
 				}
 
-				return View(ticket);
+                return View(ticket);
 			}
             catch (Exception)
             {
-                throw new Exception("No ticket found to delete");
+                TempData["ErrorMsg"] = "Something went wrong!";
+                return RedirectToAction("Index");
             }
         }       
-
         [HttpPost]
 		public IActionResult DeleteTicket(Ticket ticket)
 		{
@@ -202,17 +181,16 @@ namespace Ticket_System_TheGardenGroup.Controllers
                 //first delete the ticket from workingOn array
                 //
 
-                //This deletes a ticket
                 _ticketService.DeleteTicket(ticket);
+                TempData["SuccesMsg"] = $"Ticket: {ticket.TicketName}, has been deleted";
 
                 return RedirectToAction("Index");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.Write(ex);
+                TempData["ErrorMsg"] = "Something went wrong!";
                 return RedirectToAction("Index");
             }
 		}
-
 	}
 }

@@ -15,8 +15,8 @@ namespace Ticket_System_TheGardenGroup.Services.Interfaces
 
         void DeleteTicket(Ticket ticket);
 
-        public Task ArchiveAllOldTicektsAsync(Ticket ticket);
-
+        public Task<long> ArchiveAllOldTicektsAsync();
         public Task<List<Ticket>> GetAllUnArchivedTicketsAsync();
+        public Task<List<Ticket>> FindAllArchivedTicketsAsync();
     }
 }

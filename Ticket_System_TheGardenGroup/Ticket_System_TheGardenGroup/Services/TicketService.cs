@@ -15,14 +15,19 @@ namespace Ticket_System_TheGardenGroup.Services
             _ticketRepository = ticketRepository;
         }
 
-        public Task ArchiveAllOldTicektsAsync(Ticket ticket)
+        public Task<long> ArchiveAllOldTicektsAsync()
         {
-            return _ticketRepository.ArchiveAllOldTicektsAsync(ticket);
+            return _ticketRepository.ArchiveAllOldTicektsAsync();
         }
 
         public void DeleteTicket(Ticket ticket)
         {
-            throw new NotImplementedException();
+            _ticketRepository.DeleteTicket(ticket);
+        }
+
+        public Task<List<Ticket>> FindAllArchivedTicketsAsync()
+        {
+            return _ticketRepository.FindAllArchivedTicketsAsync();
         }
 
         public Task<List<Ticket>> GetAllTickets()

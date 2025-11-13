@@ -18,10 +18,8 @@ namespace Ticket_System_TheGardenGroup.Repositories
 
         public async Task<Employee> GetEmployeeAsync(int employeeNumber)
         {
-			/*var filter = Builders<Employee>.Filter.Eq("employee_number", employeeNumber);
-            return await _employeeCollection.Find(filter).FirstOrDefaultAsync();*/
-
 			var filter = Builders<Employee>.Filter.Eq(e => e.EmployeeNumber, employeeNumber);
+
 			return await _employeeCollection.Find(filter).FirstOrDefaultAsync();
 		}
 
@@ -201,6 +199,13 @@ namespace Ticket_System_TheGardenGroup.Repositories
                 // Stap 5: Sla het bijgewerkte Ticket weer op in de database
                 await _employeeCollection.ReplaceOneAsync(filter, employee);
             }*/
+        }
+
+        public async Task<List<Employee>> GetAllActiveEmployees()
+        {
+            var filter = Builders<Employee>.Filter.Eq(e => e.IsActive, true);
+
+            return await _employeeCollection.Find(filter).ToListAsync();
         }
     }
 }

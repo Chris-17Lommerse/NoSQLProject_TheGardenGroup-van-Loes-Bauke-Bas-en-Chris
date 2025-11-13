@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
+using System.Collections.Generic;
 using Ticket_System_TheGardenGroup.Models;
+using Ticket_System_TheGardenGroup.Services;
 using Ticket_System_TheGardenGroup.Services.Interfaces;
 using Ticket_System_TheGardenGroup.ViewModels;
 
@@ -14,9 +16,9 @@ namespace Ticket_System_TheGardenGroup.Controllers
         {
             _employeeService = employeeService;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            Task<List<EmployeeTicketsVm>> employees = _employeeService.GetAllEmployeesWithAmountOfTicketsAsync();
+            List<Employee> employees = await _employeeService.GetAllActiveEmployees();
             return View(employees);
         }
 
@@ -53,6 +55,36 @@ namespace Ticket_System_TheGardenGroup.Controllers
                     return View("AddEmployee");
                 }
             }
+
+        /*[HttpGet]
+        public async Task<IActionResult> DeleteTicket(string employeeId)
+        {
+            try
+            {
+                
+            }
+            catch (Exception)
+            {
+
+            }
         }
+        [HttpPost]
+        public IActionResult DeleteTicket(Ticket ticket)
+        {
+            try
+            {
+
+            }
+            catch (Exception)
+            {
+
+            }
+        }*/
+
+
+
+
     }
+
+}
 

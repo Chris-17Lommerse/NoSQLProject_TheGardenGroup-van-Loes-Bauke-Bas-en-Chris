@@ -56,5 +56,10 @@ namespace Ticket_System_TheGardenGroup.Services
             throw new NotImplementedException("Function not yet implemented");
             //return await _employeeRepository.FindTicketIdInWorkingOnArryAsync(ticketId);
         }
+
+        public async Task<List<Employee>> GetAllActiveEmployees()
+        {
+            return await _employeeRepository.GetAllActiveEmployees();
+        }
     }
 }
