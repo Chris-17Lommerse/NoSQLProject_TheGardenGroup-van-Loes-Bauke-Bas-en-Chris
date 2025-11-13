@@ -39,11 +39,6 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Controllers
                     tickets = await _ticketService.GetAllTickets();
                     return View(tickets);
                 }
-                else if(User.IsInRole("Regular_Employee"))
-                {
-                    tickets = await _ticketService.GetTicketsByEmployeeId();
-                    return View(tickets);
-                }
                 else
                 {
                     TempData["ErrorMessage"] = $"Je hebt geen toegang tot deze pagina";
