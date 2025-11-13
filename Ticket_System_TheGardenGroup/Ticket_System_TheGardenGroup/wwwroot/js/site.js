@@ -9,23 +9,19 @@ window.onload = function () {
     const confirmBtn = document.getElementById('confirmBtn');
     const cancelBtn = document.getElementById('cancelBtn');
 
-    // Zorg dat de popup standaard verborgen is
     popup.style.display = 'none';
 
     showBtn.onclick = function (e) {
-        e.preventDefault(); // voorkom dat het formulier meteen wordt verzonden
-        popup.style.display = 'flex'; // toon de popup
+        e.preventDefault();
+        popup.style.display = 'flex';
     };
 
     confirmBtn.onclick = function () {
-        // Sluit de popup
         popup.style.display = 'none';
-        // Verstuur het formulier om te archiveren
         document.getElementById('archiveForm').submit();
     };
 
     cancelBtn.onclick = function () {
-        // Sluit de popup zonder actie
         popup.style.display = 'none';
     };
 };
