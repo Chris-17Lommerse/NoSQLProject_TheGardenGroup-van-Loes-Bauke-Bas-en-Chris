@@ -1,9 +1,5 @@
 using MongoDB.Bson;
 using MongoDB.Driver;
-using Ticket_System_TheGardenGroup.Models;
-using Ticket_System_TheGardenGroup.Models.Enums;
-using Ticket_System_TheGardenGroup.Repositories.Interfaces;
-using Ticket_System_TheGardenGroup.ViewModels;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Models;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories.Interfaces;
 using Ticket_System_TheGardenGroup_With_Identity_Framework.ViewModels;
@@ -107,7 +103,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
         public async Task UpdateEmployeeWorkingOnAsync(Employee employee)
         {
             var filter = Builders<Employee>.Filter.Eq("_id", employee.Id);
-            var combinedUpdate = Builders<Employee>.Update.Combine(Builders<Employee>.Update.Set("workingOn", employee.WorkingOn)
+            var combinedUpdate = Builders<Employee>.Update.Combine(Builders<Employee>.Update.Set("workingOn", employee.workingOnList)
             );
             await _employeeCollection.UpdateOneAsync(filter, combinedUpdate);
         }
@@ -163,7 +159,7 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Repositories
                 Builders<Employee>.Update.Set("surname", employee.Surname),
                 Builders<Employee>.Update.Set("employee_role", employee.EmployeeRole.ToString()),
                 Builders<Employee>.Update.Set("isActive", employee.IsActive),
-                Builders<Employee>.Update.Set("isActive", employee.WorkingOn),
+                Builders<Employee>.Update.Set("isActive", employee.workingOnList),
                 Builders<Employee>.Update.Set("working_on", employee.EmailAddress)
             );
             Console.WriteLine(filter);
