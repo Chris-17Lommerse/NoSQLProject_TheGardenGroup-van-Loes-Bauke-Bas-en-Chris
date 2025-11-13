@@ -47,11 +47,6 @@ namespace Ticket_System_TheGardenGroup_With_Identity_Framework.Services
             return await _ticketRepository.GetTicketByObjIdAsync(objId);
         }
 
-        public Task<List<Ticket>> GetTicketsByEmployeeId()
-        {
-            throw new NotImplementedException();
-        }
-
         public void UpdateTicket(Ticket ticket)
         {
             _ticketRepository.UpdateTicket(ticket);
