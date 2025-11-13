@@ -1,0 +1,35 @@
+﻿@model Ticket_System_TheGardenGroup_With_Identity_Framework.ViewModels.EmployeeViewModel
+@{
+	ViewData["Title"] = "Update Employee";
+}
+
+<partial name="_ErrorMessage" />
+<partial name="_WarningMessage" />
+<partial name="_SuccessMessage" />
+
+<form action="/Employees/UpdateEmployee" method="post">
+	<input hidden readonly type="text" name="ObjectID" value="@Model.Id" />
+	<input hidden readonly type="text" name="EmployeeNumber" value="@Model?.EmployeeNumber" />
+	<section class="form-group py-2">
+		<label for="Name">Name:</label>
+		<input type="text" id="Name" name="Name" class="form-control" required value="@Model?.Name" />
+	</section>
+	<section class="form-group py-2">
+		<label for="Surname">Surname:</label>
+		<input type="text" id="Surname" name="Surname" class="form-control" required value="@Model?.Surname" />
+	</section>
+	<section class="form-group py-2">
+		<label for="EmployeeRole">Employee role:</label>
+		<input type="text" id="EmployeeRole" name="EmployeeRole" class="form-control" required value="@Model?.EmployeeRole" />
+	</section>
+	<section class="form-group py-2">
+		<label for="EmailAddress">EmailAddress:</label>
+		<input type="tel" id="EmailAddress" name="EmailAddress" class="form-control" required value="@Model?.EmailAddress" />
+	</section>
+	<section class="form-group py-2">
+		<label for="IsActive">Is active?:</label>
+		<input type="checkbox" id="IsActive" name="IsActive" asp-for="IsActive" />
+	</section>
+	<button type="submit" class="btn btn-primary">Update</button>
+</form>
+<a href="/Employees/Index">Back to employee list</a>

@@ -1,0 +1,59 @@
+﻿@model List<Ticket>
+@{
+    ViewData["Title"] = "Tickets";
+}
+
+<partial name="_ErrorMessage" />
+<partial name="_WarningMessage" />
+<partial name="_SuccessMessage" />
+
+<h1 class="alert-danger">@TempData["NoTicket"]</h1>
+<h1 class="alert-danger">@TempData["NoId"]</h1>
+
+<form method="post" action="/Tickets/Index">
+    <div class="form-group">
+        <label for="search">Zoek in de tickets:</label>
+        <input type="text" id="searchString" name="searchString" class="form-control w-25 m-2" placeholder="Zoek in tickets">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Zoek</button>
+</form>
+
+<div class="text-center">
+    <h1>Overview Tickets</h1>
+    <a href="/Tickets/AddTicket" class="btn btn-primary">Create Ticket</a>
+
+    <form id="archiveForm" action="/Tickets/Index" method="post">
+        <button id="showPopupBtn" type="submit" class="btn btn-warning">Archive tickets</button>
+    </form>
+
+    @await Html.PartialAsync("_ArchiveTicketPopUpPV")
+
+    <table class="table table-info tavle-hover">
+        <partial name="_TicketsHeader" />
+        <tbody>
+
+            @foreach (Ticket ticket in Model)
+            {
+                <tr>
+                    <td>@ticket.TicketId</td>
+                    <td>@ticket.CreationTime</td>
+                    <td>@ticket.TicketName</td>
+                    <td>@ticket.Description</td>
+                    <td>@ticket.TicketStatus</td>
+                    <td>@ticket.ReportingEmployee.EmailAddress</td>
+                    <td>@ticket.SolvingEmployee.EmailAddress</td>
+                    <td>@ticket.IsSolved</td>
+                    <td>
+                        <a href="/Tickets/ViewTicket?ticketIdString=@ticket.TicketId">View</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <script src="~/js/site.js"></script>
+</div>
+
+
+

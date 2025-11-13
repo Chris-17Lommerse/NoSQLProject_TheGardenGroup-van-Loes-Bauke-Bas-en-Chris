@@ -20,13 +20,13 @@ namespace Ticket_System_TheGardenGroup.Controllers
         {
             try
             {
-				List<Ticket> tickets = await _ticketService.GetAllUnArchivedTicketsAsync();
-
-                return View(tickets);
+                var tickets = await _ticketService.GetAllTickets();
+				return View(tickets);
 			}
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception("No tickets found");
+                TempData["ErrorMessage"] = "No tickets found";
+                return RedirectToAction("Index", "Home");
             }
             
         }
@@ -66,22 +66,30 @@ namespace Ticket_System_TheGardenGroup.Controllers
         [HttpGet]
 		public async Task<IActionResult> UpdateTicket(string ticketId)
 		{
-			if (string.IsNullOrEmpty(ticketId))
-			{
-				TempData["NoId"] = "Ticket ID missing.";
-				return RedirectToAction("Index");
-			}
+            try
+            {
+                if (string.IsNullOrEmpty(ticketId))
+                {
+                    TempData["NoId"] = "Ticket ID missing.";
+                    return RedirectToAction("Index");
+                }
 
-			var objectId = new ObjectId(ticketId);
-			var ticket = await _ticketService.GetTicketByObjIdAsync(objectId);
+                var objectId = new ObjectId(ticketId);
+                var ticket = await _ticketService.GetTicketByObjIdAsync(objectId);
 
-			if (ticket == null)
-			{
-				TempData["NoTicket"] = "Ticket not found.";
-				return RedirectToAction("Index");
-			}
-
-			return View(ticket); 
+                if (ticket == null)
+                {
+                    TempData["NoTicket"] = "Ticket not found.";
+                    return RedirectToAction("Index");
+                }
+                TempData["SuccesMessage"] = "The ticket was succesfully updated.";
+                return View(ticket);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "The ticket has failed to update.";
+                return RedirectToAction("UpdateTicket");
+            }
 		}
         [HttpGet]
         public async Task<IActionResult> LoadEmployee(Ticket ticket, int employeeNumber)
@@ -126,7 +134,6 @@ namespace Ticket_System_TheGardenGroup.Controllers
 		[HttpGet]
         public IActionResult AddTicket()
         {
-            throw new NotImplementedException();
             try
             {
                 return View();
@@ -137,12 +144,12 @@ namespace Ticket_System_TheGardenGroup.Controllers
                 return RedirectToAction("ViewTicket");
             }
         }
-        [HttpGet]
+        [HttpPost]
         public IActionResult AddTicket(TicketViewModel ticketViewModel)
         {
-            throw new NotImplementedException();
             try
             {
+                TempData["SuccesMessage"] = "The ticket was succesfully created.";
                 return View();
             }
             catch (Exception ex)
